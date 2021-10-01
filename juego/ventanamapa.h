@@ -6,6 +6,7 @@
 #include "personaje.h"
 #include <QMainWindow>
 #include "disparo.h"
+#include "mainwindow.h"
 
 namespace Ui {
 class VentanaMapa;

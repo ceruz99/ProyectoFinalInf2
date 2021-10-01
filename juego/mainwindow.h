@@ -3,6 +3,7 @@
 #include <sesion.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <ventanamapa.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -20,6 +21,7 @@ private slots:
     void on_pushButton_clicked();
 
 private:
+    QMainWindow *ventanamain;
     Ui::MainWindow *ui;
     QString user,password;
     QGraphicsScene *inicio;
