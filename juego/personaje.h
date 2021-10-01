@@ -1,20 +1,21 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
-#include <QGraphicsItem>
-#include <QPainter>
 #include <QObject>
-#include <QGraphicsPixmapItem>
-#include <QKeyEvent>
+#include <QGraphicsItem>
+#include <QPixmap>
+#include <QPainter>
+#include <QTimer>
 
-class personaje: public QGraphicsItem
+class personaje:public QObject, public QGraphicsItem
 {
 
-    int r;
-    int posx, posy;
-    int velocidad = 5;
+    int posx,posy,velocidad=5;
 
 public:
-    personaje(int r_, int x, int y);
+    personaje(int x, int y);
+    QPixmap *pixmap;
+    QTimer *timer;
+    float filas, columnas,ancho, alto;
 
 /*estas funciones es por si nos toca sacar la posicion
  * o alguna cosa de nuestro personaje para por ejemplo
@@ -22,8 +23,7 @@ public:
  * las get son para sacar un valor que necesitemos
  * las set es para cambiar ese  valor
 */
-    int getR() const;
-    void setR(int radio);
+
     int getPosx() const;
     void setPosx(int px);
     int getPosy() const;
@@ -38,6 +38,10 @@ public:
     void moverAbajo();
     void moverIzquierda();
     void moverDerecha();
+
+
+public slots:
+    void reload();
 
 };
 

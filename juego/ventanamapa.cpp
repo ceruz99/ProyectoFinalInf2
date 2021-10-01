@@ -10,7 +10,7 @@ VentanaMapa::VentanaMapa(QWidget *parent) :
     scene=new QGraphicsScene;
     ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,400,400);
-    persona=new personaje(25,220,250);
+    persona=new personaje(220,250);
     scene->addItem(persona);
 }
 

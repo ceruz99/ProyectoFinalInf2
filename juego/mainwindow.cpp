@@ -27,6 +27,7 @@ void MainWindow::on_pushButton_clicked()
 
     ventanamain=new VentanaMapa;
     ventanamain->show();
+
     this->hide();
     user=ui->lineEdit->text();
     password=ui->lineEdit_2->text();
