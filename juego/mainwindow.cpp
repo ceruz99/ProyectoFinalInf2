@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(inicio);
     inicio->setSceneRect(0,0,700,450);
 
+
 }
 
 MainWindow::~MainWindow()
