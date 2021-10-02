@@ -19,8 +19,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_pushButton_clicked()
 {
     user=ui->lineEdit->text();
@@ -28,5 +26,5 @@ void MainWindow::on_pushButton_clicked()
     sesion cuenta(user,password);
     cuenta.nuevoUsuario();
     if(cuenta.busquedaUsuario()==true)
-        cout<<"funciona busqueda"<<endl;
+        cout<<"funciona busqueda.."<<endl;
 }
