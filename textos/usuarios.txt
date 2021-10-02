@@ -11,8 +11,12 @@ pepito,1234
 pepito,1234
 pepito,1234
 pepito,1234
+<<<<<<< HEAD
 pepito,1234
 pepito,1234
 pepito,1234
 pepito,1234
 pepito,1234
+=======
+prueba,jaja20
+>>>>>>> origin/main
