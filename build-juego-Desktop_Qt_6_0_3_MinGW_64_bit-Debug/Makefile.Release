@@ -394,6 +394,11 @@ release/moc_registrodialog.cpp: ../juego/registrodialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSize \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSizeF \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QTransform \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
 		release/moc_predefs.h \
 		C:/QTcreator/6.0.3/mingw81_64/bin/moc.exe
 	C:\QTcreator\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/build-juego-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++ -I"C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/juego" -IC:/QTcreator/6.0.3/mingw81_64/include -IC:/QTcreator/6.0.3/mingw81_64/include/QtWidgets -IC:/QTcreator/6.0.3/mingw81_64/include/QtGui -IC:/QTcreator/6.0.3/mingw81_64/include/QtCore -I. -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/QTcreator/Tools/mingw810_64/x86_64-w64-mingw32/include ..\juego\registrodialog.h -o release\moc_registrodialog.cpp
@@ -712,39 +717,7 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		../juego/registrodialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
-		ui_mainwindow.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qeventloop.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLabel \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpicture.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qaction.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QPushButton \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o ..\juego\mainwindow.cpp
 
 release/personaje.o: ../juego/personaje.cpp ../juego/personaje.h
@@ -879,6 +852,11 @@ release/registrodialog.o: ../juego/registrodialog.cpp ../juego/registrodialog.h 
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSize \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSizeF \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QTransform \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
 		ui_registrodialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\registrodialog.o ..\juego\registrodialog.cpp
 
