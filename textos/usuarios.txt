@@ -2,24 +2,5 @@ pepito,1234
 juanchito,9999
 artur,1111
 rogelio,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-<<<<<<< HEAD
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-pepito,1234
-=======
-prueba,jaja20
->>>>>>> origin/main
-
-,
-,
+lucia,1234
+martin,9999

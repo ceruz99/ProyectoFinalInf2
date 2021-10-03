@@ -21,10 +21,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
-    user=ui->lineEdit->text();
-    password=ui->lineEdit_2->text();
+    this->user=ui->lineEdit->text();
+    this->password=ui->lineEdit_2->text();
     sesion cuenta(user,password);
-    cuenta.nuevoUsuario();
     if(cuenta.busquedaUsuario()==true)
         cout<<"funciona busqueda.."<<endl;
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    registro=new RegistroDialog(this);
+    registro->show();
 }

@@ -12,15 +12,18 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp \
+    registrodialog.cpp \
     sesion.cpp
 
 HEADERS += \
     mainwindow.h \
     personaje.h \
+    registrodialog.h \
     sesion.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    registrodialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -32,6 +32,7 @@ public:
     QLabel *label;
     QLabel *label_2;
     QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -39,7 +40,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(800, 600);
+        MainWindow->resize(748, 503);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         graphicsView = new QGraphicsView(centralwidget);
@@ -69,10 +70,14 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(180, 240, 241, 81));
         pushButton->setFont(font);
+        pushButton_2 = new QPushButton(centralwidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_2->setGeometry(QRect(180, 330, 241, 81));
+        pushButton_2->setFont(font);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 800, 21));
+        menubar->setGeometry(QRect(0, 0, 748, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -89,6 +94,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "Usuario:", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Contrase\303\261a:", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "Iniciar sesion", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Registrarse", nullptr));
     } // retranslateUi
 
 };
