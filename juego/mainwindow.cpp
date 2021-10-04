@@ -8,9 +8,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
 
-    inicio=new QGraphicsScene();
-    ui->graphicsView->setScene(inicio);
-    inicio->setSceneRect(0,0,700,450);
+    mapaEscena=new QGraphicsScene();
+    ui->graphicsView->setScene(mapaEscena);
+    mapaEscena->setSceneRect(0,0,700,450);
+    sesion=new sesionDialog(this);
+    sesion->show();
+
+
+    tulio=new personaje(0,0,20);
+    mapaEscena->addItem(tulio);
 
 }
 
@@ -19,17 +25,23 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
+void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
-    this->user=ui->lineEdit->text();
-    this->password=ui->lineEdit_2->text();
-    sesion cuenta(user,password);
-    if(cuenta.busquedaUsuario()==true)
-        cout<<"funciona busqueda.."<<endl;
-}
+    if(evento->key()==Qt::Key_D)
+       {
+           tulio->moveRight();
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    registro=new RegistroDialog(this);
-    registro->show();
+       }
+       else if(evento->key()==Qt::Key_A)
+        {
+           tulio->moveLeft();
+        }
+       else if(evento->key()==Qt::Key_W)
+       {
+           tulio->moveUp();
+       }
+       else if(evento->key()==Qt::Key_S)
+       {
+           tulio->moveDown();
+    }
 }

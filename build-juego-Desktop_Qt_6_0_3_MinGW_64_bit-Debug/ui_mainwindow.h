@@ -12,11 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
@@ -27,12 +24,6 @@ class Ui_MainWindow
 public:
     QWidget *centralwidget;
     QGraphicsView *graphicsView;
-    QLineEdit *lineEdit;
-    QLineEdit *lineEdit_2;
-    QLabel *label;
-    QLabel *label_2;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -46,34 +37,6 @@ public:
         graphicsView = new QGraphicsView(centralwidget);
         graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
         graphicsView->setGeometry(QRect(0, 0, 751, 501));
-        lineEdit = new QLineEdit(centralwidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(260, 100, 141, 41));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Yu Gothic UI Semibold"));
-        font.setPointSize(22);
-        font.setBold(true);
-        lineEdit->setFont(font);
-        lineEdit_2 = new QLineEdit(centralwidget);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(260, 160, 141, 41));
-        lineEdit_2->setFont(font);
-        label = new QLabel(centralwidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(140, 100, 111, 41));
-        label->setFont(font);
-        label_2 = new QLabel(centralwidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(100, 160, 161, 41));
-        label_2->setFont(font);
-        pushButton = new QPushButton(centralwidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(180, 240, 241, 81));
-        pushButton->setFont(font);
-        pushButton_2 = new QPushButton(centralwidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(180, 330, 241, 81));
-        pushButton_2->setFont(font);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -91,10 +54,6 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Usuario:", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "Contrase\303\261a:", nullptr));
-        pushButton->setText(QCoreApplication::translate("MainWindow", "Iniciar sesion", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("MainWindow", "Registrarse", nullptr));
     } // retranslateUi
 
 };
