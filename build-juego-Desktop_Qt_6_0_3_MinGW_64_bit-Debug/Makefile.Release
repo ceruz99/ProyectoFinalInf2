@@ -129,10 +129,11 @@ compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_registrodia
 compiler_moc_header_clean:
 	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_registrodialog.cpp release\moc_sesiondialog.cpp
 release/moc_mainwindow.cpp: ../juego/mainwindow.h \
-		../juego/sesion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
+		../juego/personaje.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig.h \
@@ -155,11 +156,18 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmutex.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnumeric.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qversiontagging.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearray.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrefcount.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpair.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydatapointer.h \
@@ -173,18 +181,6 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringtokenizer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlist.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qhashfunctions.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiterator.h \
@@ -208,36 +204,6 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qproperty.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpropertyprivate.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qvariant.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmap.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata_impl.h \
@@ -247,6 +213,46 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringconverter.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qset.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPainter \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qeventpoint.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvector2d.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvectornd.h \
@@ -263,10 +269,13 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
-		../juego/registrodialog.h \
+		../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
+		../juego/registrodialog.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QKeyEvent \
 		release/moc_predefs.h \
 		C:/QTcreator/6.0.3/mingw81_64/bin/moc.exe
 	C:\QTcreator\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/build-juego-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++ -I"C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/juego" -IC:/QTcreator/6.0.3/mingw81_64/include -IC:/QTcreator/6.0.3/mingw81_64/include/QtWidgets -IC:/QTcreator/6.0.3/mingw81_64/include/QtGui -IC:/QTcreator/6.0.3/mingw81_64/include/QtCore -I. -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/QTcreator/Tools/mingw810_64/x86_64-w64-mingw32/include ..\juego\mainwindow.h -o release\moc_mainwindow.cpp
@@ -538,6 +547,12 @@ release/moc_sesiondialog.cpp: ../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSize \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSizeF \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QTransform \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		../juego/registrodialog.h \
 		release/moc_predefs.h \
 		C:/QTcreator/6.0.3/mingw81_64/bin/moc.exe
 	C:\QTcreator\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/build-juego-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++ -I"C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/juego" -IC:/QTcreator/6.0.3/mingw81_64/include -IC:/QTcreator/6.0.3/mingw81_64/include/QtWidgets -IC:/QTcreator/6.0.3/mingw81_64/include/QtGui -IC:/QTcreator/6.0.3/mingw81_64/include/QtCore -I. -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/QTcreator/Tools/mingw810_64/x86_64-w64-mingw32/include ..\juego\sesiondialog.h -o release\moc_sesiondialog.cpp
@@ -574,10 +589,11 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
-		../juego/sesion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
+		../juego/personaje.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig.h \
@@ -600,11 +616,18 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmutex.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnumeric.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qversiontagging.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearray.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrefcount.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpair.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydatapointer.h \
@@ -618,18 +641,6 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringtokenizer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlist.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qhashfunctions.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiterator.h \
@@ -653,36 +664,6 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qproperty.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpropertyprivate.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qvariant.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmap.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata_impl.h \
@@ -692,6 +673,46 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringconverter.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qset.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPainter \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qeventpoint.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvector2d.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvectornd.h \
@@ -708,10 +729,13 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
-		../juego/registrodialog.h \
+		../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
+		../juego/registrodialog.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QKeyEvent \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -722,10 +746,11 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\juego\main.cpp
 
 release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
-		../juego/sesion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
+		../juego/personaje.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qglobal.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig.h \
@@ -748,11 +773,18 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmutex.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnumeric.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qversiontagging.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearray.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrefcount.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpair.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydatapointer.h \
@@ -766,18 +798,6 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qutf8stringview.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringtokenizer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringbuilder.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlist.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qhashfunctions.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiterator.h \
@@ -801,36 +821,6 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qproperty.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpropertyprivate.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qvariant.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmap.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata_impl.h \
@@ -840,6 +830,46 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringconverter.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qset.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPainter \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMainWindow \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmainwindow.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qwidget.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpalette.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qsizepolicy.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcursor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbitmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qkeysequence.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qevent.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qurl.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qeventpoint.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvector2d.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qvectornd.h \
@@ -856,10 +886,13 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
-		../juego/registrodialog.h \
+		../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QDialog \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qdialog.h \
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
+		../juego/registrodialog.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QKeyEvent \
 		ui_mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
@@ -871,25 +904,13 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLabel \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpicture.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextformat.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMenuBar \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenubar.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenu.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qaction.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QPushButton \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QStatusBar \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qstatusbar.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QWidget
@@ -1347,7 +1368,39 @@ release/sesiondialog.o: ../juego/sesiondialog.cpp ../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSize \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QSizeF \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QTransform \
-		ui_sesiondialog.h
+		../juego/sesion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		../juego/registrodialog.h \
+		ui_sesiondialog.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qeventloop.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qguiapplication.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qinputmethod.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLabel \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlabel.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpicture.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLineEdit \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlineedit.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextcursor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextformat.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QPushButton \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\sesiondialog.o ..\juego\sesiondialog.cpp
 
 release/moc_mainwindow.o: release/moc_mainwindow.cpp 
