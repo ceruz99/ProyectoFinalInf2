@@ -1,9 +1,10 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include <sesion.h>
+#include <personaje.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <registrodialog.h>
+#include <sesiondialog.h>
+#include <QKeyEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -17,14 +18,11 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void on_pushButton_clicked();//Iniciar sesion
-    void on_pushButton_2_clicked();//Registrarse
-
 private:
     Ui::MainWindow *ui;
-    QString user,password;
-    QGraphicsScene *inicio;
-    RegistroDialog *registro;
+    QGraphicsScene *mapaEscena;
+    sesionDialog *sesion;
+    personaje *tulio;
+    void keyPressEvent(QKeyEvent *evento);
 };
 #endif // MAINWINDOW_H

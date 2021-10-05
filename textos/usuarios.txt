@@ -4,3 +4,6 @@ artur,1111
 rogelio,1234
 lucia,1234
 martin,9999
+juana,1111
+mario,1234
+camilo,1999
