@@ -28,20 +28,24 @@ MainWindow::~MainWindow()
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
     if(evento->key()==Qt::Key_D)
-       {
-           tulio->moveRight();
-
-       }
-       else if(evento->key()==Qt::Key_A)
-        {
-           tulio->moveLeft();
-        }
-       else if(evento->key()==Qt::Key_W)
-       {
-           tulio->moveUp();
-       }
-       else if(evento->key()==Qt::Key_S)
-       {
-           tulio->moveDown();
+    {
+        tulio->moveRight();
+    }
+    else if(evento->key()==Qt::Key_A)
+    {
+       tulio->moveLeft();
+    }
+    else if(evento->key()==Qt::Key_W)
+    {
+       tulio->moveUp();
+    }
+    else if(evento->key()==Qt::Key_S)
+    {
+       tulio->moveDown();
+    }
+    else if(evento->key()==Qt::Key_2){
+        //creando proyectil
+        proyectil *bala=new proyectil(tulio->posx, tulio->posy);
+        mapaEscena->addItem(bala);
     }
 }

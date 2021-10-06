@@ -12,6 +12,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp \
+    proyectil.cpp \
     registrodialog.cpp \
     sesion.cpp \
     sesiondialog.cpp
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     mainwindow.h \
     personaje.h \
+    proyectil.h \
     registrodialog.h \
     sesion.h \
     sesiondialog.h

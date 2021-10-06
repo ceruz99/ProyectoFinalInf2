@@ -7,12 +7,11 @@
 class personaje : public QGraphicsItem
 {
 private:
-    int posx;
-    int posy;
     int radio;
     int velocidad;
 public:
-
+    int posx;
+    int posy;
     personaje(int x, int y, int r);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

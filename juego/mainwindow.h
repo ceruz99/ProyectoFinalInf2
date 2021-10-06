@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <sesiondialog.h>
 #include <QKeyEvent>
+#include <proyectil.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
