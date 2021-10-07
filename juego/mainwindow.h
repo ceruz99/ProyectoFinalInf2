@@ -3,9 +3,11 @@
 #include <personaje.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QGraphicsView>
 #include <sesiondialog.h>
 #include <QKeyEvent>
 #include <proyectil.h>
+#include <muros.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -18,12 +20,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QList<muros*> paredes;
 
 private:
+    fstream leer;
     Ui::MainWindow *ui;
     QGraphicsScene *mapaEscena;
     sesionDialog *sesion;
     personaje *tulio;
     void keyPressEvent(QKeyEvent *evento);
+    void crear_muros();
+    bool EvaluarColision();
 };
 #endif // MAINWINDOW_H

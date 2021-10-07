@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    muros.cpp \
     personaje.cpp \
     proyectil.cpp \
     registrodialog.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 
 HEADERS += \
     mainwindow.h \
+    muros.h \
     personaje.h \
     proyectil.h \
     registrodialog.h \
@@ -34,3 +36,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    imagenes.qrc
