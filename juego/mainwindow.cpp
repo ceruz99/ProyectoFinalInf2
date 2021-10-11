@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -14,10 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
     sesion=new sesionDialog(this);
     sesion->show();
 
-
-    tulio=new personaje(0,0,20);
+    tulio=new personaje(200,100,20);
     mapaEscena->addItem(tulio);
 
+    hechicero=new enemigo1(0,0,20);
+    mapaEscena->addItem(hechicero);
+    QTimer *timer=new QTimer(this);
+    connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
+    timer->start(100);
 }
 
 MainWindow::~MainWindow()
@@ -43,9 +49,14 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
        tulio->moveDown();
     }
-    else if(evento->key()==Qt::Key_2){
+    else if(evento->key()==Qt::Key_E){
         //creando proyectil
         proyectil *bala=new proyectil(tulio->posx, tulio->posy);
         mapaEscena->addItem(bala);
     }
+}
+
+void MainWindow::movEnemigo1()
+{
+    hechicero->moveRight();
 }

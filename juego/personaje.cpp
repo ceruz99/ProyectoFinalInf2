@@ -1,5 +1,10 @@
 #include "personaje.h"
 
+personaje::personaje()
+{
+
+}
+
 personaje::personaje(int x, int y, int r)
 {
     this->posx=x;
@@ -11,7 +16,7 @@ personaje::personaje(int x, int y, int r)
 
 QRectF personaje::boundingRect() const
 {
-    return QRectF(0,0,radio*2,radio*2);
+    return QRectF(400,300,radio*2,radio*2);
 }
 
 void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

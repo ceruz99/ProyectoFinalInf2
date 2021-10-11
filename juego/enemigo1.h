@@ -1,26 +1,21 @@
-#ifndef PERSONAJE_H
-#define PERSONAJE_H
+#ifndef ENEMIGO1_H
+#define ENEMIGO1_H
 
 #include <QGraphicsItem>
 #include <QPainter>
 
-class personaje : public QGraphicsItem
+class enemigo1 : public QGraphicsItem
 {
-protected:
+private:
+    int posx, posy;
     int radio;
     int velocidad;
 public:
-    int posx;
-    int posy;
-    personaje();
-    personaje(int x, int y, int r);
+    enemigo1(int x, int y, int r);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                   QWidget *widget = nullptr);
     void moveRight();
-    void moveLeft();
-    void moveUp();
-    void moveDown();
 };
 
-#endif // PERSONAJE_H
+#endif // ENEMIGO1_H

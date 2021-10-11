@@ -13,7 +13,7 @@ proyectil::proyectil(int x, int y)
 
 QRectF proyectil::boundingRect() const
 {
-    return QRectF(0,0,10,30);
+    return QRectF(400,300,10,30);
 }
 
 void proyectil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
