@@ -5,6 +5,8 @@
 #include <QGraphicsScene>
 #include <sesiondialog.h>
 #include <QKeyEvent>
+#include <proyectil.h>
+#include <enemigo1.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -14,6 +16,8 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
+private slots:
+    void movEnemigo1();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -23,6 +27,8 @@ private:
     QGraphicsScene *mapaEscena;
     sesionDialog *sesion;
     personaje *tulio;
+    enemigo1 *hechicero;
     void keyPressEvent(QKeyEvent *evento);
+    int timerProyectilEnemigo=0;
 };
 #endif // MAINWINDOW_H

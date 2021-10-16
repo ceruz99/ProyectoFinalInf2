@@ -9,16 +9,20 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    enemigo1.cpp \
     main.cpp \
     mainwindow.cpp \
     personaje.cpp \
+    proyectil.cpp \
     registrodialog.cpp \
     sesion.cpp \
     sesiondialog.cpp
 
 HEADERS += \
+    enemigo1.h \
     mainwindow.h \
     personaje.h \
+    proyectil.h \
     registrodialog.h \
     sesion.h \
     sesiondialog.h
