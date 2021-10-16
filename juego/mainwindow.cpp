@@ -18,8 +18,9 @@ MainWindow::MainWindow(QWidget *parent)
     tulio=new personaje(300,200,20);
     mapaEscena->addItem(tulio);
 
-    hechicero=new enemigo1(0,0,20);
-    mapaEscena->addItem(hechicero);
+    hechiceros.push_back(new enemigo1(0,0,20));
+    //hechicero=new enemigo1(0,0,20);
+    mapaEscena->addItem(hechiceros.back());
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
     timer->start(100);
@@ -52,7 +53,6 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
         //creando proyectil
         balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1));
-        //proyectil *bala=new proyectil(tulio->posx, tulio->posy,1);
         mapaEscena->addItem(balasPersonaje.back());
     }
 
@@ -61,6 +61,8 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 void MainWindow::movEnemigo1()
 {
     list<proyectil *>:: iterator it;
+    list<enemigo1 *>::iterator itEnemigos1;
+    enemigo1 * punteroEnemigos1;//para poder usar los metos de los elementos de la lista
     //Colisiones con Tulio---------------------------------------------------------------------
     for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){
         if(tulio->collidesWithItem(*it)){
@@ -72,28 +74,28 @@ void MainWindow::movEnemigo1()
     if(tulio->vida<=0)
         QApplication::quit();
     //-----------------------------------------------------------------------------------------
-
-    timerProyectilEnemigo+=1;
-    hechicero->moveRight();
-    if(timerProyectilEnemigo==10){
-        balasEnemigo1.push_back(new proyectil(hechicero->posx,hechicero->posy,2));
-        //proyectil *balaEnemigo=new proyectil(hechicero->posx,hechicero->posy,2);
-        mapaEscena->addItem(balasEnemigo1.back());
-        timerProyectilEnemigo=0;
-
-    }
-
-    //Colisiones con Enemigo1------------------------------------------------------------------
-    for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
-        if(hechicero->collidesWithItem(*it)){
-            hechicero->vida-=10;
-            mapaEscena->removeItem(*it);
-            balasPersonaje.erase(it);
+    for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+        timerProyectilEnemigo+=1;
+        punteroEnemigos1=*itEnemigos1;
+        punteroEnemigos1->moveRight();
+        if(timerProyectilEnemigo==10){
+            balasEnemigo1.push_back(new proyectil(hechiceros.back()->posx,hechiceros.back()->posy,2));
+            mapaEscena->addItem(balasEnemigo1.back());
+            timerProyectilEnemigo=0;
         }
+        //Colisiones con Enemigo1------------------------------------------------------------------
+        for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+            if(punteroEnemigos1->collidesWithItem(*it)){
+                punteroEnemigos1->vida-=10;
+                mapaEscena->removeItem(*it);
+                balasPersonaje.erase(it);
+            }
+        }
+        if(punteroEnemigos1->vida<=0){
+            mapaEscena->removeItem(punteroEnemigos1);
+            hechiceros.erase(itEnemigos1);
+        }
+        //-----------------------------------------------------------------------------------------
     }
-    /*if(hechicero->vida<=0){
-        mapaEscena->removeItem(hechicero);
-        delete hechicero;
-    }*/
-    //-----------------------------------------------------------------------------------------
+
 }

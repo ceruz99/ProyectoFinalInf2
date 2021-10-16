@@ -28,9 +28,9 @@ private:
     QGraphicsScene *mapaEscena;
     sesionDialog *sesion;
     personaje *tulio;
-    enemigo1 *hechicero;
     list<proyectil *> balasPersonaje;
     list<proyectil *> balasEnemigo1;
+    list<enemigo1 *> hechiceros;
     void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
 };
