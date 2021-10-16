@@ -51,19 +51,49 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     else if(evento->key()==Qt::Key_E)
     {
         //creando proyectil
-        proyectil *bala=new proyectil(tulio->posx, tulio->posy,1);
-        mapaEscena->addItem(bala);
+        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1));
+        //proyectil *bala=new proyectil(tulio->posx, tulio->posy,1);
+        mapaEscena->addItem(balasPersonaje.back());
     }
+
 }
 
 void MainWindow::movEnemigo1()
 {
+    list<proyectil *>:: iterator it;
+    //Colisiones con Tulio---------------------------------------------------------------------
+    for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){
+        if(tulio->collidesWithItem(*it)){
+            tulio->vida-=20;//daño de 10 las balas del enemigo1
+            mapaEscena->removeItem(*it);
+            balasEnemigo1.erase(it);
+        }
+    }
+    if(tulio->vida<=0)
+        QApplication::quit();
+    //-----------------------------------------------------------------------------------------
+
     timerProyectilEnemigo+=1;
     hechicero->moveRight();
     if(timerProyectilEnemigo==10){
-        proyectil *balaEnemigo=new proyectil(hechicero->posx,hechicero->posy,2);
-        mapaEscena->addItem(balaEnemigo);
+        balasEnemigo1.push_back(new proyectil(hechicero->posx,hechicero->posy,2));
+        //proyectil *balaEnemigo=new proyectil(hechicero->posx,hechicero->posy,2);
+        mapaEscena->addItem(balasEnemigo1.back());
         timerProyectilEnemigo=0;
+
     }
 
+    //Colisiones con Enemigo1------------------------------------------------------------------
+    for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+        if(hechicero->collidesWithItem(*it)){
+            hechicero->vida-=10;
+            mapaEscena->removeItem(*it);
+            balasPersonaje.erase(it);
+        }
+    }
+    /*if(hechicero->vida<=0){
+        mapaEscena->removeItem(hechicero);
+        delete hechicero;
+    }*/
+    //-----------------------------------------------------------------------------------------
 }

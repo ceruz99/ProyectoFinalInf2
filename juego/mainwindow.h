@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
+#include <list>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,6 +29,8 @@ private:
     sesionDialog *sesion;
     personaje *tulio;
     enemigo1 *hechicero;
+    list<proyectil *> balasPersonaje;
+    list<proyectil *> balasEnemigo1;
     void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
 };
