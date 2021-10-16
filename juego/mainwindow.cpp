@@ -11,9 +11,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     mapaEscena=new QGraphicsScene();
     ui->graphicsView->setScene(mapaEscena);
-    mapaEscena->setSceneRect(0,0,700,450);
+    mapaEscena->setSceneRect(0,0,950,950);
     //sesion=new sesionDialog(this);
     //sesion->show();
+
+    //mapa
+    mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
+
 
     tulio=new personaje(300,200,20);
     mapaEscena->addItem(tulio);
@@ -56,6 +60,43 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     }
 }
 
+void MainWindow::crear_muros()
+{
+    {
+        leer.open("../textos/muros.txt");
+        try {
+            if(!leer.is_open())
+                throw '1';
+            else
+                throw '2';
+        }  catch (char c) {
+            if(c=='1')
+                cout<<"No lo lee";
+        }
+        string linea;
+        while(getline(leer, linea)){
+            string pedazoLinea;
+            short int valores[4];
+            int tramo=0;
+
+            for(int i=0;i<4;i++){
+                if(i<3){
+                    tramo=linea.find(',');
+                    pedazoLinea=linea.substr(0,tramo);
+                    valores[i]=atoi(pedazoLinea.c_str());
+                    linea=linea.substr(tramo+1);
+                }
+                else
+                    valores[i]=atoi(linea.c_str());
+            }
+            paredes.push_back(new muros(valores[0],valores[1],valores[2],valores[3]));
+            mapaEscena->addItem(paredes.back());
+        }
+        leer.close();
+    }
+}
+
+
 void MainWindow::movEnemigo1()
 {
     timerProyectilEnemigo+=1;
@@ -67,3 +108,5 @@ void MainWindow::movEnemigo1()
     }
 
 }
+
+
