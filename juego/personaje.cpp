@@ -12,11 +12,13 @@ personaje::personaje(int x, int y, int r)
     this->radio=r;
     this->velocidad=5;
     setPos(posx,posy);
+    this->vida=100;
+    this->municion=15;
 }
 
 QRectF personaje::boundingRect() const
 {
-    return QRectF(400,300,radio*2,radio*2);
+    return QRectF(posx,posy,radio*2,radio*2);
 }
 
 void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

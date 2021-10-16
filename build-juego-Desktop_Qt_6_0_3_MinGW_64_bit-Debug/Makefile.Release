@@ -290,6 +290,7 @@ release/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QTimer \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtimer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbasictimer.h \
+		../juego/enemigo1.h \
 		release/moc_predefs.h \
 		C:/QTcreator/6.0.3/mingw81_64/bin/moc.exe
 	C:\QTcreator\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/build-juego-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/release/moc_predefs.h" -IC:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++ -I"C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/juego" -IC:/QTcreator/6.0.3/mingw81_64/include -IC:/QTcreator/6.0.3/mingw81_64/include/QtWidgets -IC:/QTcreator/6.0.3/mingw81_64/include/QtGui -IC:/QTcreator/6.0.3/mingw81_64/include/QtCore -I. -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/QTcreator/Tools/mingw810_64/x86_64-w64-mingw32/include ..\juego\mainwindow.h -o release\moc_mainwindow.cpp
@@ -723,7 +724,6 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 release/enemigo1.o: ../juego/enemigo1.cpp ../juego/enemigo1.h \
-		../juego/personaje.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -989,6 +989,7 @@ release/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QTimer \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtimer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbasictimer.h \
+		../juego/enemigo1.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -1150,6 +1151,7 @@ release/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QTimer \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtimer.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbasictimer.h \
+		../juego/enemigo1.h \
 		ui_mainwindow.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \

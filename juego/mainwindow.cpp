@@ -9,14 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-
     mapaEscena=new QGraphicsScene();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,700,450);
-    sesion=new sesionDialog(this);
-    sesion->show();
+    //sesion=new sesionDialog(this);
+    //sesion->show();
 
-    tulio=new personaje(200,100,20);
+    tulio=new personaje(300,200,20);
     mapaEscena->addItem(tulio);
 
     hechicero=new enemigo1(0,0,20);
@@ -49,14 +48,22 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
        tulio->moveDown();
     }
-    else if(evento->key()==Qt::Key_E){
+    else if(evento->key()==Qt::Key_E)
+    {
         //creando proyectil
-        proyectil *bala=new proyectil(tulio->posx, tulio->posy);
+        proyectil *bala=new proyectil(tulio->posx, tulio->posy,1);
         mapaEscena->addItem(bala);
     }
 }
 
 void MainWindow::movEnemigo1()
 {
+    timerProyectilEnemigo+=1;
     hechicero->moveRight();
+    if(timerProyectilEnemigo==10){
+        proyectil *balaEnemigo=new proyectil(hechicero->posx,hechicero->posy,2);
+        mapaEscena->addItem(balaEnemigo);
+        timerProyectilEnemigo=0;
+    }
+
 }

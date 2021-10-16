@@ -3,19 +3,20 @@
 
 #include <QGraphicsItem>
 #include <QPainter>
-
-class enemigo1 : public QGraphicsItem
+#include <personaje.h>
+class enemigo1 : public personaje
 {
 private:
-    int posx, posy;
     int radio;
     int velocidad;
 public:
+    int posx, posy;
     enemigo1(int x, int y, int r);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                   QWidget *widget = nullptr);
     void moveRight();
+    void moveLeft();
 };
 
 #endif // ENEMIGO1_H

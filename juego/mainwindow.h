@@ -29,5 +29,6 @@ private:
     personaje *tulio;
     enemigo1 *hechicero;
     void keyPressEvent(QKeyEvent *evento);
+    int timerProyectilEnemigo=0;
 };
 #endif // MAINWINDOW_H

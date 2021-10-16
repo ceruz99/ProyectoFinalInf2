@@ -1,7 +1,8 @@
 #include "proyectil.h"
 
-proyectil::proyectil(int x, int y)
+proyectil::proyectil(int x, int y, int _direccion)
 {
+    this->direccion=_direccion;
     setPos(x,y);
     QTimer *timer=new QTimer(this);
     //if(direccion==true)
@@ -13,7 +14,7 @@ proyectil::proyectil(int x, int y)
 
 QRectF proyectil::boundingRect() const
 {
-    return QRectF(400,300,10,30);
+    return QRectF(x(),y(),10,30);
 }
 
 void proyectil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -24,5 +25,14 @@ void proyectil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
 
 void proyectil::move()
 {
-    setPos(x(),y()-8);
+    switch (direccion) {
+    case 1:{
+        setPos(x(),y()-8);
+        break;
+    }
+    case 2:{
+        setPos(x(),y()+8);
+        break;
+    }
+    }
 }

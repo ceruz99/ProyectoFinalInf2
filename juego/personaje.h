@@ -10,6 +10,8 @@ protected:
     int radio;
     int velocidad;
 public:
+    int vida;
+    int municion;
     int posx;
     int posy;
     personaje();

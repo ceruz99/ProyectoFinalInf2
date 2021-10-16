@@ -5,12 +5,13 @@ enemigo1::enemigo1(int x, int y, int r)
     posx=x;
     posy=y;
     radio=r;
-    velocidad=5;
+    velocidad=2;
+    vida=30;
 }
 
 QRectF enemigo1::boundingRect() const
 {
-    return QRectF(0,0,radio*2,radio*2);
+    return QRectF(posx,posy,radio*2,radio*2);
 }
 
 void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -22,5 +23,11 @@ void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
 void enemigo1::moveRight()
 {
     posx+=velocidad;
+    setPos(posx,posy);
+}
+
+void enemigo1::moveLeft()
+{
+    posx-=velocidad;
     setPos(posx,posy);
 }
