@@ -19,13 +19,14 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
 
-    tulio=new personaje(300,200,8);
+    tulio=new personaje(80,200,8);
     mapaEscena->addItem(tulio);
     crear_muros();
 
 
-    hechiceros.push_back(new enemigo1(0,0,20));
-    //hechicero=new enemigo1(0,0,20);
+    hechiceros.push_back(new enemigo1(80,100,8,1,2));
+    mapaEscena->addItem(hechiceros.back());
+    hechiceros.push_back(new enemigo1(50,200 ,8,2,4));
     mapaEscena->addItem(hechiceros.back());
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -42,30 +43,48 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     if(evento->key()==Qt::Key_D)
     {
         tulio->moveRight();
-        if(EvaluarColision())tulio->moveLeft();
+        if(EvaluarColision(tulio))tulio->moveLeft();
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
-       if(EvaluarColision())tulio->moveRight();
+       if(EvaluarColision(tulio))tulio->moveRight();
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
-       if(EvaluarColision())tulio->moveDown();
+       if(EvaluarColision(tulio))tulio->moveDown();
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
-       if(EvaluarColision())tulio->moveUp();
+       if(EvaluarColision(tulio))tulio->moveUp();
     }
-    else if(evento->key()==Qt::Key_E)
+    else if(evento->key()==Qt::Key_I and tulio->municion>0)
     {
         //creando proyectil
         balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1));
         mapaEscena->addItem(balasPersonaje.back());
+        tulio->municion-=1;
     }
-
+    else if(evento->key()==Qt::Key_K and tulio->municion>0)
+    {
+        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,2));
+        mapaEscena->addItem(balasPersonaje.back());
+        tulio->municion-=1;
+    }
+    else if(evento->key()==Qt::Key_J and tulio->municion>0)
+    {
+        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,3));
+        mapaEscena->addItem(balasPersonaje.back());
+        tulio->municion-=1;
+    }
+    else if(evento->key()==Qt::Key_L and tulio->municion>0)
+    {
+        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,4));
+        mapaEscena->addItem(balasPersonaje.back());
+        tulio->municion-=1;
+    }
 }
 
 void MainWindow::crear_muros()
@@ -109,11 +128,15 @@ void MainWindow::movEnemigo1()
 {
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
-    enemigo1 * punteroEnemigos1;//para poder usar los metos de los elementos de la lista
-    //Colisiones con Tulio---------------------------------------------------------------------
+    enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
+    //Colisiones balas Enemigo1----------------------------------------------------------------
     for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){
         if(tulio->collidesWithItem(*it)){
             tulio->vida-=20;//daño de 10 las balas del enemigo1
+            mapaEscena->removeItem(*it);
+            balasEnemigo1.erase(it);
+        }
+        else if(EvaluarColision(*it)==true){
             mapaEscena->removeItem(*it);
             balasEnemigo1.erase(it);
         }
@@ -121,16 +144,24 @@ void MainWindow::movEnemigo1()
     if(tulio->vida<=0)
         QApplication::quit();
     //-----------------------------------------------------------------------------------------
+    timerProyectilEnemigo+=1;
     for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
-        timerProyectilEnemigo+=1;
         punteroEnemigos1=*itEnemigos1;
-        punteroEnemigos1->moveRight();
-        if(timerProyectilEnemigo==10){
-            balasEnemigo1.push_back(new proyectil(hechiceros.back()->posx,hechiceros.back()->posy,2));
+        if(EvaluarColision(punteroEnemigos1)==true)
+            punteroEnemigos1->velocidad*=-1;
+        punteroEnemigos1->move();
+        //los siguientes dos condicionales se hicieron para solucionar problema en el que solo
+        //dispara uno de los enemigos a la vez, si el timer interno se reiniciara a 0 cada vez que
+        //entrara a un solo condicional solo queda disparando un enemigo a la vez.
+        if(timerProyectilEnemigo==9){
+            balasEnemigo1.push_back(new proyectil(punteroEnemigos1->posx,punteroEnemigos1->posy,
+                                                  punteroEnemigos1->direccionDisp));
             mapaEscena->addItem(balasEnemigo1.back());
+        }
+        else if(timerProyectilEnemigo==10){
             timerProyectilEnemigo=0;
         }
-        //Colisiones con Enemigo1------------------------------------------------------------------
+        //Colisiones balas personaje con Enemigo1--------------------------------------------------
         for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
             if(punteroEnemigos1->collidesWithItem(*it)){
                 punteroEnemigos1->vida-=10;
@@ -145,13 +176,21 @@ void MainWindow::movEnemigo1()
         //-----------------------------------------------------------------------------------------
     }
 
+    //Colisiones balas de personaje con los muros--------------------------------------------------
+    for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+        if(EvaluarColision(*it)==true){
+            mapaEscena->removeItem(*it);
+            balasPersonaje.erase(it);
+        }
+    }
+    //---------------------------------------------------------------------------------------------
 }
-bool MainWindow::EvaluarColision()
+template <typename tipo>
+bool MainWindow::EvaluarColision(tipo *objeto)//Sirve para evaluar colisiones con los muros.
 {
     QList<muros*>::Iterator it;
     for(it=paredes.begin();it!=paredes.end();it++){
-       if((*it)->collidesWithItem(tulio)) return true;
-
+       if((*it)->collidesWithItem(objeto)) return true;
     }
     return false;
 }

@@ -1,12 +1,14 @@
 #include "enemigo1.h"
 
-enemigo1::enemigo1(int x, int y, int r)
+enemigo1::enemigo1(int x, int y, int r,int _direccionMov, int _direccionDisp)
 {
     posx=x;
     posy=y;
     radio=r;
-    velocidad=2;
+    velocidad=1;
     vida=30;
+    direccionMov=_direccionMov;
+    direccionDisp=_direccionDisp;
 }
 
 QRectF enemigo1::boundingRect() const
@@ -20,14 +22,14 @@ void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->drawEllipse(boundingRect());
 }
 
-void enemigo1::moveRight()
+void enemigo1::move()
 {
-    posx+=velocidad;
-    setPos(posx,posy);
-}
-
-void enemigo1::moveLeft()
-{
-    posx-=velocidad;
-    setPos(posx,posy);
+    if(direccionMov==1){
+        posx+=velocidad;
+        setPos(posx,posy);
+    }
+    else if(direccionMov==2){
+        posy+=velocidad;
+        setPos(posx,posy);
+    }
 }

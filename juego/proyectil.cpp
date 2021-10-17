@@ -14,7 +14,7 @@ proyectil::proyectil(int x, int y, int _direccion)
 
 QRectF proyectil::boundingRect() const
 {
-    return QRectF(x(),y(),10,30);
+    return QRectF(x(),y(),5,5);
 }
 
 void proyectil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -27,11 +27,19 @@ void proyectil::move()
 {
     switch (direccion) {
     case 1:{
-        setPos(x(),y()-8);
+        setPos(x(),y()-3);
         break;
     }
     case 2:{
-        setPos(x(),y()+8);
+        setPos(x(),y()+3);
+        break;
+    }
+    case 3:{
+        setPos(x()-3,y());
+        break;
+    }
+    case 4:{
+        setPos(x()+3,y());
         break;
     }
     }
