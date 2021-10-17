@@ -7,7 +7,6 @@
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
-#include <list>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,8 +21,10 @@ private slots:
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    QList<muros*> paredes;
 
 private:
+    fstream leer;
     Ui::MainWindow *ui;
     QGraphicsScene *mapaEscena;
     sesionDialog *sesion;
@@ -33,5 +34,7 @@ private:
     list<enemigo1 *> hechiceros;
     void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
+    void crear_muros();
+    bool EvaluarColision();
 };
 #endif // MAINWINDOW_H

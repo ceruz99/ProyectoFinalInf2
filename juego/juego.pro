@@ -12,6 +12,7 @@ SOURCES += \
     enemigo1.cpp \
     main.cpp \
     mainwindow.cpp \
+    muros.cpp \
     personaje.cpp \
     proyectil.cpp \
     registrodialog.cpp \
@@ -21,6 +22,7 @@ SOURCES += \
 HEADERS += \
     enemigo1.h \
     mainwindow.h \
+    muros.h \
     personaje.h \
     proyectil.h \
     registrodialog.h \
@@ -36,3 +38,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resources.qrc
