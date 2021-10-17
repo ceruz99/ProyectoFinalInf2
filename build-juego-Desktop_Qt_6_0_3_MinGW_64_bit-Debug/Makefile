@@ -184,7 +184,8 @@ Makefile: ../juego/juego.pro C:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++/qma
 		C:/QTcreator/6.0.3/mingw81_64/lib/Qt6Gui.prl \
 		C:/QTcreator/6.0.3/mingw81_64/lib/Qt6Core.prl \
 		C:/QTcreator/6.0.3/mingw81_64/lib/Qt6EntryPoint.prl \
-		C:/QTcreator/6.0.3/mingw81_64/mkspecs/features/build_pass.prf
+		C:/QTcreator/6.0.3/mingw81_64/mkspecs/features/build_pass.prf \
+		../juego/resources.qrc
 	$(QMAKE) -o Makefile ..\juego\juego.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 C:/QTcreator/6.0.3/mingw81_64/mkspecs/features/spec_pre.prf:
 C:/QTcreator/6.0.3/mingw81_64/mkspecs/features/device_config.prf:
@@ -301,6 +302,7 @@ C:/QTcreator/6.0.3/mingw81_64/lib/Qt6Gui.prl:
 C:/QTcreator/6.0.3/mingw81_64/lib/Qt6Core.prl:
 C:/QTcreator/6.0.3/mingw81_64/lib/Qt6EntryPoint.prl:
 C:/QTcreator/6.0.3/mingw81_64/mkspecs/features/build_pass.prf:
+../juego/resources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\juego\juego.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 

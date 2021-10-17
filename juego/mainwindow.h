@@ -7,6 +7,7 @@
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
+#include <muros.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
