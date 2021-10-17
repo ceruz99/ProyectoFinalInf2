@@ -7,7 +7,6 @@
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
-#include "muros.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,7 +29,9 @@ private:
     QGraphicsScene *mapaEscena;
     sesionDialog *sesion;
     personaje *tulio;
-    enemigo1 *hechicero;
+    list<proyectil *> balasPersonaje;
+    list<proyectil *> balasEnemigo1;
+    list<enemigo1 *> hechiceros;
     void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
     void crear_muros();
