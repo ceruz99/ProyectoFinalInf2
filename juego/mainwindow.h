@@ -34,5 +34,6 @@ private:
     void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
     void crear_muros();
+    bool EvaluarColision();
 };
 #endif // MAINWINDOW_H

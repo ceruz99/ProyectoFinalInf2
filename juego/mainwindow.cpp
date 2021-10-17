@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     mapaEscena=new QGraphicsScene();
     ui->graphicsView->setScene(mapaEscena);
-    mapaEscena->setSceneRect(0,0,950,950);
+    mapaEscena->setSceneRect(0,0,960,960);
     //sesion=new sesionDialog(this);
     //sesion->show();
 
@@ -19,8 +19,10 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
 
-    tulio=new personaje(300,200,20);
+    tulio=new personaje(300,200,8);
     mapaEscena->addItem(tulio);
+    crear_muros();
+
 
     hechicero=new enemigo1(0,0,20);
     mapaEscena->addItem(hechicero);
@@ -39,18 +41,22 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     if(evento->key()==Qt::Key_D)
     {
         tulio->moveRight();
+        if(EvaluarColision())tulio->moveLeft();
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
+       if(EvaluarColision())tulio->moveRight();
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
+       if(EvaluarColision())tulio->moveDown();
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
+       if(EvaluarColision())tulio->moveUp();
     }
     else if(evento->key()==Qt::Key_E)
     {
@@ -107,6 +113,15 @@ void MainWindow::movEnemigo1()
         timerProyectilEnemigo=0;
     }
 
+}
+bool MainWindow::EvaluarColision()
+{
+    QList<muros*>::Iterator it;
+    for(it=paredes.begin();it!=paredes.end();it++){
+       if((*it)->collidesWithItem(tulio)) return true;
+
+    }
+    return false;
 }
 
 

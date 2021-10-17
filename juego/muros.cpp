@@ -9,9 +9,9 @@ muros::muros(int w, int h, int x , int y)
 
 }
 QRectF muros::boundingRect() const{
-    return QRectF(-posx, -posy,w,h);
+    return QRectF(posx, posy,w,h);
 }
 void muros::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(),Qt::yellow);
+    painter->fillRect(boundingRect(),Qt::transparent);
 }
