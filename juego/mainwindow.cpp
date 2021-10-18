@@ -19,15 +19,11 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
 
-    tulio=new personaje(80,200,8);
+    tulio=new personaje(150,190,8);
     mapaEscena->addItem(tulio);
     crear_muros();
+    crearEnemigos1();
 
-
-    hechiceros.push_back(new enemigo1(80,100,8,1,2));
-    mapaEscena->addItem(hechiceros.back());
-    hechiceros.push_back(new enemigo1(50,200 ,8,2,4));
-    mapaEscena->addItem(hechiceros.back());
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
     timer->start(100);
@@ -121,6 +117,38 @@ void MainWindow::crear_muros()
         }
         leer.close();
     }
+}
+
+void MainWindow::crearEnemigos1()
+{
+    leer.open("../textos/enemigos1.txt");
+    try {
+        if(!leer.is_open())
+            throw '1';
+    }  catch (char c) {
+        if(c=='1')
+            cout<<"No lo lee"<<endl;
+    }
+    string linea;
+    while(getline(leer,linea)){
+        string pedazoLinea;
+        short int valores[5];
+        int tramo=0;
+
+        for(int i=0;i<5;i++){
+            if(i<4){
+                tramo=linea.find(',');
+                pedazoLinea=linea.substr(0,tramo);
+                valores[i]=atoi(pedazoLinea.c_str());
+                linea=linea.substr(tramo+1);
+            }
+            else
+                valores[i]=atoi(linea.c_str());
+        }
+        hechiceros.push_back(new enemigo1(valores[0],valores[1],valores[2],valores[3],valores[4]));
+        mapaEscena->addItem(hechiceros.back());
+    }
+    leer.close();
 }
 
 

@@ -8,6 +8,7 @@
 #include <proyectil.h>
 #include <enemigo1.h>
 #include <muros.h>
+#include <string.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,10 +34,11 @@ private:
     list<proyectil *> balasPersonaje;
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
-    void keyPressEvent(QKeyEvent *evento);
     int timerProyectilEnemigo=0;
+    void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
+    void crearEnemigos1();
 };
 #endif // MAINWINDOW_H
