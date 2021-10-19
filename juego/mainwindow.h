@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <sesiondialog.h>
 #include <QKeyEvent>
+#include <QGraphicsView>
 #include <proyectil.h>
 #include <enemigo1.h>
 #include <muros.h>
@@ -19,6 +20,7 @@ class MainWindow : public QMainWindow
 
 private slots:
     void movEnemigo1();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -37,5 +39,8 @@ private:
     int timerProyectilEnemigo=0;
     void crear_muros();
     bool EvaluarColision();
+    //para aumentar la vista del mapa
+    QGraphicsView * view ;
+
 };
 #endif // MAINWINDOW_H

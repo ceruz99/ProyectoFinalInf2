@@ -12,24 +12,39 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena=new QGraphicsScene();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
+
+    //aumentar el zoom del mapa
+    view=new QGraphicsView(this);
+    view->setScene(mapaEscena);
+    view->resize(960,960);
+    view->scale(4,4);
+
+
+
     //sesion=new sesionDialog(this);
     //sesion->show();
 
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-
-    tulio=new personaje(300,200,8);
+    //creacion de personajes
+    tulio=new personaje(50,50,8);
     mapaEscena->addItem(tulio);
+    view->centerOn(tulio);
+
+    //creacion de muros
     crear_muros();
 
-
+    //Creacion de enemigo
     hechiceros.push_back(new enemigo1(0,0,20));
     //hechicero=new enemigo1(0,0,20);
     mapaEscena->addItem(hechiceros.back());
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
     timer->start(100);
+
+
+
 }
 
 MainWindow::~MainWindow()
@@ -42,22 +57,30 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     if(evento->key()==Qt::Key_D)
     {
         tulio->moveRight();
+        view->centerOn(tulio);
         if(EvaluarColision())tulio->moveLeft();
+
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
+       view->centerOn(tulio);
        if(EvaluarColision())tulio->moveRight();
+
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
+       view->centerOn(tulio);
        if(EvaluarColision())tulio->moveDown();
+
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
+       view->centerOn(tulio);
        if(EvaluarColision())tulio->moveUp();
+
     }
     else if(evento->key()==Qt::Key_E)
     {
@@ -155,5 +178,7 @@ bool MainWindow::EvaluarColision()
     }
     return false;
 }
+
+
 
 
