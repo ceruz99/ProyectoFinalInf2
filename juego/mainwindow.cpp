@@ -22,7 +22,10 @@ MainWindow::MainWindow(QWidget *parent)
     tulio=new personaje(150,190,8);
     mapaEscena->addItem(tulio);
     crear_muros();
-    crearEnemigos1();
+    //crearEnemigos1();
+
+    jefe=new enemigo3(120,180,8);
+    mapaEscena->addItem(jefe);
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -154,7 +157,8 @@ void MainWindow::crearEnemigos1()
 
 void MainWindow::movEnemigo1()
 {
-    list<proyectil *>:: iterator it;
+    jefe->move(tulio->x(),tulio->y());
+    /*list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
@@ -210,7 +214,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->removeItem(*it);
             balasPersonaje.erase(it);
         }
-    }
+    }*/
     //---------------------------------------------------------------------------------------------
 }
 template <typename tipo>

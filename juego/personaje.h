@@ -6,10 +6,9 @@
 
 class personaje : public QGraphicsItem
 {
-protected:
+public:
     int radio;
     int velocidad;
-public:
     int vida;
     int municion;
     int posx;

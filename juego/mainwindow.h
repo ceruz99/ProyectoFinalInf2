@@ -9,6 +9,7 @@
 #include <enemigo1.h>
 #include <muros.h>
 #include <string.h>
+#include <enemigo3.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,6 +36,7 @@ private:
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     int timerProyectilEnemigo=0;
+    enemigo3 * jefe;
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
     template <typename tipo>
