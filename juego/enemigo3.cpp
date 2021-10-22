@@ -5,7 +5,7 @@ enemigo3::enemigo3(int x, int y, int r)
     posx=x;
     posy=y;
     radio=r;
-    velocidad=1;
+    velocidad=2;
     vida=20;
     setPos(posx,posy);
 }
@@ -27,7 +27,7 @@ void enemigo3::move(int objetivox, int objetivoy)
 
 QRectF enemigo3::boundingRect() const
 {
-    return QRectF(posx,posy,radio*2,radio*2);
+    return QRectF(-radio,-radio,radio*2,radio*2);
 }
 
 void enemigo3::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

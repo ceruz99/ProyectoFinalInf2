@@ -1,5 +1,10 @@
 #include "muros.h"
 
+muros::muros()
+{
+
+}
+
 muros::muros(int w, int h, int x , int y)
 {
     this->posx=x;

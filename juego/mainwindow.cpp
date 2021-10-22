@@ -18,8 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-
-    tulio=new personaje(150,190,8);
+    tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
     crear_muros();
     crearEnemigos1();
@@ -27,24 +26,7 @@ MainWindow::MainWindow(QWidget *parent)
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
 
-    //enemigo orbital
-    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
-    mapaEscena->addItem(orbital.back());
-    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
-    mapaEscena->addItem(orbital.back());
-    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
-    mapaEscena->addItem(orbital.back());
-    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
-    mapaEscena->addItem(orbital.back());
-    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
-    mapaEscena->addItem(orbital.back());
-    dt=10;
 
-    //tps
-//    pass.append(new Tp(16,10,450,17));
-//    mapaEscena->addItem(pass.back());
-//    pass.append(new Tp(10,16,550,445));
-//    mapaEscena->addItem(pass.back());
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -182,6 +164,7 @@ void MainWindow::crearEnemigos1()
 void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
+
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista

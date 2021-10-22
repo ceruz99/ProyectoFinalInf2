@@ -10,7 +10,7 @@
 #include <muros.h>
 #include <string.h>
 #include <enemigo3.h>
-#include "enemigogiratorio.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,8 +37,12 @@ private:
     list<proyectil *> balasPersonaje;
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
+    list<bolaCannon *> bolasCannon;
     int timerProyectilEnemigo=0;
+    int timerBolaCannon=0;
+    int timerenemigo3=0;
     enemigo3 * jefe;
+
 
 
     void keyPressEvent(QKeyEvent *evento);
@@ -46,9 +50,5 @@ private:
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1();
-    float dt;
-    //void moverMapa();
-private slots:
-    void actualizar();
 };
 #endif // MAINWINDOW_H

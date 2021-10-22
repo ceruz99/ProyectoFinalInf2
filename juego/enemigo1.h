@@ -11,7 +11,7 @@ private:
 public:
     int direccionMov;
     int direccionDisp;
-    int posx, posy;
+    double posx, posy;
     int velocidad;
     enemigo1(int x, int y, int r, int _direccionMov,int _direccionDisp);
     QRectF boundingRect() const;

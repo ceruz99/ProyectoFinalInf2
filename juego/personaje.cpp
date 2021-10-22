@@ -10,7 +10,7 @@ personaje::personaje(int x, int y, int r)
     this->posx=x;
     this->posy=y;
     this->radio=r;
-    this->velocidad=2;
+    this->velocidad=3;
     setPos(posx,posy);
     this->vida=100;
     this->municion=15;
