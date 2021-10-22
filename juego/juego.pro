@@ -16,6 +16,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     muros.cpp \
+    pendulo.cpp \
     personaje.cpp \
     proyectil.cpp \
     registrodialog.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     enemigo3.h \
     mainwindow.h \
     muros.h \
+    pendulo.h \
     personaje.h \
     proyectil.h \
     registrodialog.h \

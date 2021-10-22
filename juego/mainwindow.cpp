@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     tulio=new personaje(150,190,8);
     mapaEscena->addItem(tulio);
     crear_muros();
-    //crearEnemigos1();
+    crearEnemigos1();
 
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
@@ -29,11 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     cannon1=new cannon(650,350,10,6);
     mapaEscena->addItem(cannon1);
 
-    //bolaC= new bolaCannon(650,350,30,(45*3.141598)/180);
-    //mapaEscena->addItem(bolaC);
+    //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+    //mapaEscena->addItem(bolasCannon.back());
 
-    bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-    mapaEscena->addItem(bolasCannon.back());
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -167,7 +167,7 @@ void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
 
-    for(int i=0;i<10;i++){
+    /*for(int i=0;i<10;i++){
         bolasCannon.back()->CalcularVelocidad();
         bolasCannon.back()->CalcularPosicion();
         bolasCannon.back()->Mover();
@@ -181,9 +181,9 @@ void MainWindow::movEnemigo1()
             mapaEscena->addItem(bolasCannon.back());
             timerBolaCannon=0;
         }
-    }
+    }*/
 
-    /*list<proyectil *>:: iterator it;
+    list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
@@ -239,7 +239,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->removeItem(*it);
             balasPersonaje.erase(it);
         }
-    }*/
+    }
     //---------------------------------------------------------------------------------------------
 }
 template <typename tipo>
