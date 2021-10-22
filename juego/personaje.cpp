@@ -18,7 +18,7 @@ personaje::personaje(int x, int y, int r)
 
 QRectF personaje::boundingRect() const
 {
-    return QRectF(posx,posy,radio*2,radio*2);
+    return QRectF(-radio,-radio,radio*2,radio*2);
 }
 
 void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

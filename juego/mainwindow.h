@@ -10,6 +10,7 @@
 #include <muros.h>
 #include <string.h>
 #include <enemigo3.h>
+#include "enemigogiratorio.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -25,6 +26,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QList<muros*> paredes;
+    QList<enemigogiratorio*>orbital;
 
 private:
     fstream leer;
@@ -37,10 +39,16 @@ private:
     list<enemigo1 *> hechiceros;
     int timerProyectilEnemigo=0;
     enemigo3 * jefe;
+
+
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1();
+    float dt;
+    //void moverMapa();
+private slots:
+    void actualizar();
 };
 #endif // MAINWINDOW_H

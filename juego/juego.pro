@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     enemigo1.cpp \
     enemigo3.cpp \
+    enemigogiratorio.cpp \
     main.cpp \
     mainwindow.cpp \
     muros.cpp \
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     enemigo1.h \
     enemigo3.h \
+    enemigogiratorio.h \
     mainwindow.h \
     muros.h \
     personaje.h \

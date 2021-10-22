@@ -22,13 +22,33 @@ MainWindow::MainWindow(QWidget *parent)
     tulio=new personaje(150,190,8);
     mapaEscena->addItem(tulio);
     crear_muros();
-    //crearEnemigos1();
+    crearEnemigos1();
 
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
 
+    //enemigo orbital
+    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
+    mapaEscena->addItem(orbital.back());
+    dt=10;
+
+    //tps
+//    pass.append(new Tp(16,10,450,17));
+//    mapaEscena->addItem(pass.back());
+//    pass.append(new Tp(10,16,550,445));
+//    mapaEscena->addItem(pass.back());
+
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));
     timer->start(100);
 }
 
@@ -43,21 +63,25 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
         tulio->moveRight();
         if(EvaluarColision(tulio))tulio->moveLeft();
+
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
        if(EvaluarColision(tulio))tulio->moveRight();
+
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
        if(EvaluarColision(tulio))tulio->moveDown();
+
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
        if(EvaluarColision(tulio))tulio->moveUp();
+
     }
     else if(evento->key()==Qt::Key_I and tulio->municion>0)
     {
@@ -158,7 +182,7 @@ void MainWindow::crearEnemigos1()
 void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
-    /*list<proyectil *>:: iterator it;
+    list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
@@ -214,7 +238,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->removeItem(*it);
             balasPersonaje.erase(it);
         }
-    }*/
+    }
     //---------------------------------------------------------------------------------------------
 }
 template <typename tipo>
@@ -226,5 +250,16 @@ bool MainWindow::EvaluarColision(tipo *objeto)//Sirve para evaluar colisiones co
     }
     return false;
 }
+void MainWindow::actualizar()
+{
+    for (int i=0;i<orbital.size() ;i++ ) {
+        for (int j=0;j< orbital.size() ;j++ ) {
+            if(i!=j){
+                orbital.at(i)->acelerar(orbital.at(j)->PX,orbital.at(j)->PY,orbital.at(j)->masa);
+                orbital.at(i)->actualizar(dt);
+            }
+        }
+    }
 
+}
 
