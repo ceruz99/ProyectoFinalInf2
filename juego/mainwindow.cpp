@@ -21,13 +21,13 @@ MainWindow::MainWindow(QWidget *parent)
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
     crear_muros();
-    crearEnemigos1();
+    //crearEnemigos1();
 
-    jefe=new enemigo3(120,180,8);
-    mapaEscena->addItem(jefe);
+    //jefe=new enemigo3(120,180,8);
+    //mapaEscena->addItem(jefe);
 
     //enemigo orbital
-    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    /*orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
     mapaEscena->addItem(orbital.back());
     orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
     mapaEscena->addItem(orbital.back());
@@ -37,22 +37,22 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->addItem(orbital.back());
     orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
     mapaEscena->addItem(orbital.back());
-    dt=10;
+    dt=10;*/
 
     //tps
-//    pass.append(new Tp(16,10,450,17));
-//    mapaEscena->addItem(pass.back());
-//    pass.append(new Tp(10,16,550,445));
-//    mapaEscena->addItem(pass.back());
+    //pass.append(new Tp(16,10,450,17));
+    //mapaEscena->addItem(pass.back());
+    //pass.append(new Tp(10,16,550,445));
+    //mapaEscena->addItem(pass.back());
 
-    cannon1=new cannon(650,350,10,6);
-    mapaEscena->addItem(cannon1);
+    //cannon1=new cannon(650,350,10,6);
+    //mapaEscena->addItem(cannon1);
 
     //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
     //mapaEscena->addItem(bolasCannon.back());
 
-    trampa1= new pendulo(200,100,5);
-    mapaEscena->addItem(trampa1);
+    //trampa1= new pendulo(200,100,5);
+    //mapaEscena->addItem(trampa1);
 
 
     QTimer *timer=new QTimer(this);
@@ -190,7 +190,7 @@ void MainWindow::crearEnemigos1()
 
 void MainWindow::movEnemigo1()
 {
-    jefe->move(tulio->x(),tulio->y());
+    //jefe->move(tulio->x(),tulio->y());
 
     /*for(int i=0;i<10;i++){
         bolasCannon.back()->CalcularVelocidad();
@@ -206,7 +206,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->addItem(bolasCannon.back());
             timerBolaCannon=0;
         }
-    }*/
+    }
 
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
@@ -264,7 +264,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->removeItem(*it);
             balasPersonaje.erase(it);
         }
-    }
+    }*/
     //---------------------------------------------------------------------------------------------
 }
 template <typename tipo>
