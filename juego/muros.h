@@ -9,10 +9,10 @@
 using namespace std;
 
 class muros : public QGraphicsItem
-{
-    int posx,posy,w,h;
+{   
 public:
-
+    int posx,posy,w,h;
+    muros();
     muros(int w , int h, int x,int y);
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option, QWidget *widget=nullptr);

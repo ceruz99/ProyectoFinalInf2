@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent)
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-
     tulio=new personaje(150,190,8);
     mapaEscena->addItem(tulio);
     crear_muros();
@@ -26,6 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
+
+    cannon1=new cannon(650,350,10,6);
+    mapaEscena->addItem(cannon1);
+
+    //bolaC= new bolaCannon(650,350,30,(45*3.141598)/180);
+    //mapaEscena->addItem(bolaC);
+
+    bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+    mapaEscena->addItem(bolasCannon.back());
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -158,6 +166,23 @@ void MainWindow::crearEnemigos1()
 void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
+
+    for(int i=0;i<10;i++){
+        bolasCannon.back()->CalcularVelocidad();
+        bolasCannon.back()->CalcularPosicion();
+        bolasCannon.back()->Mover();
+        timerBolaCannon+=1;
+        if(timerBolaCannon==500){
+            mapaEscena->removeItem(bolasCannon.back());
+            list<bolaCannon *>::iterator it;
+            it=bolasCannon.begin();
+            bolasCannon.erase(it);
+            bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+            mapaEscena->addItem(bolasCannon.back());
+            timerBolaCannon=0;
+        }
+    }
+
     /*list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
