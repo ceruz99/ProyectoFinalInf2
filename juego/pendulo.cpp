@@ -22,8 +22,8 @@ pendulo::pendulo(double x, double y, int r)
 
 void pendulo::calculo()
 {
-    vAngular=vAngulari+(aAngular*dt);
-    angulo=anguloi+(vAngular*dt)+(aAngular*dt*dt)/2;
+    vAngular=vAngulari+(aAngular*dT);
+    angulo=anguloi+(vAngular*dT)+(aAngular*dT*dT)/2;
     aAngular=-g*sin(angulo);
 }
 

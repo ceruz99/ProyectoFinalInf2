@@ -54,6 +54,7 @@ SOURCES       = ..\juego\bolacannon.cpp \
 		..\juego\cannon.cpp \
 		..\juego\enemigo1.cpp \
 		..\juego\enemigo3.cpp \
+		..\juego\enemigogiratorio.cpp \
 		..\juego\main.cpp \
 		..\juego\mainwindow.cpp \
 		..\juego\muros.cpp \
@@ -72,6 +73,7 @@ OBJECTS       = debug/bolacannon.o \
 		debug/cannon.o \
 		debug/enemigo1.o \
 		debug/enemigo3.o \
+		debug/enemigogiratorio.o \
 		debug/main.o \
 		debug/mainwindow.o \
 		debug/muros.o \
@@ -92,6 +94,7 @@ DIST          =  ..\juego\bolacannon.h \
 		..\juego\cannon.h \
 		..\juego\enemigo1.h \
 		..\juego\enemigo3.h \
+		..\juego\enemigogiratorio.h \
 		..\juego\mainwindow.h \
 		..\juego\muros.h \
 		..\juego\pendulo.h \
@@ -103,6 +106,7 @@ DIST          =  ..\juego\bolacannon.h \
 		..\juego\cannon.cpp \
 		..\juego\enemigo1.cpp \
 		..\juego\enemigo3.cpp \
+		..\juego\enemigogiratorio.cpp \
 		..\juego\main.cpp \
 		..\juego\mainwindow.cpp \
 		..\juego\muros.cpp \
@@ -131,10 +135,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) juego.zip $(SOURCES) $(DIST) ..\juego\juego.pro C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\spec_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\device_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\sanitize.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\gcc-base.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\g++-base.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\windows-vulkan.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\g++-win32.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\windows-desktop.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\qconfig.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core_qobject_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt_functions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\win32-g++\qmake.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exclusive_builds.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\toolchain.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\default_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\default_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resolve_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\default_post.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\build_pass.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qml_debug.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\entrypoint.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\precompile_header.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\warn_on.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resources_functions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resources.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\moc.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\opengl.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\uic.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qmake_use.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\file_copies.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\windows.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\testcase_targets.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exceptions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\yacc.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\lex.prf ..\juego\juego.pro ..\juego\resources.qrc C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Widgets.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Gui.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Core.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6EntryPoint.prl   ..\juego\resources.qrc C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\data\dummy.cpp ..\juego\bolacannon.h ..\juego\cannon.h ..\juego\enemigo1.h ..\juego\enemigo3.h ..\juego\mainwindow.h ..\juego\muros.h ..\juego\pendulo.h ..\juego\personaje.h ..\juego\proyectil.h ..\juego\registrodialog.h ..\juego\sesion.h ..\juego\sesiondialog.h  ..\juego\bolacannon.cpp ..\juego\cannon.cpp ..\juego\enemigo1.cpp ..\juego\enemigo3.cpp ..\juego\main.cpp ..\juego\mainwindow.cpp ..\juego\muros.cpp ..\juego\pendulo.cpp ..\juego\personaje.cpp ..\juego\proyectil.cpp ..\juego\registrodialog.cpp ..\juego\sesion.cpp ..\juego\sesiondialog.cpp ..\juego\mainwindow.ui ..\juego\registrodialog.ui ..\juego\sesiondialog.ui    
+	$(ZIP) juego.zip $(SOURCES) $(DIST) ..\juego\juego.pro C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\spec_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\device_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\sanitize.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\gcc-base.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\g++-base.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\windows_vulkan_sdk.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\windows-vulkan.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\g++-win32.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\common\windows-desktop.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\qconfig.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_ext_freetype.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_ext_libpng.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_concurrent.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_core_qobject_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_dbus.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_dbus_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designer.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designer_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_entrypoint_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_fb_support_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_gui.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_gui_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_help.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_help_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_linguist.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_linguist_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_network.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_network_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_opengl.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_opengl_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_openglwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_packetprotocol_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_printsupport.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qml.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qml_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmldebug_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlmodels_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmltest.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quick.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quick_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickshapes_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_sql.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_sql_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svg.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svg_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_svgwidgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_testlib.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_testlib_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_tools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uiplugin.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uitools.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_uitools_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_widgets.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_widgets_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_xml.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_xml_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\modules\qt_lib_zlib_private.pri C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt_functions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\win32-g++\qmake.conf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\spec_post.prf .qmake.stash C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exclusive_builds.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\toolchain.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\default_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\default_pre.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resolve_config.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exclusive_builds_post.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\default_post.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\build_pass.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qml_debug.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\entrypoint.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\precompile_header.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\warn_on.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qt.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resources_functions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\resources.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\moc.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\opengl.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\uic.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\qmake_use.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\file_copies.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\win32\windows.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\testcase_targets.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\exceptions.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\yacc.prf C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\lex.prf ..\juego\juego.pro ..\juego\resources.qrc C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Widgets.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Gui.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6Core.prl C:\QTcreator\6.0.3\mingw81_64\lib\Qt6EntryPoint.prl   ..\juego\resources.qrc C:\QTcreator\6.0.3\mingw81_64\mkspecs\features\data\dummy.cpp ..\juego\bolacannon.h ..\juego\cannon.h ..\juego\enemigo1.h ..\juego\enemigo3.h ..\juego\enemigogiratorio.h ..\juego\mainwindow.h ..\juego\muros.h ..\juego\pendulo.h ..\juego\personaje.h ..\juego\proyectil.h ..\juego\registrodialog.h ..\juego\sesion.h ..\juego\sesiondialog.h  ..\juego\bolacannon.cpp ..\juego\cannon.cpp ..\juego\enemigo1.cpp ..\juego\enemigo3.cpp ..\juego\enemigogiratorio.cpp ..\juego\main.cpp ..\juego\mainwindow.cpp ..\juego\muros.cpp ..\juego\pendulo.cpp ..\juego\personaje.cpp ..\juego\proyectil.cpp ..\juego\registrodialog.cpp ..\juego\sesion.cpp ..\juego\sesiondialog.cpp ..\juego\mainwindow.ui ..\juego\registrodialog.ui ..\juego\sesiondialog.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\bolacannon.o debug\cannon.o debug\enemigo1.o debug\enemigo3.o debug\main.o debug\mainwindow.o debug\muros.o debug\pendulo.o debug\personaje.o debug\proyectil.o debug\registrodialog.o debug\sesion.o debug\sesiondialog.o debug\qrc_resources.o debug\moc_mainwindow.o debug\moc_pendulo.o debug\moc_proyectil.o debug\moc_registrodialog.o debug\moc_sesiondialog.o
+	-$(DEL_FILE) debug\bolacannon.o debug\cannon.o debug\enemigo1.o debug\enemigo3.o debug\enemigogiratorio.o debug\main.o debug\mainwindow.o debug\muros.o debug\pendulo.o debug\personaje.o debug\proyectil.o debug\registrodialog.o debug\sesion.o debug\sesiondialog.o debug\qrc_resources.o debug\moc_mainwindow.o debug\moc_pendulo.o debug\moc_proyectil.o debug\moc_registrodialog.o debug\moc_sesiondialog.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -323,8 +327,11 @@ debug/moc_mainwindow.cpp: ../juego/mainwindow.h \
 		../juego/enemigo1.h \
 		../juego/muros.h \
 		../juego/enemigo3.h \
+		../juego/enemigogiratorio.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPixmap \
 		../juego/cannon.h \
 		../juego/bolacannon.h \
+		../juego/pendulo.h \
 		debug/moc_predefs.h \
 		C:/QTcreator/6.0.3/mingw81_64/bin/moc.exe
 	C:\QTcreator\6.0.3\mingw81_64\bin\moc.exe $(DEFINES) --include "C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/build-juego-Desktop_Qt_6_0_3_MinGW_64_bit-Debug/debug/moc_predefs.h" -IC:/QTcreator/6.0.3/mingw81_64/mkspecs/win32-g++ -I"C:/Users/HP/Documents/Universidad/Info 2021/ProyectoFinalInf2/juego" -IC:/QTcreator/6.0.3/mingw81_64/include -IC:/QTcreator/6.0.3/mingw81_64/include/QtWidgets -IC:/QTcreator/6.0.3/mingw81_64/include/QtGui -IC:/QTcreator/6.0.3/mingw81_64/include/QtCore -I. -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++ -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32 -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include -IC:/QTcreator/Tools/mingw810_64/lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed -IC:/QTcreator/Tools/mingw810_64/x86_64-w64-mingw32/include ..\juego\mainwindow.h -o debug\moc_mainwindow.cpp
@@ -1337,6 +1344,123 @@ debug/enemigo3.o: ../juego/enemigo3.cpp ../juego/enemigo3.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\enemigo3.o ..\juego\enemigo3.cpp
 
+debug/enemigogiratorio.o: ../juego/enemigogiratorio.cpp ../juego/enemigogiratorio.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPainter \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtguiglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig-bootstrapped.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qconfig.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtcore-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsystemdetection.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qprocessordetection.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcompilerdetection.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtypeinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontainerfwd.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsysinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlogging.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qflags.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qatomic.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbasicatomic.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qatomic_bootstrap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qgenericatomic.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qatomic_cxx11.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qatomic_msvc.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qglobalstatic.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmutex.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnumeric.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qversiontagging.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtgui-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qnamespace.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtmetamacros.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrect.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qhashfunctions.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstring.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qchar.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringview.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearray.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qrefcount.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydata.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpair.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydatapointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qarraydataops.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontainertools_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearrayalgorithms.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearrayview.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringliteral.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringalgorithms.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qanystringview.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qutf8stringview.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringtokenizer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringbuilder.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmargins.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsize.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpoint.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qscopedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpaintdevice.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobjectdefs_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qwindowdefs_win.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qcolor.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgb.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringlist.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlist.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiterator.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qbytearraylist.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qalgorithms.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringmatcher.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qrgba64.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qsharedpointer_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreevent.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmetatype.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcompare.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qvarlengtharray.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qdatastream.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiodevicebase.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qiterable.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmetacontainer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontainerinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtaggedpointer.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmath.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qobject_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qproperty.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qpropertyprivate.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qimage.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpixelformat.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtransform.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpolygon.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qregion.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qline.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qbrush.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontinfo.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfont.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qfontmetrics.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsitem.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qtwidgets-config.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qvariant.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qmap.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qshareddata_impl.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qhash.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qdebug.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qtextstream.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qstringconverter.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qset.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcontiguouscache.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainterpath.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsScene \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPixmap
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\enemigogiratorio.o ..\juego\enemigogiratorio.cpp
+
 debug/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		../juego/personaje.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsItem \
@@ -1492,8 +1616,11 @@ debug/main.o: ../juego/main.cpp ../juego/mainwindow.h \
 		../juego/enemigo1.h \
 		../juego/muros.h \
 		../juego/enemigo3.h \
+		../juego/enemigogiratorio.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPixmap \
 		../juego/cannon.h \
 		../juego/bolacannon.h \
+		../juego/pendulo.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
@@ -1658,29 +1785,12 @@ debug/mainwindow.o: ../juego/mainwindow.cpp ../juego/mainwindow.h \
 		../juego/enemigo1.h \
 		../juego/muros.h \
 		../juego/enemigo3.h \
+		../juego/enemigogiratorio.h \
+		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/QPixmap \
 		../juego/cannon.h \
 		../juego/bolacannon.h \
-		ui_mainwindow.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qeventloop.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QMenuBar \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenubar.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qmenu.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qaction.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QStatusBar \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qstatusbar.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QWidget
+		../juego/pendulo.h \
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\juego\mainwindow.cpp
 
 debug/muros.o: ../juego/muros.cpp ../juego/muros.h \
@@ -2282,33 +2392,7 @@ debug/registrodialog.o: ../juego/registrodialog.cpp ../juego/registrodialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
 		../juego/sesion.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QString \
-		ui_registrodialog.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qeventloop.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLabel \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpicture.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QPushButton \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h
+		ui_registrodialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\registrodialog.o ..\juego\registrodialog.cpp
 
 debug/sesion.o: ../juego/sesion.cpp ../juego/sesion.h \
@@ -2492,33 +2576,7 @@ debug/sesiondialog.o: ../juego/sesiondialog.cpp ../juego/sesiondialog.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsscene.h \
 		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpen.h \
 		../juego/registrodialog.h \
-		ui_sesiondialog.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/QVariant \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QApplication \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qcoreapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qeventloop.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qguiapplication.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qinputmethod.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtCore/qlocale.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QGraphicsView \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qgraphicsview.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpainter.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextoption.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractscrollarea.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qframe.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLabel \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlabel.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qpicture.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QLineEdit \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qlineedit.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextcursor.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qtextformat.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/QPushButton \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qpushbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtWidgets/qabstractbutton.h \
-		C:/QTcreator/6.0.3/mingw81_64/include/QtGui/qicon.h
+		ui_sesiondialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\sesiondialog.o ..\juego\sesiondialog.cpp
 
 debug/qrc_resources.o: debug/qrc_resources.cpp 

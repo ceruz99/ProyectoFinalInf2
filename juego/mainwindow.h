@@ -10,6 +10,10 @@
 #include <muros.h>
 #include <string.h>
 #include <enemigo3.h>
+#include "enemigogiratorio.h"
+#include <cannon.h>
+#include <bolacannon.h>
+#include <pendulo.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -22,6 +26,7 @@ class MainWindow : public QMainWindow
 
 private slots:
     void movEnemigo1();
+    void actualizar();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -43,12 +48,19 @@ private:
     int timerenemigo3=0;
     enemigo3 * jefe;
 
-
+    cannon * cannon1;
+    bolaCannon * bolaC;
+    pendulo * trampa1;
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1();
+
+    float dt;
+    //void moverMapa();
+
+
 };
 #endif // MAINWINDOW_H

@@ -26,6 +26,33 @@ MainWindow::MainWindow(QWidget *parent)
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
 
+    //enemigo orbital
+    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
+    mapaEscena->addItem(orbital.back());
+    dt=10;
+
+    //tps
+//    pass.append(new Tp(16,10,450,17));
+//    mapaEscena->addItem(pass.back());
+//    pass.append(new Tp(10,16,550,445));
+//    mapaEscena->addItem(pass.back());
+
+    cannon1=new cannon(650,350,10,6);
+    mapaEscena->addItem(cannon1);
+
+    //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+    //mapaEscena->addItem(bolasCannon.back());
+
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
 
 
     QTimer *timer=new QTimer(this);
@@ -164,6 +191,22 @@ void MainWindow::crearEnemigos1()
 void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
+
+    /*for(int i=0;i<10;i++){
+        bolasCannon.back()->CalcularVelocidad();
+        bolasCannon.back()->CalcularPosicion();
+        bolasCannon.back()->Mover();
+        timerBolaCannon+=1;
+        if(timerBolaCannon==500){
+            mapaEscena->removeItem(bolasCannon.back());
+            list<bolaCannon *>::iterator it;
+            it=bolasCannon.begin();
+            bolasCannon.erase(it);
+            bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+            mapaEscena->addItem(bolasCannon.back());
+            timerBolaCannon=0;
+        }
+    }*/
 
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;

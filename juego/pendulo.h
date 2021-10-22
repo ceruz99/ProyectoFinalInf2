@@ -8,7 +8,7 @@
 #include <QPainter>
 #include <qdebug.h>
 
-#define dt 0.005
+#define dT 0.005
 #define g 9.8
 
 class pendulo: public QObject,public QGraphicsItem
