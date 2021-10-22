@@ -13,6 +13,7 @@ SOURCES += \
     cannon.cpp \
     enemigo1.cpp \
     enemigo3.cpp \
+    enemigogiratorio.cpp \
     main.cpp \
     mainwindow.cpp \
     muros.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     cannon.h \
     enemigo1.h \
     enemigo3.h \
+    enemigogiratorio.h \
     mainwindow.h \
     muros.h \
     pendulo.h \

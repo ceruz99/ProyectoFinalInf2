@@ -10,9 +10,7 @@
 #include <muros.h>
 #include <string.h>
 #include <enemigo3.h>
-#include <cannon.h>
-#include <bolacannon.h>
-#include <pendulo.h>
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,6 +26,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QList<muros*> paredes;
+    QList<enemigogiratorio*>orbital;
 
 private:
     fstream leer;
@@ -43,9 +42,7 @@ private:
     int timerBolaCannon=0;
     int timerenemigo3=0;
     enemigo3 * jefe;
-    cannon * cannon1;
-    bolaCannon * bolaC;
-    pendulo * trampa1;
+
 
 
     void keyPressEvent(QKeyEvent *evento);
@@ -53,6 +50,5 @@ private:
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1();
-
 };
 #endif // MAINWINDOW_H

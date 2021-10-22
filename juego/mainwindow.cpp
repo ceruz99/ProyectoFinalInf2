@@ -26,17 +26,11 @@ MainWindow::MainWindow(QWidget *parent)
     jefe=new enemigo3(120,180,8);
     mapaEscena->addItem(jefe);
 
-    cannon1=new cannon(650,350,10,6);
-    mapaEscena->addItem(cannon1);
 
-    //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-    //mapaEscena->addItem(bolasCannon.back());
-
-    trampa1= new pendulo(200,100,5);
-    mapaEscena->addItem(trampa1);
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
+    connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));
     timer->start(100);
 }
 
@@ -51,21 +45,25 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
         tulio->moveRight();
         if(EvaluarColision(tulio))tulio->moveLeft();
+
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
        if(EvaluarColision(tulio))tulio->moveRight();
+
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
        if(EvaluarColision(tulio))tulio->moveDown();
+
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
        if(EvaluarColision(tulio))tulio->moveUp();
+
     }
     else if(evento->key()==Qt::Key_I and tulio->municion>0)
     {
@@ -167,22 +165,6 @@ void MainWindow::movEnemigo1()
 {
     jefe->move(tulio->x(),tulio->y());
 
-    /*for(int i=0;i<10;i++){
-        bolasCannon.back()->CalcularVelocidad();
-        bolasCannon.back()->CalcularPosicion();
-        bolasCannon.back()->Mover();
-        timerBolaCannon+=1;
-        if(timerBolaCannon==500){
-            mapaEscena->removeItem(bolasCannon.back());
-            list<bolaCannon *>::iterator it;
-            it=bolasCannon.begin();
-            bolasCannon.erase(it);
-            bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-            mapaEscena->addItem(bolasCannon.back());
-            timerBolaCannon=0;
-        }
-    }*/
-
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
@@ -251,5 +233,16 @@ bool MainWindow::EvaluarColision(tipo *objeto)//Sirve para evaluar colisiones co
     }
     return false;
 }
+void MainWindow::actualizar()
+{
+    for (int i=0;i<orbital.size() ;i++ ) {
+        for (int j=0;j< orbital.size() ;j++ ) {
+            if(i!=j){
+                orbital.at(i)->acelerar(orbital.at(j)->PX,orbital.at(j)->PY,orbital.at(j)->masa);
+                orbital.at(i)->actualizar(dt);
+            }
+        }
+    }
 
+}
 
