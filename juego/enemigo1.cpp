@@ -13,7 +13,7 @@ enemigo1::enemigo1(int x, int y, int r,int _direccionMov, int _direccionDisp)
 
 QRectF enemigo1::boundingRect() const
 {
-    return QRectF(posx,posy,radio*2,radio*2);
+    return QRectF(-radio,-radio,radio*2,radio*2);
 }
 
 void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)

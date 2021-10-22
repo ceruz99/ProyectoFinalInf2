@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-    tulio=new personaje(150,190,8);
+    tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
     crear_muros();
     crearEnemigos1();
