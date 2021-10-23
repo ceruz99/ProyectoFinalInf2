@@ -18,10 +18,11 @@ MainWindow::MainWindow(QWidget *parent)
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-    tulio=new personaje(340,390,8);
+    //tulio=new personaje(340,390,8);
+    tulio=new personaje(150,80,8);
     mapaEscena->addItem(tulio);
     crear_muros();
-    //crearEnemigos1();
+    crearEnemigos1(rutaEnemigos1_1);
     crearMuniciones();
 
 
@@ -30,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //enemigo orbital
 
-    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    /*orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
     mapaEscena->addItem(orbital.back());  
     orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
     mapaEscena->addItem(orbital.back());
@@ -44,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
     orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
     mapaEscena->addItem(orbital.back());
     orbital.back()->setPintura(1);
-    dt=10;
+    dt=10;*/
 
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
@@ -52,26 +53,19 @@ MainWindow::MainWindow(QWidget *parent)
     pasar.append(new teletransportacion(10,16,550,445));
     mapaEscena->addItem(pasar.back());
 
-    //tps
-    //pass.append(new Tp(16,10,450,17));
-    //mapaEscena->addItem(pass.back());
-    //pass.append(new Tp(10,16,550,445));
-    //mapaEscena->addItem(pass.back());
-
-
     //cannon1=new cannon(650,350,10,6);
     //mapaEscena->addItem(cannon1);
 
     //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
     //mapaEscena->addItem(bolasCannon.back());
 
-//    trampa1= new pendulo(200,100,5);
-//    mapaEscena->addItem(trampa1);
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
 
-    QTimer *timer=new QTimer(this);
-    connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
-    connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));
-    timer->start(100);
+    timer1=new QTimer(this);
+    connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
+    timer1->start(100);
+    //connect(timer3,SIGNAL(timeout()),this,SLOT(actualizar()));
 }
 
 MainWindow::~MainWindow()
@@ -209,10 +203,9 @@ void MainWindow::crearMuniciones()
 }
 
 
-
-void MainWindow::crearEnemigos1()
+void MainWindow::crearEnemigos1(string ruta)
 {
-    leer.open("../textos/enemigos1.txt");
+    leer.open(ruta);
     try {
         if(!leer.is_open())
             throw '1';
@@ -248,37 +241,55 @@ void MainWindow::moverMapa()
                tulio->setPos(900,70);
                tulio->posx=900;
                tulio->posy=70;
+               nivelActual+=1;
+               trampa1->timer->stop();
+               for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+                   mapaEscena->removeItem(*itEnemigos1);
+                   hechiceros.erase(itEnemigos1);
+               }
+               //Creacion movimiento parabolico
+               cannon1=new cannon(650,350,10,6);
+               mapaEscena->addItem(cannon1);
+               bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+               mapaEscena->addItem(bolasCannon.back());
+               crearEnemigos1(rutaEnemigos1_2);
            }
            if(pasar[1]->collidesWithItem(tulio)){
                tulio->setPos(20,620);
                tulio->posx=20;
                tulio->posy=620;
+               nivelActual+=1;
            }
 }
 
 
-void MainWindow::movEnemigo1()
+void MainWindow::nivel1()
 {
     //jefe->move(tulio->x(),tulio->y());
-
-    /*for(int i=0;i<10;i++){
-        bolasCannon.back()->CalcularVelocidad();
-        bolasCannon.back()->CalcularPosicion();
-        bolasCannon.back()->Mover();
-        timerBolaCannon+=1;
-        if(timerBolaCannon==500){
-            mapaEscena->removeItem(bolasCannon.back());
-            list<bolaCannon *>::iterator it;
-            it=bolasCannon.begin();
-            bolasCannon.erase(it);
-            bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-            mapaEscena->addItem(bolasCannon.back());
-            timerBolaCannon=0;
+    if(nivelActual==1){
+        if((trampa1)->collidesWithItem(tulio)){
+            QApplication::quit();
         }
     }
-
-    list<proyectil *>:: iterator it;
-    list<enemigo1 *>::iterator itEnemigos1;
+    else if(nivelActual==2){
+        for(int i=0;i<10;i++){
+            bolasCannon.back()->CalcularVelocidad();
+            bolasCannon.back()->CalcularPosicion();
+            bolasCannon.back()->Mover();
+            timerBolaCannon+=1;
+            if(timerBolaCannon==500){
+                mapaEscena->removeItem(bolasCannon.back());
+                list<bolaCannon *>::iterator it;
+                it=bolasCannon.begin();
+                bolasCannon.erase(it);
+                bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+                mapaEscena->addItem(bolasCannon.back());
+                timerBolaCannon=0;
+            }
+        }
+        if(bolasCannon.back()->collidesWithItem(tulio))
+            QApplication::quit();
+    }
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
     for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){
@@ -333,7 +344,7 @@ void MainWindow::movEnemigo1()
             mapaEscena->removeItem(*it);
             balasPersonaje.erase(it);
         }
-    }*/
+    }
     //---------------------------------------------------------------------------------------------
 
     //Recoger municion-----------------------------------------------------------------

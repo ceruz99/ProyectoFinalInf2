@@ -13,7 +13,7 @@ pendulo::pendulo(double x, double y, int r)
 
     setPos(posx+150,posy+100);
 
-    QTimer *timer = new QTimer();
+    timer = new QTimer();
 
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 

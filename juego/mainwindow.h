@@ -17,6 +17,8 @@
 #include "teletransportacion.h"
 #include <municion.h>
 
+#define rutaEnemigos1_1 "../textos/enemigos1.txt"
+#define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,7 +29,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private slots:
-    void movEnemigo1();
+    void nivel1();
     void actualizar();
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -37,6 +39,8 @@ public:
     QList<teletransportacion*>pasar;
 
 private:
+    QTimer *timer1;
+
     fstream leer;
     Ui::MainWindow *ui;
     QGraphicsScene *mapaEscena;
@@ -54,13 +58,17 @@ private:
     cannon * cannon1;
     bolaCannon * bolaC;
     pendulo * trampa1;
+    int nivelActual=1;
+
+    list<proyectil *>:: iterator it;
+    list<enemigo1 *>::iterator itEnemigos1;
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
     void crearMuniciones();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
-    void crearEnemigos1();
+    void crearEnemigos1(string ruta);
 
     float dt;
     void moverMapa();
