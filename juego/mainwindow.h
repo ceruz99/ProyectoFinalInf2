@@ -15,6 +15,7 @@
 #include <bolacannon.h>
 #include <pendulo.h>
 #include "teletransportacion.h"
+#include <municion.h>
 
 
 QT_BEGIN_NAMESPACE
@@ -45,17 +46,18 @@ private:
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
+    list<municion *> recarga;
     int timerProyectilEnemigo=0;
     int timerBolaCannon=0;
     int timerenemigo3=0;
     enemigo3 * jefe;
-
     cannon * cannon1;
     bolaCannon * bolaC;
     pendulo * trampa1;
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
+    void crearMuniciones();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1();
