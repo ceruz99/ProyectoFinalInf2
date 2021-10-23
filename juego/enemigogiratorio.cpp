@@ -32,10 +32,22 @@ QRectF enemigogiratorio::boundingRect() const
 }
 void enemigogiratorio::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::green);
-    painter->drawEllipse(boundingRect());
+    if(pintura==0){
+        painter->setBrush(Qt::green);
+        painter->drawEllipse(boundingRect());
+    }
+    else{
+        pixmap.load(":/mapa/imagenes/orbitales.png");
+        painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+
+    }
 }
 void enemigogiratorio::setEscala(float s)
 {
     escala = s;
+}
+
+void enemigogiratorio::setPintura(int value)
+{
+    pintura=value;
 }

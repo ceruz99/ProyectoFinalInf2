@@ -10,7 +10,7 @@
 class enemigogiratorio: public QGraphicsItem
 {
 private:
-    QPixmap pixmap1;
+    QPixmap pixmap;
     float escala;
 
     public:
@@ -31,7 +31,7 @@ private:
         QRectF boundingRect() const;
         void paint(QPainter *painter,const QStyleOptionGraphicsItem *option, QWidget *widget);
         void setEscala(float s);
-        int pintura;
+        int pintura=0;
         void setPintura(int value);
 };
 
