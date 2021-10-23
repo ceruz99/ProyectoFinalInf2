@@ -16,6 +16,7 @@ SOURCES += \
     enemigogiratorio.cpp \
     main.cpp \
     mainwindow.cpp \
+    municion.cpp \
     muros.cpp \
     pendulo.cpp \
     personaje.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     enemigo3.h \
     enemigogiratorio.h \
     mainwindow.h \
+    municion.h \
     muros.h \
     pendulo.h \
     personaje.h \

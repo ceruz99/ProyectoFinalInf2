@@ -22,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->addItem(tulio);
     crear_muros();
     //crearEnemigos1();
+    crearMuniciones();
 
     //jefe=new enemigo3(120,180,8);
     //mapaEscena->addItem(jefe);
@@ -54,7 +55,6 @@ MainWindow::MainWindow(QWidget *parent)
     //trampa1= new pendulo(200,100,5);
     //mapaEscena->addItem(trampa1);
 
-
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
     connect(timer,SIGNAL(timeout()),this,SLOT(actualizar()));
@@ -72,7 +72,6 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
         tulio->moveRight();
         if(EvaluarColision(tulio))tulio->moveLeft();
-
     }
     else if(evento->key()==Qt::Key_A)
     {
@@ -119,6 +118,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     }
 }
 
+
 void MainWindow::crear_muros()
 {
     {
@@ -154,6 +154,44 @@ void MainWindow::crear_muros()
         leer.close();
     }
 }
+
+void MainWindow::crearMuniciones()
+{
+    {
+        leer.open("../textos/municiones.txt");
+        try {
+            if(!leer.is_open())
+                throw '1';
+            else
+                throw '2';
+        }  catch (char c) {
+            if(c=='1')
+                cout<<"No lo lee";
+        }
+        string linea;
+        while(getline(leer, linea)){
+            string pedazoLinea;
+            short int valores[4];
+            int tramo=0;
+
+            for(int i=0;i<4;i++){
+                if(i<3){
+                    tramo=linea.find(',');
+                    pedazoLinea=linea.substr(0,tramo);
+                    valores[i]=atoi(pedazoLinea.c_str());
+                    linea=linea.substr(tramo+1);
+                }
+                else
+                    valores[i]=atoi(linea.c_str());
+            }
+            recarga.push_back(new municion(valores[0],valores[1],valores[2],valores[3]));
+            mapaEscena->addItem(recarga.back());
+        }
+        leer.close();
+    }
+}
+
+
 
 void MainWindow::crearEnemigos1()
 {
@@ -266,7 +304,19 @@ void MainWindow::movEnemigo1()
         }
     }*/
     //---------------------------------------------------------------------------------------------
+
+    //Recoger municion-----------------------------------------------------------------
+    list<municion *>:: iterator itMunicion;
+    for(itMunicion=recarga.begin();itMunicion!=recarga.end();itMunicion++){
+        if((*itMunicion)->collidesWithItem(tulio)){
+            mapaEscena->removeItem(*itMunicion);
+            recarga.erase(itMunicion);
+            tulio->municion+=15;
+        }
+    }
+    //----------------------------------------------------------------------------------
 }
+
 template <typename tipo>
 bool MainWindow::EvaluarColision(tipo *objeto)//Sirve para evaluar colisiones con los muros.
 {
@@ -286,6 +336,5 @@ void MainWindow::actualizar()
             }
         }
     }
-
 }
 
