@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/mapa">
         <file>imagenes/mapa.png</file>
+        <file>imagenes/orbitales.png</file>
+        <file>imagenes/pendulo.png</file>
     </qresource>
 </RCC>

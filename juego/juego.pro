@@ -23,7 +23,8 @@ SOURCES += \
     proyectil.cpp \
     registrodialog.cpp \
     sesion.cpp \
-    sesiondialog.cpp
+    sesiondialog.cpp \
+    teletransportacion.cpp
 
 HEADERS += \
     bolacannon.h \
@@ -39,7 +40,8 @@ HEADERS += \
     proyectil.h \
     registrodialog.h \
     sesion.h \
-    sesiondialog.h
+    sesiondialog.h \
+    teletransportacion.h
 
 FORMS += \
     mainwindow.ui \

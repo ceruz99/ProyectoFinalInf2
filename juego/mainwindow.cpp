@@ -24,21 +24,33 @@ MainWindow::MainWindow(QWidget *parent)
     //crearEnemigos1();
     crearMuniciones();
 
+
     //jefe=new enemigo3(120,180,8);
     //mapaEscena->addItem(jefe);
 
     //enemigo orbital
-    /*orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
-    mapaEscena->addItem(orbital.back());
+
+    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    mapaEscena->addItem(orbital.back());  
     orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
     mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
     orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
     mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
     orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
     mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
     orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
     mapaEscena->addItem(orbital.back());
-    dt=10;*/
+    orbital.back()->setPintura(1);
+    dt=10;
+
+    //tps
+    pasar.append(new teletransportacion(16,10,450,17));
+    mapaEscena->addItem(pasar.back());
+    pasar.append(new teletransportacion(10,16,550,445));
+    mapaEscena->addItem(pasar.back());
 
     //tps
     //pass.append(new Tp(16,10,450,17));
@@ -46,14 +58,15 @@ MainWindow::MainWindow(QWidget *parent)
     //pass.append(new Tp(10,16,550,445));
     //mapaEscena->addItem(pass.back());
 
+
     //cannon1=new cannon(650,350,10,6);
     //mapaEscena->addItem(cannon1);
 
     //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
     //mapaEscena->addItem(bolasCannon.back());
 
-    //trampa1= new pendulo(200,100,5);
-    //mapaEscena->addItem(trampa1);
+//    trampa1= new pendulo(200,100,5);
+//    mapaEscena->addItem(trampa1);
 
     QTimer *timer=new QTimer(this);
     connect(timer,SIGNAL(timeout()),this,SLOT(movEnemigo1()));
@@ -72,23 +85,27 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
     {
         tulio->moveRight();
         if(EvaluarColision(tulio))tulio->moveLeft();
+        moverMapa();
     }
     else if(evento->key()==Qt::Key_A)
     {
        tulio->moveLeft();
        if(EvaluarColision(tulio))tulio->moveRight();
+       moverMapa();
 
     }
     else if(evento->key()==Qt::Key_W)
     {
        tulio->moveUp();
        if(EvaluarColision(tulio))tulio->moveDown();
+       moverMapa();
 
     }
     else if(evento->key()==Qt::Key_S)
     {
        tulio->moveDown();
        if(EvaluarColision(tulio))tulio->moveUp();
+       moverMapa();
 
     }
     else if(evento->key()==Qt::Key_I and tulio->municion>0)
@@ -223,6 +240,20 @@ void MainWindow::crearEnemigos1()
         mapaEscena->addItem(hechiceros.back());
     }
     leer.close();
+}
+
+void MainWindow::moverMapa()
+{
+           if(pasar[0]->collidesWithItem(tulio)){
+               tulio->setPos(900,70);
+               tulio->posx=900;
+               tulio->posy=70;
+           }
+           if(pasar[1]->collidesWithItem(tulio)){
+               tulio->setPos(20,620);
+               tulio->posx=20;
+               tulio->posy=620;
+           }
 }
 
 

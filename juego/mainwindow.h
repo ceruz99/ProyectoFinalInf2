@@ -14,6 +14,7 @@
 #include <cannon.h>
 #include <bolacannon.h>
 #include <pendulo.h>
+#include "teletransportacion.h"
 #include <municion.h>
 
 
@@ -33,6 +34,7 @@ public:
     ~MainWindow();
     QList<muros*> paredes;
     QList<enemigogiratorio*>orbital;
+    QList<teletransportacion*>pasar;
 
 private:
     fstream leer;
@@ -61,7 +63,7 @@ private:
     void crearEnemigos1();
 
     float dt;
-    //void moverMapa();
+    void moverMapa();
 
 
 };
