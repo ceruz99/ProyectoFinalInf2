@@ -12,10 +12,12 @@ SOURCES += \
     bolacannon.cpp \
     cannon.cpp \
     enemigo1.cpp \
+    enemigo2.cpp \
     enemigo3.cpp \
     enemigogiratorio.cpp \
     main.cpp \
     mainwindow.cpp \
+    municion.cpp \
     muros.cpp \
     pendulo.cpp \
     personaje.cpp \
@@ -27,9 +29,11 @@ HEADERS += \
     bolacannon.h \
     cannon.h \
     enemigo1.h \
+    enemigo2.h \
     enemigo3.h \
     enemigogiratorio.h \
     mainwindow.h \
+    municion.h \
     muros.h \
     pendulo.h \
     personaje.h \

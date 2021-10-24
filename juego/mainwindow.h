@@ -15,7 +15,11 @@
 #include <pendulo.h>
 #include "teletransportacion.h"
 #include "sesion.h"
+#include <municion.h>
+#include <enemigo2.h>
 
+#define rutaEnemigos1_1 "../textos/enemigos1.txt"
+#define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,7 +30,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 private slots:
-    void movEnemigo1();
+    void nivel1();
     void actualizar();
     void on_Nueva_clicked();
 
@@ -46,10 +50,13 @@ public:
     QList<teletransportacion*>pasar;
 
 private:
+
     //Menu
     QString User;
     sesion *cuenta;
     ofstream guardar;
+    QTimer *timer1;
+
     fstream leer;
     Ui::MainWindow *ui;
     QGraphicsScene *mapaEscena,*menu;
@@ -60,10 +67,23 @@ private:
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
+
+    list<municion *> recarga;
+    list<enemigo2 *> zombies;
+    int timerProyectilEnemigo=0;
+    int timerBolaCannon=0;
+    int timerenemigo3=0;
+    enemigo3 * jefe;
     cannon * cannon1;
     enemigo3 * jefe;
     bolaCannon * bolaC;
     pendulo * trampa1;
+    int nivelActual=1;
+
+    list<proyectil *>:: iterator it;
+    list<enemigo1 *>::iterator itEnemigos1;
+    list<enemigo2 *>::iterator itEnemigos2;
+    QList<muros*>::Iterator itMuros;
 
     int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
 
@@ -73,9 +93,10 @@ private:
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
+    void crearMuniciones();
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
-    void crearEnemigos1();
+    void crearEnemigos1(string ruta);
 
     float dt;
     void moverMapa();

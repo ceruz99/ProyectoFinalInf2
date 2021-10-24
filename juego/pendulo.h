@@ -33,7 +33,7 @@ public:
     pendulo(double x, double y, int r);
     void calculo();
     void actualizar();
-
+    QTimer *timer;
     QRectF boundingRect() const;
     virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = nullptr);
 
