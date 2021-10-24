@@ -23,19 +23,19 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     const uint offsetsAndSize[8];
-    char stringdata0[35];
+    char stringdata0[30];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 10), // "MainWindow"
-QT_MOC_LITERAL(11, 11), // "movEnemigo1"
-QT_MOC_LITERAL(23, 0), // ""
-QT_MOC_LITERAL(24, 10) // "actualizar"
+QT_MOC_LITERAL(11, 6), // "nivel1"
+QT_MOC_LITERAL(18, 0), // ""
+QT_MOC_LITERAL(19, 10) // "actualizar"
 
     },
-    "MainWindow\0movEnemigo1\0\0actualizar"
+    "MainWindow\0nivel1\0\0actualizar"
 };
 #undef QT_MOC_LITERAL
 
@@ -69,7 +69,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->movEnemigo1(); break;
+        case 0: _t->nivel1(); break;
         case 1: _t->actualizar(); break;
         default: ;
         }
