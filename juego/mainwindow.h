@@ -17,6 +17,7 @@
 #include "sesion.h"
 #include <municion.h>
 #include <enemigo2.h>
+#include <QTimer>
 
 #define rutaEnemigos1_1 "../textos/enemigos1.txt"
 #define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
@@ -75,7 +76,6 @@ private:
     int timerenemigo3=0;
     enemigo3 * jefe;
     cannon * cannon1;
-    enemigo3 * jefe;
     bolaCannon * bolaC;
     pendulo * trampa1;
     int nivelActual=1;
@@ -85,9 +85,7 @@ private:
     list<enemigo2 *>::iterator itEnemigos2;
     QList<muros*>::Iterator itMuros;
 
-    int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
-
-
+    //int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
 
 
 
