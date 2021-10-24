@@ -3,7 +3,6 @@
 #include <personaje.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <sesiondialog.h>
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
@@ -15,6 +14,7 @@
 #include <bolacannon.h>
 #include <pendulo.h>
 #include "teletransportacion.h"
+#include "sesion.h"
 #include <municion.h>
 #include <enemigo2.h>
 
@@ -32,6 +32,16 @@ class MainWindow : public QMainWindow
 private slots:
     void nivel1();
     void actualizar();
+    void on_Nueva_clicked();
+
+    void on_Cargar_clicked();
+
+    void on_Salir_clicked();
+
+    void on_REGISTER_clicked();
+
+    void on_Start_clicked();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -40,17 +50,24 @@ public:
     QList<teletransportacion*>pasar;
 
 private:
+
+    //Menu
+    QString User;
+    sesion *cuenta;
+    ofstream guardar;
     QTimer *timer1;
 
     fstream leer;
     Ui::MainWindow *ui;
-    QGraphicsScene *mapaEscena;
-    sesionDialog *sesion;
+    QGraphicsScene *mapaEscena,*menu;
+
+    //objetos
     personaje *tulio;
     list<proyectil *> balasPersonaje;
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
+
     list<municion *> recarga;
     list<enemigo2 *> zombies;
     int timerProyectilEnemigo=0;
@@ -58,6 +75,7 @@ private:
     int timerenemigo3=0;
     enemigo3 * jefe;
     cannon * cannon1;
+    enemigo3 * jefe;
     bolaCannon * bolaC;
     pendulo * trampa1;
     int nivelActual=1;
@@ -66,6 +84,12 @@ private:
     list<enemigo1 *>::iterator itEnemigos1;
     list<enemigo2 *>::iterator itEnemigos2;
     QList<muros*>::Iterator itMuros;
+
+    int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
+
+
+
+
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();

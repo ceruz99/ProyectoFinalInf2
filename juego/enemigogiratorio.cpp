@@ -33,8 +33,7 @@ QRectF enemigogiratorio::boundingRect() const
 void enemigogiratorio::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     if(pintura==0){
-        painter->setBrush(Qt::green);
-        painter->drawEllipse(boundingRect());
+        painter->setBrush(Qt::transparent);
     }
     else{
         pixmap.load(":/mapa/imagenes/orbitales.png");

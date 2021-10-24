@@ -7,6 +7,7 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <qdebug.h>
+#include <QPixmap>
 
 #define dT 0.005
 #define g 9.8
@@ -17,6 +18,7 @@ class pendulo: public QObject,public QGraphicsItem
 public slots:
     void move();
 private:
+    QPixmap pixmap;
     double anguloi;//angulo inicial
     double angulo;//angulo
     double vAngulari;//velocidad angular incial

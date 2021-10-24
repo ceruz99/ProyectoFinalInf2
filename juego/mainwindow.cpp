@@ -9,10 +9,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     mapaEscena=new QGraphicsScene();
-    ui->graphicsView->setScene(mapaEscena);
-    mapaEscena->setSceneRect(0,0,960,960);
-    //sesion=new sesionDialog(this);
-    //sesion->show();
+    //manipulacion de Menu
+    menu=new QGraphicsScene();
+    menu->setSceneRect(0,0,500,500);
+    ui->graphicsView->setScene(menu);
+    ui->graphicsView->hide();
+    ui->USER->hide();
+    ui->L_usuario->hide();
+    ui->REGISTER->hide();
+    ui->reintentar->hide();
+    ui->ocupado->hide();
+    ui->Start->hide();
+    ui->reintentar_2->hide();
+    ui->ocupado_2->hide();
 
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
@@ -418,4 +427,107 @@ void MainWindow::actualizar()
         }
     }
 }
+
+
+void MainWindow::on_Nueva_clicked()
+{
+    ui->USER->show();
+    ui->L_usuario->show();
+    ui->Cargar->hide();
+    ui->Nueva->hide();
+    ui->REGISTER->show();
+    ui->Salir->hide();
+
+
+}
+void MainWindow::on_REGISTER_clicked()
+{
+    ui->USER->show();
+    User=ui->USER->text();
+    cuenta=new sesion(User,"100","15","0");
+    if(cuenta->busquedaUsuario()==true){
+        ui->reintentar->show();
+        ui->ocupado->show();
+        User=ui->USER->text();
+        cuenta=new sesion(User,"100","15","0");
+    }
+    else{
+        guardar.open("../textos/usuarios.txt",ios::app);
+        try {
+            if(!guardar.is_open())
+                throw '1';
+        }  catch (char c) {
+            if(c=='1')
+                cout<<"No ha leido el archivo"<<endl;
+        }
+            guardar<<cuenta->usuario.toStdString()<<","<<cuenta->vida.toStdString()<<","<<cuenta->municion.toStdString()<<","<<cuenta->mapa.toStdString()<<endl;
+            guardar.close();
+            ui->USER->hide();
+            ui->REGISTER->hide();
+            ui->reintentar->hide();
+            ui->ocupado->hide();
+            ui->REGISTER->hide();
+            ui->L_usuario->hide();
+            ui->graphicsView->setScene(mapaEscena);
+            mapaEscena->setSceneRect(0,0,960,960);
+            ui->graphicsView->show();
+    }
+
+}
+
+
+void MainWindow::on_Cargar_clicked()
+{
+    ui->USER->show();
+    ui->L_usuario->show();
+    ui->Cargar->hide();
+    ui->Nueva->hide();
+    ui->Salir->hide();
+    ui->Start->show();
+}
+void MainWindow::on_Start_clicked()
+{
+    leer.open("../textos/usuarios.txt",ios::in);
+    try {
+        if(!leer.is_open())
+            throw '1';
+    }  catch (char c) {
+        if(c=='1')
+            cout<<"No ha leido el archivo"<<endl;
+    }
+    ui->USER->show();
+    User=ui->USER->text();
+    cuenta=new sesion(User,"100","15","0");
+
+    if(cuenta->busquedaUsuario()==false){
+        ui->reintentar_2->show();
+        ui->ocupado_2->show();
+        User=ui->USER->text();
+        cuenta=new sesion(User,"100","15","0");
+    }
+    else{
+        ui->USER->hide();
+        ui->REGISTER->hide();
+        ui->reintentar_2->hide();
+        ui->ocupado_2->hide();
+        ui->L_usuario->hide();
+        ui->Start->hide();
+        ui->graphicsView->setScene(mapaEscena);
+        mapaEscena->setSceneRect(0,0,960,960);
+        ui->graphicsView->show();
+    }
+
+}
+
+
+void MainWindow::on_Salir_clicked()
+{
+    QApplication::quit();
+}
+
+
+
+
+
+
 

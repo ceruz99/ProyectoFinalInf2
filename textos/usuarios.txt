@@ -1,9 +1,4 @@
-pepito,1234
-juanchito,9999
-artur,1111
-rogelio,1234
-lucia,1234
-martin,9999
-juana,1111
-mario,1234
-camilo,1999
+mario,100,15,0
+jose,100,15,0
+bull,100,15,0
+leon,100,15,0

@@ -45,8 +45,10 @@ QRectF pendulo::boundingRect() const
 
 void pendulo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawEllipse(boundingRect());
+//    painter->setBrush(Qt::red);
+//    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/pendulo.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
 void pendulo::move()

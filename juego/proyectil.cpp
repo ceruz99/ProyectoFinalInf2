@@ -19,8 +19,10 @@ QRectF proyectil::boundingRect() const
 
 void proyectil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::black);
-    painter->drawRect(boundingRect());
+//    painter->setBrush(Qt::black);
+//    painter->drawRect(boundingRect());
+    pixmap.load(":/mapa/imagenes/bullet.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
 void proyectil::move()
