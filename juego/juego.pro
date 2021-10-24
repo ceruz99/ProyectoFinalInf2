@@ -20,9 +20,7 @@ SOURCES += \
     pendulo.cpp \
     personaje.cpp \
     proyectil.cpp \
-    registrodialog.cpp \
     sesion.cpp \
-    sesiondialog.cpp \
     teletransportacion.cpp
 
 HEADERS += \
@@ -36,15 +34,11 @@ HEADERS += \
     pendulo.h \
     personaje.h \
     proyectil.h \
-    registrodialog.h \
     sesion.h \
-    sesiondialog.h \
     teletransportacion.h
 
 FORMS += \
-    mainwindow.ui \
-    registrodialog.ui \
-    sesiondialog.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

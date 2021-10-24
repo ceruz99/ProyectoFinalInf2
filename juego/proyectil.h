@@ -5,11 +5,13 @@
 #include <QPainter>
 #include <QObject>
 #include <QTimer>
+#include <QPixmap>
 
 class proyectil : public QObject, public QGraphicsItem
 {
     Q_OBJECT
 private:
+    QPixmap pixmap;
     int direccion;
 private slots:
     void move();

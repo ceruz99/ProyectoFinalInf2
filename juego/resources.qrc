@@ -3,5 +3,6 @@
         <file>imagenes/mapa.png</file>
         <file>imagenes/orbitales.png</file>
         <file>imagenes/pendulo.png</file>
+        <file>imagenes/bullet.png</file>
     </qresource>
 </RCC>

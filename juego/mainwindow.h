@@ -3,7 +3,6 @@
 #include <personaje.h>
 #include <QMainWindow>
 #include <QGraphicsScene>
-#include <sesiondialog.h>
 #include <QKeyEvent>
 #include <proyectil.h>
 #include <enemigo1.h>
@@ -15,6 +14,7 @@
 #include <bolacannon.h>
 #include <pendulo.h>
 #include "teletransportacion.h"
+#include "sesion.h"
 
 
 QT_BEGIN_NAMESPACE
@@ -28,6 +28,16 @@ class MainWindow : public QMainWindow
 private slots:
     void movEnemigo1();
     void actualizar();
+    void on_Nueva_clicked();
+
+    void on_Cargar_clicked();
+
+    void on_Salir_clicked();
+
+    void on_REGISTER_clicked();
+
+    void on_Start_clicked();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -36,23 +46,30 @@ public:
     QList<teletransportacion*>pasar;
 
 private:
+    //Menu
+    QString User;
+    sesion *cuenta;
+    ofstream guardar;
     fstream leer;
     Ui::MainWindow *ui;
-    QGraphicsScene *mapaEscena;
-    sesionDialog *sesion;
+    QGraphicsScene *mapaEscena,*menu;
+
+    //objetos
     personaje *tulio;
     list<proyectil *> balasPersonaje;
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
-    int timerProyectilEnemigo=0;
-    int timerBolaCannon=0;
-    int timerenemigo3=0;
-    enemigo3 * jefe;
-
     cannon * cannon1;
+    enemigo3 * jefe;
     bolaCannon * bolaC;
     pendulo * trampa1;
+
+    int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
+
+
+
+
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
