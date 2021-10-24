@@ -16,6 +16,7 @@
 #include <pendulo.h>
 #include "teletransportacion.h"
 #include <municion.h>
+#include <enemigo2.h>
 
 #define rutaEnemigos1_1 "../textos/enemigos1.txt"
 #define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
@@ -51,6 +52,7 @@ private:
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
     list<municion *> recarga;
+    list<enemigo2 *> zombies;
     int timerProyectilEnemigo=0;
     int timerBolaCannon=0;
     int timerenemigo3=0;
@@ -62,6 +64,8 @@ private:
 
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
+    list<enemigo2 *>::iterator itEnemigos2;
+    QList<muros*>::Iterator itMuros;
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();

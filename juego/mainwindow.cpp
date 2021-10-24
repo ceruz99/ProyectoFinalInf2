@@ -2,7 +2,6 @@
 #include "ui_mainwindow.h"
 
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -18,8 +17,8 @@ MainWindow::MainWindow(QWidget *parent)
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
-    //tulio=new personaje(340,390,8);
-    tulio=new personaje(150,80,8);
+    tulio=new personaje(340,390,8);
+    //tulio=new personaje(150,80,8);
     mapaEscena->addItem(tulio);
     crear_muros();
     crearEnemigos1(rutaEnemigos1_1);
@@ -61,6 +60,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     trampa1= new pendulo(200,100,5);
     mapaEscena->addItem(trampa1);
+
+    zombies.push_back(new enemigo2(180,80,8));
+    mapaEscena->addItem(zombies.back());
 
     timer1=new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
@@ -270,6 +272,7 @@ void MainWindow::nivel1()
         if((trampa1)->collidesWithItem(tulio)){
             QApplication::quit();
         }
+
     }
     else if(nivelActual==2){
         for(int i=0;i<10;i++){
@@ -357,14 +360,50 @@ void MainWindow::nivel1()
         }
     }
     //----------------------------------------------------------------------------------
+
+
+    //Colisiones enemigo2----------------------------------------------------------------
+    //Con muros
+    int enemigo2Parar=0;
+    for(itEnemigos2=zombies.begin();itEnemigos2!=zombies.end();itEnemigos2++){
+        enemigo2 * punteroEnemigo2=*itEnemigos2;
+        /*for(itMuros=paredes.begin();itMuros!=paredes.end();itMuros++){
+           if((*itEnemigos2)->collidesWithItem(*itMuros)){
+               muros * apuntadorM=*itMuros;
+               if(apuntadorM->w>apuntadorM->h){
+                   enemigo2Parar=1;
+               }
+               else
+                   enemigo2Parar=2;
+           }
+           else
+            enemigo2Parar=2;
+        }*/
+        if(EvaluarColision(*itEnemigos2))
+            enemigo2Parar=1;
+        else
+            enemigo2Parar=2;
+        switch (enemigo2Parar) {
+        case 1:{
+            punteroEnemigo2->move(tulio->posx,tulio->posy,true);
+            break;
+        }
+        case 2:{
+            punteroEnemigo2->move(tulio->posx,tulio->posy,false);
+            break;
+        }
+        }
+    }
+
+    //-----------------------------------------------------------------------------------
 }
 
 template <typename tipo>
 bool MainWindow::EvaluarColision(tipo *objeto)//Sirve para evaluar colisiones con los muros.
 {
-    QList<muros*>::Iterator it;
-    for(it=paredes.begin();it!=paredes.end();it++){
-       if((*it)->collidesWithItem(objeto)) return true;
+
+    for(itMuros=paredes.begin();itMuros!=paredes.end();itMuros++){
+       if((*itMuros)->collidesWithItem(objeto)) return true;
     }
     return false;
 }
