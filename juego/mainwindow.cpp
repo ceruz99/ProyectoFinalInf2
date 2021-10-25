@@ -121,6 +121,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         }
     }
     else{
+        //Jugador1 movimiento---------------------------------------------
         if(evento->key()==Qt::Key_W)
         {
            jugador1->moveUp();
@@ -129,23 +130,71 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         {
            jugador1->moveDown();
         }
-        else if(evento->key()==Qt::Key_1){
+        else if(evento->key()==Qt::Key_A)
+        {
+           jugador1->moveLeft();
+        }
+        else if(evento->key()==Qt::Key_D)
+        {
+           jugador1->moveRight();
+        }
+        else if(evento->key()==Qt::Key_H){
             balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,4,
                                                    15,8));
             multiplayer->addItem(balasJugador1.back());
         }
-        else if(evento->key()==Qt::Key_I)
+        else if(evento->key()==Qt::Key_F){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,3,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_G){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,2,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_T){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,1,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+
+
+        //Jugador2 movimiento ---------------------------------------------------
+        else if(evento->key()==Qt::Key_5)
         {
            jugador2->moveUp();
         }
-        else if(evento->key()==Qt::Key_K)
+        else if(evento->key()==Qt::Key_2)
         {
            jugador2->moveDown();
         }
-        else if(evento->key()==Qt::Key_J)
+        else if(evento->key()==Qt::Key_1)
         {
-            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,3
-                                                  ,15,8));
+           jugador2->moveLeft();
+        }
+        else if(evento->key()==Qt::Key_3)
+        {
+           jugador2->moveRight();
+        }
+        else if(evento->key()==Qt::Key_L){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,4,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_J){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,3,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_K){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,2,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_I){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,1,
+                                                   15,8));
             multiplayer->addItem(balasJugador2.back());
         }
     }
