@@ -43,6 +43,10 @@ private slots:
 
     void on_Start_clicked();
 
+    void on_multi_clicked();
+
+    void colisionMultiplayer();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -60,7 +64,7 @@ private:
 
     fstream leer;
     Ui::MainWindow *ui;
-    QGraphicsScene *mapaEscena,*menu;
+    QGraphicsScene *mapaEscena,*menu, *multiplayer;
 
     //objetos
     personaje *tulio;
@@ -96,6 +100,14 @@ private:
     float dt;
     void moverMapa();
 
+    //Multiplayer
+    bool iniciaMulti=false;
+    personaje * jugador1, *jugador2;
+    list<proyectil *> balasJugador1;
+    list<proyectil *> :: iterator itbalasJugador1;
+    list<proyectil *> balasJugador2;
+    list<proyectil *> :: iterator itbalasJugador2;
+    QTimer *timerMultiPlayer;
 
 };
 #endif // MAINWINDOW_H

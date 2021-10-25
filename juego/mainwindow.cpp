@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    multiplayer=new QGraphicsScene();
     mapaEscena=new QGraphicsScene();
     //manipulacion de Menu
     menu=new QGraphicsScene();
@@ -39,22 +39,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     //enemigo orbital
 
-    /*orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
-    mapaEscena->addItem(orbital.back());  
-    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    dt=10;*/
-
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
     mapaEscena->addItem(pasar.back());
@@ -70,6 +54,9 @@ MainWindow::MainWindow(QWidget *parent)
     timer2=new QTimer(this);
     timer2->stop();
     connect(timer2,SIGNAL(timeout()),this,SLOT(actualizar()));
+    timerMultiPlayer=new QTimer(this);
+    timerMultiPlayer->stop();
+    connect(timerMultiPlayer,SIGNAL(timeout()),this,SLOT(colisionMultiplayer()));
 }
 
 MainWindow::~MainWindow()
@@ -79,57 +66,88 @@ MainWindow::~MainWindow()
 
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
-    if(evento->key()==Qt::Key_D)
-    {
-        tulio->moveRight();
-        if(EvaluarColision(tulio))tulio->moveLeft();
-        moverMapa();
-    }
-    else if(evento->key()==Qt::Key_A)
-    {
-       tulio->moveLeft();
-       if(EvaluarColision(tulio))tulio->moveRight();
-       moverMapa();
+    if(iniciaMulti==false){
+        if(evento->key()==Qt::Key_D)
+        {
+            tulio->moveRight();
+            if(EvaluarColision(tulio))tulio->moveLeft();
+            moverMapa();
+        }
+        else if(evento->key()==Qt::Key_A)
+        {
+           tulio->moveLeft();
+           if(EvaluarColision(tulio))tulio->moveRight();
+           moverMapa();
 
-    }
-    else if(evento->key()==Qt::Key_W)
-    {
-       tulio->moveUp();
-       if(EvaluarColision(tulio))tulio->moveDown();
-       moverMapa();
+        }
+        else if(evento->key()==Qt::Key_W)
+        {
+           tulio->moveUp();
+           if(EvaluarColision(tulio))tulio->moveDown();
+           moverMapa();
 
-    }
-    else if(evento->key()==Qt::Key_S)
-    {
-       tulio->moveDown();
-       if(EvaluarColision(tulio))tulio->moveUp();
-       moverMapa();
+        }
+        else if(evento->key()==Qt::Key_S)
+        {
+           tulio->moveDown();
+           if(EvaluarColision(tulio))tulio->moveUp();
+           moverMapa();
 
+        }
+        else if(evento->key()==Qt::Key_I and tulio->municion>0)
+        {
+            //creando proyectil
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_K and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,2,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_J and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,3,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_L and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,4,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
     }
-    else if(evento->key()==Qt::Key_I and tulio->municion>0)
-    {
-        //creando proyectil
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_K and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,2));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_J and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,3));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_L and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,4));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
+    else{
+        if(evento->key()==Qt::Key_W)
+        {
+           jugador1->moveUp();
+        }
+        else if(evento->key()==Qt::Key_S)
+        {
+           jugador1->moveDown();
+        }
+        else if(evento->key()==Qt::Key_1){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,4,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_I)
+        {
+           jugador2->moveUp();
+        }
+        else if(evento->key()==Qt::Key_K)
+        {
+           jugador2->moveDown();
+        }
+        else if(evento->key()==Qt::Key_J)
+        {
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,3
+                                                  ,15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
     }
 }
 
@@ -292,7 +310,6 @@ void MainWindow::moverMapa()
            }
 }
 
-
 void MainWindow::nivel1()
 {
     //jefe->move(tulio->x(),tulio->y());
@@ -374,7 +391,7 @@ void MainWindow::nivel1()
         //entrara a un solo condicional solo queda disparando un enemigo a la vez.
         if(timerProyectilEnemigo==9){
             balasEnemigo1.push_back(new proyectil(punteroEnemigos1->posx,punteroEnemigos1->posy,
-                                                  punteroEnemigos1->direccionDisp));
+                                                  punteroEnemigos1->direccionDisp,5,4));
             mapaEscena->addItem(balasEnemigo1.back());
         }
         else if(timerProyectilEnemigo==10){
@@ -482,8 +499,7 @@ void MainWindow::on_Nueva_clicked()
     ui->Nueva->hide();
     ui->REGISTER->show();
     ui->Salir->hide();
-
-
+    ui->multi->hide();
 }
 void MainWindow::on_REGISTER_clicked()
 {
@@ -570,9 +586,48 @@ void MainWindow::on_Salir_clicked()
     QApplication::quit();
 }
 
+void MainWindow::on_multi_clicked()
+{
+    ui->Cargar->hide();
+    ui->Nueva->hide();
+    ui->Salir->hide();
+    ui->multi->hide();
+    ui->graphicsView->setScene(multiplayer);
+    multiplayer->setSceneRect(0,0,500,500);
+    ui->graphicsView->show();
+    iniciaMulti=true;
+    timer1->stop();
+    jugador1=new personaje(40,20,30);
+    jugador1->velocidad+=15;
+    multiplayer->addItem(jugador1);
+    jugador2=new personaje(460,20,30);
+    jugador2->velocidad+=15;
+    multiplayer->addItem(jugador2);
+    timerMultiPlayer->start(100);
+}
 
-
-
-
-
-
+void MainWindow::colisionMultiplayer()
+{
+    for(itbalasJugador1=balasJugador1.begin();itbalasJugador1!=balasJugador1.end();
+        itbalasJugador1++){
+        if(jugador2->collidesWithItem(*itbalasJugador1)){
+            multiplayer->removeItem(*itbalasJugador1);
+            balasJugador1.erase(itbalasJugador1);
+            jugador2->vida-=5;
+        }
+    }
+    for(itbalasJugador2=balasJugador2.begin();itbalasJugador2!=balasJugador2.end();
+        itbalasJugador2++){
+        if(jugador1->collidesWithItem(*itbalasJugador2)){
+            multiplayer->removeItem(*itbalasJugador2);
+            balasJugador2.erase(itbalasJugador2);
+            jugador1->vida-=5;
+        }
+    }
+    if(jugador1->vida<=0){
+        QApplication::quit();
+    }
+    else if(jugador2->vida<=0){
+        QApplication::quit();
+    }
+}
