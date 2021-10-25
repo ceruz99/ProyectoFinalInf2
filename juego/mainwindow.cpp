@@ -61,22 +61,15 @@ MainWindow::MainWindow(QWidget *parent)
     pasar.append(new teletransportacion(10,16,550,445));
     mapaEscena->addItem(pasar.back());
 
-    //cannon1=new cannon(650,350,10,6);
-    //mapaEscena->addItem(cannon1);
-
-    //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-    //mapaEscena->addItem(bolasCannon.back());
-
     trampa1= new pendulo(200,100,5);
     mapaEscena->addItem(trampa1);
-
-    zombies.push_back(new enemigo2(180,80,8));
-    mapaEscena->addItem(zombies.back());
 
     timer1=new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
     timer1->start(100);
-    //connect(timer3,SIGNAL(timeout()),this,SLOT(actualizar()));
+    timer2=new QTimer(this);
+    timer2->stop();
+    connect(timer2,SIGNAL(timeout()),this,SLOT(actualizar()));
 }
 
 MainWindow::~MainWindow()
@@ -139,7 +132,6 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         tulio->municion-=1;
     }
 }
-
 
 void MainWindow::crear_muros()
 {
@@ -258,18 +250,45 @@ void MainWindow::moverMapa()
                    mapaEscena->removeItem(*itEnemigos1);
                    hechiceros.erase(itEnemigos1);
                }
+               timerProyectilEnemigo=0;
                //Creacion movimiento parabolico
                cannon1=new cannon(650,350,10,6);
                mapaEscena->addItem(cannon1);
                bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
                mapaEscena->addItem(bolasCannon.back());
                crearEnemigos1(rutaEnemigos1_2);
+               zombies.push_back(new enemigo2(670,40,8));
+               mapaEscena->addItem(zombies.back());
+               zombies.push_back(new enemigo2(670,140,8));
+               mapaEscena->addItem(zombies.back());
            }
            if(pasar[1]->collidesWithItem(tulio)){
                tulio->setPos(20,620);
                tulio->posx=20;
                tulio->posy=620;
                nivelActual+=1;
+               for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+                   mapaEscena->removeItem(*itEnemigos1);
+                   hechiceros.erase(itEnemigos1);
+               }
+               timerProyectilEnemigo=0;
+               //Creacion movimiento gravitacional
+               orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+               mapaEscena->addItem(orbital.back());
+               orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               dt=10;
+               timer2->start(100);
            }
 }
 
@@ -284,6 +303,7 @@ void MainWindow::nivel1()
 
     }
     else if(nivelActual==2){
+        //Funcionamiento tiro parabolico
         for(int i=0;i<10;i++){
             bolasCannon.back()->CalcularVelocidad();
             bolasCannon.back()->CalcularPosicion();
@@ -299,8 +319,32 @@ void MainWindow::nivel1()
                 timerBolaCannon=0;
             }
         }
+        //Colision bola cannon
         if(bolasCannon.back()->collidesWithItem(tulio))
             QApplication::quit();
+        //Colisiones zombies
+        for(itEnemigos2=zombies.begin();itEnemigos2!=zombies.end();itEnemigos2++){
+            if(tulio->collidesWithItem(*itEnemigos2))
+                tulio->vida-=20;
+            enemigo2 * punteroEnemigo2= *itEnemigos2;
+            for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+                if(punteroEnemigo2->collidesWithItem(*it)){
+                    punteroEnemigo2->vida-=10;
+                    mapaEscena->removeItem(*it);
+                    balasPersonaje.erase(it);
+                }
+            }
+            if(punteroEnemigo2->vida<=0){
+                mapaEscena->removeItem(*itEnemigos2);
+                zombies.erase(itEnemigos2);
+            }
+        }
+    }
+    else if(nivelActual==3){
+        for(itOrbital=orbital.begin();itOrbital!=orbital.end();itOrbital++){
+            if(tulio->collidesWithItem(*itOrbital))
+                QApplication::quit();
+        }
     }
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
@@ -315,6 +359,7 @@ void MainWindow::nivel1()
             balasEnemigo1.erase(it);
         }
     }
+    //Finalizacion del juego
     if(tulio->vida<=0)
         QApplication::quit();
     //-----------------------------------------------------------------------------------------

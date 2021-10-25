@@ -56,7 +56,7 @@ private:
     QString User;
     sesion *cuenta;
     ofstream guardar;
-    QTimer *timer1;
+    QTimer *timer1,*timer2;
 
     fstream leer;
     Ui::MainWindow *ui;
@@ -84,10 +84,7 @@ private:
     list<enemigo1 *>::iterator itEnemigos1;
     list<enemigo2 *>::iterator itEnemigos2;
     QList<muros*>::Iterator itMuros;
-
-    //int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
-
-
+    QList<enemigogiratorio *>::Iterator itOrbital;
 
     void keyPressEvent(QKeyEvent *evento);
     void crear_muros();
