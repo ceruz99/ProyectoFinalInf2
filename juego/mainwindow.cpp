@@ -33,10 +33,6 @@ MainWindow::MainWindow(QWidget *parent)
     crearEnemigos1(rutaEnemigos1_1);
     crearMuniciones();
 
-
-    //jefe=new enemigo3(120,180,8);
-    //mapaEscena->addItem(jefe);
-
     //enemigo orbital
 
     //tps
@@ -356,12 +352,21 @@ void MainWindow::moverMapa()
                orbital.back()->setPintura(1);
                dt=10;
                timer2->start(100);
+               //Creacion Jefe
+               jefe=new enemigo3(120,180,10);
+               mapaEscena->addItem(jefe);
+               //Creacion Escudo jefe
+               for(int i=0;i<12;i++) {
+                   orbes.push_back(new escudo(50,i*30,10));
+                   escudo * punteroOrbes=orbes.back();
+                   punteroOrbes->setCentro(jefe->posx,jefe->posy);
+                   mapaEscena->addItem(orbes.back());
+               }
            }
 }
 
 void MainWindow::nivel1()
 {
-    //jefe->move(tulio->x(),tulio->y());
     if(nivelActual==1){
         if((trampa1)->collidesWithItem(tulio)){
             QApplication::quit();
@@ -411,7 +416,14 @@ void MainWindow::nivel1()
             if(tulio->collidesWithItem(*itOrbital))
                 QApplication::quit();
         }
+        jefe->move(tulio->x(),tulio->y());
+        for(itOrbes=orbes.begin();itOrbes!=orbes.end();itOrbes++){
+            escudo * punteroOrbes=*itOrbes;
+            punteroOrbes->setCentro(jefe->posx,jefe->posy);
+            punteroOrbes->move();
+        }
     }
+
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
     for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){

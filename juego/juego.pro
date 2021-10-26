@@ -15,6 +15,7 @@ SOURCES += \
     enemigo2.cpp \
     enemigo3.cpp \
     enemigogiratorio.cpp \
+    escudo.cpp \
     main.cpp \
     mainwindow.cpp \
     municion.cpp \
@@ -32,6 +33,7 @@ HEADERS += \
     enemigo2.h \
     enemigo3.h \
     enemigogiratorio.h \
+    escudo.h \
     mainwindow.h \
     municion.h \
     muros.h \
