@@ -42,6 +42,8 @@ private slots:
 
     void on_Start_clicked();
 
+    void on_BarraVida_valueChanged(int value);
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -49,12 +51,14 @@ public:
     QList<enemigogiratorio*>orbital;
     QList<teletransportacion*>pasar;
 
+    void setUser(const QString &newUser);
+
 private:
 
     //Menu
     QString User;
     sesion *cuenta;
-    ofstream guardar;
+    ofstream guardar,Temp;
     QTimer *timer1;
 
     fstream leer;
@@ -70,12 +74,8 @@ private:
 
     list<municion *> recarga;
     list<enemigo2 *> zombies;
-    int timerProyectilEnemigo=0;
-    int timerBolaCannon=0;
-    int timerenemigo3=0;
     enemigo3 * jefe;
     cannon * cannon1;
-    enemigo3 * jefe;
     bolaCannon * bolaC;
     pendulo * trampa1;
     int nivelActual=1;
@@ -97,6 +97,8 @@ private:
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1(string ruta);
+    void crearEnemigoOrbital();
+    void autoguardado();
 
     float dt;
     void moverMapa();
