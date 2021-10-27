@@ -24,9 +24,11 @@ void escudo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 void escudo::move()
 {
     angulo+=dteta;
+    if(angulo>=6.2)
+        angulo=0;
     posx=distancia*cos(angulo);
     posy=distancia*sin(angulo);
-    setPos(centrox+posx,centroy+posy);
+    setPos(centrox+posx,centroy+posy);   
 }
 
 void escudo::setCentro(int x, int y)

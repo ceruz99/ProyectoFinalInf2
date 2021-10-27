@@ -417,33 +417,27 @@ void MainWindow::nivel1()
                 QApplication::quit();
         }
         jefe->move(tulio->x(),tulio->y());
+        //Colisiones orbes con personaje
         for(itOrbes=orbes.begin();itOrbes!=orbes.end();itOrbes++){
-            escudo * punteroOrbes=*itOrbes;
-            punteroOrbes->setCentro(jefe->posx,jefe->posy);
-            punteroOrbes->move();
-            if(tulio->collidesWithItem(*itOrbes))
-                tulio->vida-=40;
-            //colision balas con orbes
-            for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
-                proyectil *punteroBalas=*it;
-                if(punteroBalas->collidesWithItem(punteroOrbes)){
-                    try {
-                        mapaEscena->removeItem(*it);
-                        balasPersonaje.erase(it);
-                    }  catch (char c) {
-
-                    }
-                    mapaEscena->removeItem(*itOrbes);
-                    orbes.erase(itOrbes);
-                }
-                else if(punteroBalas->collidesWithItem(jefe)){
-                    try {
-                        mapaEscena->removeItem(*it);
-                        balasPersonaje.erase(it);
-                    }  catch (char c) {
-                    }
-                    jefe->vida-=10;
-                }
+            if(jefe->vida<=70){
+                mapaEscena->removeItem(*itOrbes);
+                orbes.erase(itOrbes);
+            }
+            else{
+                escudo * punteroOrbes=*itOrbes;
+                punteroOrbes->setCentro(jefe->posx,jefe->posy);
+                punteroOrbes->move();
+                if(tulio->collidesWithItem(*itOrbes))
+                    tulio->vida-=1;
+            }
+        }
+        //colision balas con jefe
+        for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+            proyectil *punteroBalas=*it;
+            if(punteroBalas->collidesWithItem(jefe)){
+                mapaEscena->removeItem(*it);
+                balasPersonaje.erase(it);
+                jefe->vida-=10;
             }
         }
         if(jefe->collidesWithItem(tulio)){
@@ -502,7 +496,6 @@ void MainWindow::nivel1()
         }
         //-----------------------------------------------------------------------------------------
     }
-    /*
     //Colisiones balas de personaje con los muros--------------------------------------------------
     for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
         if(EvaluarColision(*it)==true){
@@ -514,7 +507,7 @@ void MainWindow::nivel1()
         }
     }
     //---------------------------------------------------------------------------------------------
-    */
+
     //Recoger municion-----------------------------------------------------------------
     list<municion *>:: iterator itMunicion;
     for(itMunicion=recarga.begin();itMunicion!=recarga.end();itMunicion++){
