@@ -11,12 +11,12 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
-#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
@@ -39,7 +39,7 @@ public:
     QPushButton *Start;
     QLabel *ocupado_2;
     QLabel *reintentar_2;
-    QComboBox *comboBox;
+    QProgressBar *BarraVida;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -93,11 +93,10 @@ public:
         reintentar_2->setObjectName(QString::fromUtf8("reintentar_2"));
         reintentar_2->setGeometry(QRect(490, 200, 171, 16));
         reintentar_2->setStyleSheet(QString::fromUtf8("font: 75 9pt \"Unispace\";"));
-        comboBox = new QComboBox(centralwidget);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(180, 240, 91, 51));
+        BarraVida = new QProgressBar(centralwidget);
+        BarraVida->setObjectName(QString::fromUtf8("BarraVida"));
+        BarraVida->setGeometry(QRect(210, 0, 61, 16));
+        BarraVida->setValue(24);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -125,9 +124,6 @@ public:
         Start->setText(QApplication::translate("MainWindow", "Iniciar", nullptr));
         ocupado_2->setText(QApplication::translate("MainWindow", "Usuario no existe", nullptr));
         reintentar_2->setText(QApplication::translate("MainWindow", "Intente con otro usuario", nullptr));
-        comboBox->setItemText(0, QApplication::translate("MainWindow", "single player", nullptr));
-        comboBox->setItemText(1, QApplication::translate("MainWindow", "multiplayer", nullptr));
-
     } // retranslateUi
 
 };

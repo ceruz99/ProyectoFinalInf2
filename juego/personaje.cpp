@@ -1,5 +1,36 @@
 #include "personaje.h"
 
+
+int personaje::getMapa() const
+{
+    return mapa;
+}
+
+void personaje::setMapa(int newMapa)
+{
+    mapa = newMapa;
+}
+
+int personaje::getMunicion() const
+{
+    return municion;
+}
+
+void personaje::setMunicion(int newMunicion)
+{
+    municion = newMunicion;
+}
+
+int personaje::getVida() const
+{
+    return vida;
+}
+
+void personaje::setVida(int newVida)
+{
+    vida = newVida;
+}
+
 personaje::personaje()
 {
 
@@ -14,6 +45,7 @@ personaje::personaje(int x, int y, int r)
     setPos(posx,posy);
     this->vida=100;
     this->municion=15;
+    this->mapa=0;
 }
 
 QRectF personaje::boundingRect() const
