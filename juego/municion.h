@@ -4,6 +4,8 @@
 
 class municion: public muros
 {
+private:
+    QPixmap pixmap;
 public:
     municion(int x,int y,int w,int h);
     QRectF boundingRect() const;

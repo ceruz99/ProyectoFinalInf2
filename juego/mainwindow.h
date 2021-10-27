@@ -44,9 +44,12 @@ private slots:
 
     void on_Start_clicked();
 
+    void on_BarraVida_valueChanged(int value);
+
     void on_multi_clicked();
 
     void colisionMultiplayer();
+
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -55,13 +58,17 @@ public:
     QList<enemigogiratorio*>orbital;
     QList<teletransportacion*>pasar;
 
+    void setUser(const QString &newUser);
+
 private:
 
     //Menu
     QString User;
     sesion *cuenta;
-    ofstream guardar;
+
+    ofstream guardar,Temp;
     QTimer *timer1,*timer2;
+
 
     fstream leer;
     Ui::MainWindow *ui;
@@ -75,6 +82,7 @@ private:
     list<bolaCannon *> bolasCannon;
     list<municion *> recarga;
     list<enemigo2 *> zombies;
+
     list<escudo *> orbes;
 
     list<proyectil *>:: iterator it;
@@ -87,6 +95,7 @@ private:
     int timerProyectilEnemigo=0;
     int timerBolaCannon=0;
     int timerenemigo3=0;
+    
     enemigo3 * jefe;
     cannon * cannon1;
     bolaCannon * bolaC;
@@ -101,6 +110,8 @@ private:
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1(string ruta);
+    void crearEnemigoOrbital();
+    void autoguardado();
 
     float dt;
     void moverMapa();

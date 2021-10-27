@@ -13,7 +13,7 @@ private:
 public:
     sesion(QString _nombre,QString _vida,QString _mun,QString _map);
     bool busquedaUsuario();
-    QString usuario,vida="100",municion="15",mapa="0";
+    QString usuario,vida,municion,mapa;
     ifstream leer;
     ofstream guardar;
     void setVida(const QString &newVida);

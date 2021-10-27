@@ -4,5 +4,6 @@
         <file>imagenes/orbitales.png</file>
         <file>imagenes/pendulo.png</file>
         <file>imagenes/bullet.png</file>
+        <file>imagenes/cajaammno.png</file>
     </qresource>
 </RCC>

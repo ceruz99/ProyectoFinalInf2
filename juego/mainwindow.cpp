@@ -22,18 +22,32 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Start->hide();
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
-
-    //mapa
-    mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
+    ui->BarraVida->hide();
+    ui->graphicsView->setScene(mapaEscena);
+    mapaEscena->setSceneRect(0,0,960,960);
 
     tulio=new personaje(340,390,8);
-    //tulio=new personaje(150,80,8);
     mapaEscena->addItem(tulio);
+
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
+    zombies.push_back(new enemigo2(180,80,8));
+    mapaEscena->addItem(zombies.back());
     crear_muros();
     crearEnemigos1(rutaEnemigos1_1);
     crearMuniciones();
 
+
+    //mapa
+    mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
+
+
+    //jefe=new enemigo3(120,180,8);
+    //mapaEscena->addItem(jefe);
+
     //enemigo orbital
+    //crearEnemigoOrbital();
+
 
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
@@ -46,7 +60,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     timer1=new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
+    //connect(timer1,SIGNAL(timeout()),this,SLOT(on_BarraVida_valueChanged()));
     timer1->start(100);
+      
     timer2=new QTimer(this);
     timer2->stop();
     connect(timer2,SIGNAL(timeout()),this,SLOT(actualizar()));
@@ -58,6 +74,11 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::setUser(const QString &newUser)
+{
+    User = newUser;
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *evento)
@@ -301,6 +322,78 @@ void MainWindow::crearEnemigos1(string ruta)
     leer.close();
 }
 
+void MainWindow::crearEnemigoOrbital()
+{
+    leer.open("../textos/orbitas.txt");
+    try {
+        if(!leer.is_open())
+            throw '1';
+    }  catch (char c) {
+        if(c=='1')
+            cout<<"No lo lee"<<endl;
+    }
+    string linea;
+    while(getline(leer, linea)){
+        string pedazoLinea;
+        short int valores[6];
+        int tramo=0;
+
+        for(int i=0;i<6;i++){
+            if(i<5){
+                tramo=linea.find(',');
+                pedazoLinea=linea.substr(0,tramo);
+                valores[i]=atoi(pedazoLinea.c_str());
+                linea=linea.substr(tramo+1);
+            }
+            else
+                valores[i]=atoi(linea.c_str());
+
+        }
+        orbital.push_back(new enemigogiratorio(valores[0],valores[1],valores[2],valores[3],valores[4],valores[5]));
+//        if(valores[0]){
+//            orbital.back()->setPintura(0);
+//        }
+//        else{
+//            orbital.back()->setPintura(1);
+//        }
+        orbital.back()->setPintura(1);
+        mapaEscena->addItem(orbital.back());
+
+    }
+    leer.close();
+}
+
+void MainWindow::autoguardado()
+{
+    leer.open("../textos/usuarios.txt");
+    Temp.open("../textos/Temp.txt");
+    try {
+        if(!Temp.is_open() || !leer.is_open())
+            throw '1';
+    }  catch (char c) {
+        if(c=='1')
+            cout<<"No ha leido el archivo"<<endl;
+    }
+    string linea,cambio;
+    while(getline(leer, linea)){
+        string pedazoLinea,valores[4];
+        int tramo=0;
+        tramo=linea.find(',');
+        if(User==linea.substr(0,tramo).c_str() ){
+            cuenta=new sesion(User,QVariant(tulio->getVida()).toString(),QVariant(tulio->getMunicion()).toString(),QVariant(tulio->getMapa()).toString());
+            Temp<<cuenta->usuario.toStdString()<<","<<cuenta->vida.toStdString()<<","<<cuenta->municion.toStdString()<<","<<cuenta->mapa.toStdString()<<endl;
+
+        }
+        else{
+            Temp<<linea<<endl;
+        }
+    }
+    leer.close();
+    Temp.close();
+    remove("../textos/usuarios.txt");
+    rename("../textos/Temp.txt","../textos/usuarios.txt");
+}
+
 void MainWindow::moverMapa()
 {
            if(pasar[0]->collidesWithItem(tulio)){
@@ -308,6 +401,8 @@ void MainWindow::moverMapa()
                tulio->posx=900;
                tulio->posy=70;
                nivelActual+=1;
+               tulio->setMapa(1);
+               autoguardado();
                trampa1->timer->stop();
                for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
                    mapaEscena->removeItem(*itEnemigos1);
@@ -330,6 +425,8 @@ void MainWindow::moverMapa()
                tulio->posx=20;
                tulio->posy=620;
                nivelActual+=1;
+               tulio->setMapa(2);
+               autoguardado();
                for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
                    mapaEscena->removeItem(*itEnemigos1);
                    hechiceros.erase(itEnemigos1);
@@ -485,7 +582,7 @@ void MainWindow::nivel1()
         //Colisiones balas personaje con Enemigo1--------------------------------------------------
         for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
             if(punteroEnemigos1->collidesWithItem(*it)){
-                punteroEnemigos1->vida-=10;
+                punteroEnemigos1->vida-=10;                
                 mapaEscena->removeItem(*it);
                 balasPersonaje.erase(it);
             }
@@ -580,12 +677,14 @@ void MainWindow::on_REGISTER_clicked()
 {
     ui->USER->show();
     User=ui->USER->text();
+    setUser(User);
     cuenta=new sesion(User,"100","15","0");
     if(cuenta->busquedaUsuario()==true){
         ui->reintentar->show();
         ui->ocupado->show();
         User=ui->USER->text();
         cuenta=new sesion(User,"100","15","0");
+        setUser(User);
     }
     else{
         guardar.open("../textos/usuarios.txt",ios::app);
@@ -604,9 +703,17 @@ void MainWindow::on_REGISTER_clicked()
             ui->ocupado->hide();
             ui->REGISTER->hide();
             ui->L_usuario->hide();
+            setUser(User);
             ui->graphicsView->setScene(mapaEscena);
             mapaEscena->setSceneRect(0,0,960,960);
+            tulio=new personaje(340,390,8);
+            mapaEscena->addItem(tulio);
             ui->graphicsView->show();
+            ui->BarraVida->setValue(tulio->getVida());
+            ui->BarraVida->show();
+
+
+
     }
 
 }
@@ -623,34 +730,76 @@ void MainWindow::on_Cargar_clicked()
 }
 void MainWindow::on_Start_clicked()
 {
-    leer.open("../textos/usuarios.txt",ios::in);
-    try {
-        if(!leer.is_open())
-            throw '1';
-    }  catch (char c) {
-        if(c=='1')
-            cout<<"No ha leido el archivo"<<endl;
-    }
     ui->USER->show();
     User=ui->USER->text();
-    cuenta=new sesion(User,"100","15","0");
-
+    cuenta=new sesion(User,"0","0","0");
     if(cuenta->busquedaUsuario()==false){
         ui->reintentar_2->show();
         ui->ocupado_2->show();
         User=ui->USER->text();
-        cuenta=new sesion(User,"100","15","0");
+        cuenta=new sesion(User,"0","0","0");
+        setUser(User);
     }
     else{
+        leer.open("../textos/usuarios.txt",ios::in);
+        try {
+            if(!leer.is_open())
+                throw '1';
+        }  catch (char c) {
+            if(c=='1')
+                cout<<"No ha leido el archivo"<<endl;
+        }
+        string linea;
+        while(getline(leer, linea)){
+            string pedazoLinea;
+            short int valores[4];
+            int tramo=0;
+            tramo=linea.find(',');
+            if(User==linea.substr(0,tramo).c_str() ){
+
+                for(int i=0;i<4;i++){
+                    if(i<3){
+                        tramo=linea.find(',');
+                        pedazoLinea=linea.substr(0,tramo);
+                        valores[i]=atoi(pedazoLinea.c_str());
+                        linea=linea.substr(tramo+1);
+                    }
+                    else
+                        valores[i]=atoi(linea.c_str());
+                }
+                tulio->setVida(valores[1]);
+                tulio->setMunicion(valores[2]);
+                tulio->setMapa(valores[3]);
+                ui->BarraVida->setValue(tulio->getVida());
+                cout<<tulio->mapa;
+                if(tulio->mapa==1){
+                    tulio->setPos(900,70);
+                    tulio->posx=900;
+                    tulio->posy=70;
+                }
+                if(tulio->mapa==2){
+                    tulio->setPos(20,660);
+                    tulio->posx=20;
+                    tulio->posy=660;
+                }
+
+            }
+        }
+        setUser(User);
+        leer.close();
         ui->USER->hide();
         ui->REGISTER->hide();
         ui->reintentar_2->hide();
         ui->ocupado_2->hide();
         ui->L_usuario->hide();
         ui->Start->hide();
+        ui->graphicsView->show();
         ui->graphicsView->setScene(mapaEscena);
         mapaEscena->setSceneRect(0,0,960,960);
-        ui->graphicsView->show();
+
+
+
+
     }
 
 }
@@ -659,6 +808,11 @@ void MainWindow::on_Start_clicked()
 void MainWindow::on_Salir_clicked()
 {
     QApplication::quit();
+}
+
+void MainWindow::on_BarraVida_valueChanged(int value)
+{
+    ui->BarraVida->setValue(tulio->vida);
 }
 
 void MainWindow::on_multi_clicked()

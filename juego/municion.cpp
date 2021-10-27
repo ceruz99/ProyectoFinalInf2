@@ -15,5 +15,7 @@ QRectF municion::boundingRect() const
 
 void municion::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(),Qt::gray);
+    pixmap.load(":/mapa/imagenes/cajaammno.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+
 }
