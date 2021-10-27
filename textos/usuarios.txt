@@ -1,6 +1,6 @@
 jose,40,11,0
 andres,20,22,1
-mario,60,0,2Camilo,100,15,0
+mario,60,0,2
 Juanc,100,25,2
 yyuuui,100,15,0
 rttyy,100,22,1
@@ -8,3 +8,4 @@ poasi,100,29,2
 assss,100,15,0
 camiloM,80,23,2
 pasosos,100,20,2
+jhas,20,15,2

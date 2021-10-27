@@ -16,7 +16,6 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
@@ -39,7 +38,7 @@ public:
     QPushButton *Start;
     QLabel *ocupado_2;
     QLabel *reintentar_2;
-    QProgressBar *BarraVida;
+    QPushButton *multi;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -61,7 +60,7 @@ public:
         Cargar->setGeometry(QRect(410, 240, 80, 21));
         Salir = new QPushButton(centralwidget);
         Salir->setObjectName(QString::fromUtf8("Salir"));
-        Salir->setGeometry(QRect(410, 280, 80, 21));
+        Salir->setGeometry(QRect(410, 310, 80, 21));
         L_usuario = new QLabel(centralwidget);
         L_usuario->setObjectName(QString::fromUtf8("L_usuario"));
         L_usuario->setGeometry(QRect(410, 220, 81, 16));
@@ -93,14 +92,13 @@ public:
         reintentar_2->setObjectName(QString::fromUtf8("reintentar_2"));
         reintentar_2->setGeometry(QRect(490, 200, 171, 16));
         reintentar_2->setStyleSheet(QString::fromUtf8("font: 75 9pt \"Unispace\";"));
-        BarraVida = new QProgressBar(centralwidget);
-        BarraVida->setObjectName(QString::fromUtf8("BarraVida"));
-        BarraVida->setGeometry(QRect(210, 0, 61, 16));
-        BarraVida->setValue(24);
+        multi = new QPushButton(centralwidget);
+        multi->setObjectName(QString::fromUtf8("multi"));
+        multi->setGeometry(QRect(410, 270, 81, 21));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 960, 20));
+        menubar->setGeometry(QRect(0, 0, 960, 21));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -124,6 +122,7 @@ public:
         Start->setText(QApplication::translate("MainWindow", "Iniciar", nullptr));
         ocupado_2->setText(QApplication::translate("MainWindow", "Usuario no existe", nullptr));
         reintentar_2->setText(QApplication::translate("MainWindow", "Intente con otro usuario", nullptr));
+        multi->setText(QApplication::translate("MainWindow", "Multijugador", nullptr));
     } // retranslateUi
 
 };

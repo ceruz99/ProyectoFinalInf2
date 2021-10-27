@@ -26,6 +26,12 @@ MainWindow::MainWindow(QWidget *parent)
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
 
+    //aumentar el zoom del mapa
+//    view=new QGraphicsView(this);
+//    view->setScene(mapaEscena);
+//    view->resize(960,960);
+//    view->scale(2,2);
+
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
 
@@ -72,12 +78,14 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(evento->key()==Qt::Key_D)
         {
             tulio->moveRight();
+            //view->centerOn(tulio);
             if(EvaluarColision(tulio))tulio->moveLeft();
             moverMapa();
         }
         else if(evento->key()==Qt::Key_A)
         {
            tulio->moveLeft();
+           //view->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveRight();
            moverMapa();
 
@@ -85,6 +93,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_W)
         {
            tulio->moveUp();
+           //view->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveDown();
            moverMapa();
 
@@ -92,6 +101,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_S)
         {
            tulio->moveDown();
+           //view->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveUp();
            moverMapa();
 
@@ -433,7 +443,7 @@ void MainWindow::cargarNivel3()
     dt=10;
     timer2->start(100);
     //Creacion Jefe
-    jefe=new enemigo3(120,180,10);
+    jefe=new enemigo3(475,775,10);
     mapaEscena->addItem(jefe);
     //Creacion Escudo jefe
     for(int i=0;i<12;i++) {
@@ -442,6 +452,7 @@ void MainWindow::cargarNivel3()
         punteroOrbes->setCentro(jefe->posx,jefe->posy);
         mapaEscena->addItem(orbes.back());
     }
+    crearEnemigos1(rutaEnemigos1_3);
 }
 
 void MainWindow::moverMapa()
@@ -780,6 +791,7 @@ void MainWindow::on_Start_clicked()
                     tulio->posy=660;
                     cargarNivel3();
                     trampa1->timer->stop();
+                    crearEnemigos1(rutaEnemigos1_3);
                 }
             }
         }
