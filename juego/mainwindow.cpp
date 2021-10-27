@@ -7,7 +7,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    multiplayer=new QGraphicsScene();
     mapaEscena=new QGraphicsScene();
     //manipulacion de Menu
     menu=new QGraphicsScene();
@@ -42,27 +42,12 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
 
 
-
     //jefe=new enemigo3(120,180,8);
     //mapaEscena->addItem(jefe);
 
     //enemigo orbital
     //crearEnemigoOrbital();
-    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
-    mapaEscena->addItem(orbital.back());
-    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
-    mapaEscena->addItem(orbital.back());
-    orbital.back()->setPintura(1);
-    dt=10;
+
 
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
@@ -70,18 +55,20 @@ MainWindow::MainWindow(QWidget *parent)
     pasar.append(new teletransportacion(10,16,550,445));
     mapaEscena->addItem(pasar.back());
 
-    //cannon1=new cannon(650,350,10,6);
-    //mapaEscena->addItem(cannon1);
-
-    //bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-    //mapaEscena->addItem(bolasCannon.back());
-
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
 
     timer1=new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
     //connect(timer1,SIGNAL(timeout()),this,SLOT(on_BarraVida_valueChanged()));
-    connect(timer1,SIGNAL(timeout()),this,SLOT(actualizar()));
     timer1->start(100);
+      
+    timer2=new QTimer(this);
+    timer2->stop();
+    connect(timer2,SIGNAL(timeout()),this,SLOT(actualizar()));
+    timerMultiPlayer=new QTimer(this);
+    timerMultiPlayer->stop();
+    connect(timerMultiPlayer,SIGNAL(timeout()),this,SLOT(colisionMultiplayer()));
 }
 
 MainWindow::~MainWindow()
@@ -96,60 +83,139 @@ void MainWindow::setUser(const QString &newUser)
 
 void MainWindow::keyPressEvent(QKeyEvent *evento)
 {
-    if(evento->key()==Qt::Key_D)
-    {
-        tulio->moveRight();
-        if(EvaluarColision(tulio))tulio->moveLeft();
-        moverMapa();
-    }
-    else if(evento->key()==Qt::Key_A)
-    {
-       tulio->moveLeft();
-       if(EvaluarColision(tulio))tulio->moveRight();
-       moverMapa();
+    if(iniciaMulti==false){
+        if(evento->key()==Qt::Key_D)
+        {
+            tulio->moveRight();
+            if(EvaluarColision(tulio))tulio->moveLeft();
+            moverMapa();
+        }
+        else if(evento->key()==Qt::Key_A)
+        {
+           tulio->moveLeft();
+           if(EvaluarColision(tulio))tulio->moveRight();
+           moverMapa();
 
-    }
-    else if(evento->key()==Qt::Key_W)
-    {
-       tulio->moveUp();
-       if(EvaluarColision(tulio))tulio->moveDown();
-       moverMapa();
+        }
+        else if(evento->key()==Qt::Key_W)
+        {
+           tulio->moveUp();
+           if(EvaluarColision(tulio))tulio->moveDown();
+           moverMapa();
 
-    }
-    else if(evento->key()==Qt::Key_S)
-    {
-       tulio->moveDown();
-       if(EvaluarColision(tulio))tulio->moveUp();
-       moverMapa();
+        }
+        else if(evento->key()==Qt::Key_S)
+        {
+           tulio->moveDown();
+           if(EvaluarColision(tulio))tulio->moveUp();
+           moverMapa();
 
+        }
+        else if(evento->key()==Qt::Key_I and tulio->municion>0)
+        {
+            //creando proyectil
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_K and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,2,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_J and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,3,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
+        else if(evento->key()==Qt::Key_L and tulio->municion>0)
+        {
+            balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,4,5,4));
+            mapaEscena->addItem(balasPersonaje.back());
+            tulio->municion-=1;
+        }
     }
-    else if(evento->key()==Qt::Key_I and tulio->municion>0)
-    {
-        //creando proyectil
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,1));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_K and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,2));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_J and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,3));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
-    }
-    else if(evento->key()==Qt::Key_L and tulio->municion>0)
-    {
-        balasPersonaje.push_back(new proyectil(tulio->posx, tulio->posy,4));
-        mapaEscena->addItem(balasPersonaje.back());
-        tulio->municion-=1;
+    else{
+        //Jugador1 movimiento---------------------------------------------
+        if(evento->key()==Qt::Key_W)
+        {
+           jugador1->moveUp();
+        }
+        else if(evento->key()==Qt::Key_S)
+        {
+           jugador1->moveDown();
+        }
+        else if(evento->key()==Qt::Key_A)
+        {
+           jugador1->moveLeft();
+        }
+        else if(evento->key()==Qt::Key_D)
+        {
+           jugador1->moveRight();
+        }
+        else if(evento->key()==Qt::Key_H){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,4,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_F){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,3,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_G){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,2,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+        else if(evento->key()==Qt::Key_T){
+            balasJugador1.push_back(new proyectil(jugador1->posx,jugador1->posy,1,
+                                                   15,8));
+            multiplayer->addItem(balasJugador1.back());
+        }
+
+
+        //Jugador2 movimiento ---------------------------------------------------
+        else if(evento->key()==Qt::Key_5)
+        {
+           jugador2->moveUp();
+        }
+        else if(evento->key()==Qt::Key_2)
+        {
+           jugador2->moveDown();
+        }
+        else if(evento->key()==Qt::Key_1)
+        {
+           jugador2->moveLeft();
+        }
+        else if(evento->key()==Qt::Key_3)
+        {
+           jugador2->moveRight();
+        }
+        else if(evento->key()==Qt::Key_L){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,4,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_J){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,3,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_K){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,2,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
+        else if(evento->key()==Qt::Key_I){
+            balasJugador2.push_back(new proyectil(jugador2->posx,jugador2->posy,1,
+                                                   15,8));
+            multiplayer->addItem(balasJugador2.back());
+        }
     }
 }
-
 
 void MainWindow::crear_muros()
 {
@@ -342,12 +408,17 @@ void MainWindow::moverMapa()
                    mapaEscena->removeItem(*itEnemigos1);
                    hechiceros.erase(itEnemigos1);
                }
+               timerProyectilEnemigo=0;
                //Creacion movimiento parabolico
                cannon1=new cannon(650,350,10,6);
                mapaEscena->addItem(cannon1);
                bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
                mapaEscena->addItem(bolasCannon.back());
                crearEnemigos1(rutaEnemigos1_2);
+               zombies.push_back(new enemigo2(670,40,8));
+               mapaEscena->addItem(zombies.back());
+               zombies.push_back(new enemigo2(670,140,8));
+               mapaEscena->addItem(zombies.back());
            }
            if(pasar[1]->collidesWithItem(tulio)){
                tulio->setPos(20,620);
@@ -356,13 +427,43 @@ void MainWindow::moverMapa()
                nivelActual+=1;
                tulio->setMapa(2);
                autoguardado();
+               for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+                   mapaEscena->removeItem(*itEnemigos1);
+                   hechiceros.erase(itEnemigos1);
+               }
+               timerProyectilEnemigo=0;
+               //Creacion movimiento gravitacional
+               orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+               mapaEscena->addItem(orbital.back());
+               orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
+               mapaEscena->addItem(orbital.back());
+               orbital.back()->setPintura(1);
+               dt=10;
+               timer2->start(100);
+               //Creacion Jefe
+               jefe=new enemigo3(120,180,10);
+               mapaEscena->addItem(jefe);
+               //Creacion Escudo jefe
+               for(int i=0;i<12;i++) {
+                   orbes.push_back(new escudo(50,i*30,10));
+                   escudo * punteroOrbes=orbes.back();
+                   punteroOrbes->setCentro(jefe->posx,jefe->posy);
+                   mapaEscena->addItem(orbes.back());
+               }
            }
 }
 
-
 void MainWindow::nivel1()
 {
-    //jefe->move(tulio->x(),tulio->y());
     if(nivelActual==1){
         if((trampa1)->collidesWithItem(tulio)){
             QApplication::quit();
@@ -370,6 +471,7 @@ void MainWindow::nivel1()
 
     }
     else if(nivelActual==2){
+        //Funcionamiento tiro parabolico
         for(int i=0;i<10;i++){
             bolasCannon.back()->CalcularVelocidad();
             bolasCannon.back()->CalcularPosicion();
@@ -385,9 +487,64 @@ void MainWindow::nivel1()
                 timerBolaCannon=0;
             }
         }
+        //Colision bola cannon
         if(bolasCannon.back()->collidesWithItem(tulio))
             QApplication::quit();
+        //Colisiones zombies
+        for(itEnemigos2=zombies.begin();itEnemigos2!=zombies.end();itEnemigos2++){
+            if(tulio->collidesWithItem(*itEnemigos2))
+                tulio->vida-=20;
+            enemigo2 * punteroEnemigo2= *itEnemigos2;
+            for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+                if(punteroEnemigo2->collidesWithItem(*it)){
+                    punteroEnemigo2->vida-=10;
+                    mapaEscena->removeItem(*it);
+                    balasPersonaje.erase(it);
+                }
+            }
+            if(punteroEnemigo2->vida<=0){
+                mapaEscena->removeItem(*itEnemigos2);
+                zombies.erase(itEnemigos2);
+            }
+        }
     }
+    else if(nivelActual==3){
+        for(itOrbital=orbital.begin();itOrbital!=orbital.end();itOrbital++){
+            if(tulio->collidesWithItem(*itOrbital))
+                QApplication::quit();
+        }
+        jefe->move(tulio->x(),tulio->y());
+        //Colisiones orbes con personaje
+        for(itOrbes=orbes.begin();itOrbes!=orbes.end();itOrbes++){
+            if(jefe->vida<=70){
+                mapaEscena->removeItem(*itOrbes);
+                orbes.erase(itOrbes);
+            }
+            else{
+                escudo * punteroOrbes=*itOrbes;
+                punteroOrbes->setCentro(jefe->posx,jefe->posy);
+                punteroOrbes->move();
+                if(tulio->collidesWithItem(*itOrbes))
+                    tulio->vida-=1;
+            }
+        }
+        //colision balas con jefe
+        for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+            proyectil *punteroBalas=*it;
+            if(punteroBalas->collidesWithItem(jefe)){
+                mapaEscena->removeItem(*it);
+                balasPersonaje.erase(it);
+                jefe->vida-=10;
+            }
+        }
+        if(jefe->collidesWithItem(tulio)){
+            QApplication::quit();
+        }
+        if(jefe->vida<=0){
+            QApplication::quit();
+        }
+    }
+
     enemigo1 * punteroEnemigos1;//para poder usar los metodos de los elementos de la lista
     //Colisiones balas Enemigo1----------------------------------------------------------------
     for(it=balasEnemigo1.begin();it!=balasEnemigo1.end();it++){
@@ -401,6 +558,7 @@ void MainWindow::nivel1()
             balasEnemigo1.erase(it);
         }
     }
+    //Finalizacion del juego
     if(tulio->vida<=0)
         QApplication::quit();
     //-----------------------------------------------------------------------------------------
@@ -415,7 +573,7 @@ void MainWindow::nivel1()
         //entrara a un solo condicional solo queda disparando un enemigo a la vez.
         if(timerProyectilEnemigo==9){
             balasEnemigo1.push_back(new proyectil(punteroEnemigos1->posx,punteroEnemigos1->posy,
-                                                  punteroEnemigos1->direccionDisp));
+                                                  punteroEnemigos1->direccionDisp,5,4));
             mapaEscena->addItem(balasEnemigo1.back());
         }
         else if(timerProyectilEnemigo==10){
@@ -435,12 +593,14 @@ void MainWindow::nivel1()
         }
         //-----------------------------------------------------------------------------------------
     }
-
     //Colisiones balas de personaje con los muros--------------------------------------------------
     for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
         if(EvaluarColision(*it)==true){
-            mapaEscena->removeItem(*it);
-            balasPersonaje.erase(it);
+            try {
+                mapaEscena->removeItem(*it);
+                balasPersonaje.erase(it);
+            }  catch (char c) {
+            }
         }
     }
     //---------------------------------------------------------------------------------------------
@@ -462,18 +622,6 @@ void MainWindow::nivel1()
     int enemigo2Parar=0;
     for(itEnemigos2=zombies.begin();itEnemigos2!=zombies.end();itEnemigos2++){
         enemigo2 * punteroEnemigo2=*itEnemigos2;
-        /*for(itMuros=paredes.begin();itMuros!=paredes.end();itMuros++){
-           if((*itEnemigos2)->collidesWithItem(*itMuros)){
-               muros * apuntadorM=*itMuros;
-               if(apuntadorM->w>apuntadorM->h){
-                   enemigo2Parar=1;
-               }
-               else
-                   enemigo2Parar=2;
-           }
-           else
-            enemigo2Parar=2;
-        }*/
         if(EvaluarColision(*itEnemigos2))
             enemigo2Parar=1;
         else
@@ -523,8 +671,7 @@ void MainWindow::on_Nueva_clicked()
     ui->Nueva->hide();
     ui->REGISTER->show();
     ui->Salir->hide();
-
-
+    ui->multi->hide();
 }
 void MainWindow::on_REGISTER_clicked()
 {
@@ -668,3 +815,48 @@ void MainWindow::on_BarraVida_valueChanged(int value)
     ui->BarraVida->setValue(tulio->vida);
 }
 
+void MainWindow::on_multi_clicked()
+{
+    ui->Cargar->hide();
+    ui->Nueva->hide();
+    ui->Salir->hide();
+    ui->multi->hide();
+    ui->graphicsView->setScene(multiplayer);
+    multiplayer->setSceneRect(0,0,500,500);
+    ui->graphicsView->show();
+    iniciaMulti=true;
+    timer1->stop();
+    jugador1=new personaje(40,20,30);
+    jugador1->velocidad+=15;
+    multiplayer->addItem(jugador1);
+    jugador2=new personaje(460,20,30);
+    jugador2->velocidad+=15;
+    multiplayer->addItem(jugador2);
+    timerMultiPlayer->start(100);
+}
+
+void MainWindow::colisionMultiplayer()
+{
+    for(itbalasJugador1=balasJugador1.begin();itbalasJugador1!=balasJugador1.end();
+        itbalasJugador1++){
+        if(jugador2->collidesWithItem(*itbalasJugador1)){
+            multiplayer->removeItem(*itbalasJugador1);
+            balasJugador1.erase(itbalasJugador1);
+            jugador2->vida-=5;
+        }
+    }
+    for(itbalasJugador2=balasJugador2.begin();itbalasJugador2!=balasJugador2.end();
+        itbalasJugador2++){
+        if(jugador1->collidesWithItem(*itbalasJugador2)){
+            multiplayer->removeItem(*itbalasJugador2);
+            balasJugador2.erase(itbalasJugador2);
+            jugador1->vida-=5;
+        }
+    }
+    if(jugador1->vida<=0){
+        QApplication::quit();
+    }
+    else if(jugador2->vida<=0){
+        QApplication::quit();
+    }
+}

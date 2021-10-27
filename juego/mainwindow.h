@@ -17,6 +17,8 @@
 #include "sesion.h"
 #include <municion.h>
 #include <enemigo2.h>
+#include <QTimer>
+#include <escudo.h>
 
 #define rutaEnemigos1_1 "../textos/enemigos1.txt"
 #define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
@@ -44,6 +46,11 @@ private slots:
 
     void on_BarraVida_valueChanged(int value);
 
+    void on_multi_clicked();
+
+    void colisionMultiplayer();
+
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -58,12 +65,14 @@ private:
     //Menu
     QString User;
     sesion *cuenta;
+
     ofstream guardar,Temp;
-    QTimer *timer1;
+    QTimer *timer1,*timer2;
+
 
     fstream leer;
     Ui::MainWindow *ui;
-    QGraphicsScene *mapaEscena,*menu;
+    QGraphicsScene *mapaEscena,*menu, *multiplayer;
 
     //objetos
     personaje *tulio;
@@ -71,23 +80,27 @@ private:
     list<proyectil *> balasEnemigo1;
     list<enemigo1 *> hechiceros;
     list<bolaCannon *> bolasCannon;
-
     list<municion *> recarga;
     list<enemigo2 *> zombies;
-    enemigo3 * jefe;
-    cannon * cannon1;
-    bolaCannon * bolaC;
-    pendulo * trampa1;
-    int nivelActual=1;
+
+    list<escudo *> orbes;
 
     list<proyectil *>:: iterator it;
     list<enemigo1 *>::iterator itEnemigos1;
     list<enemigo2 *>::iterator itEnemigos2;
     QList<muros*>::Iterator itMuros;
+    QList<enemigogiratorio *>::Iterator itOrbital;
+    list<escudo *>::iterator itOrbes;
 
-    int timerProyectilEnemigo=0,timerBolaCannon=0,timerenemigo3=0;
-
-
+    int timerProyectilEnemigo=0;
+    int timerBolaCannon=0;
+    int timerenemigo3=0;
+    
+    enemigo3 * jefe;
+    cannon * cannon1;
+    bolaCannon * bolaC;
+    pendulo * trampa1;
+    int nivelActual=1;
 
 
 
@@ -103,6 +116,14 @@ private:
     float dt;
     void moverMapa();
 
+    //Multiplayer
+    bool iniciaMulti=false;
+    personaje * jugador1, *jugador2;
+    list<proyectil *> balasJugador1;
+    list<proyectil *> :: iterator itbalasJugador1;
+    list<proyectil *> balasJugador2;
+    list<proyectil *> :: iterator itbalasJugador2;
+    QTimer *timerMultiPlayer;
 
 };
 #endif // MAINWINDOW_H
