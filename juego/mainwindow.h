@@ -129,8 +129,6 @@ private:
     list<proyectil *> :: iterator itbalasJugador2;
     QTimer *timerMultiPlayer;
 
-    //para aumentar la vista del mapa
-    QGraphicsView * view ;
 
 };
 #endif // MAINWINDOW_H

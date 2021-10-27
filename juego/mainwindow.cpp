@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     multiplayer=new QGraphicsScene();
     mapaEscena=new QGraphicsScene();
+    //view=new QGraphicsView(this);
     //manipulacion de Menu
     menu=new QGraphicsScene();
     menu->setSceneRect(0,0,500,500);
@@ -22,18 +23,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Start->hide();
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
-    //ui->BarraVida->hide();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
 
-    //aumentar el zoom del mapa
-//    view=new QGraphicsView(this);
-//    view->setScene(mapaEscena);
-//    view->resize(960,960);
-//    view->scale(2,2);
+
 
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
+
+    ui->graphicsView->scale(2.5,2.5);
 
     crearEnemigos1(rutaEnemigos1_1);
     crear_muros();
@@ -78,14 +76,14 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(evento->key()==Qt::Key_D)
         {
             tulio->moveRight();
-            //view->centerOn(tulio);
+            ui->graphicsView->centerOn(tulio);
             if(EvaluarColision(tulio))tulio->moveLeft();
             moverMapa();
         }
         else if(evento->key()==Qt::Key_A)
         {
            tulio->moveLeft();
-           //view->centerOn(tulio);
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveRight();
            moverMapa();
 
@@ -93,7 +91,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_W)
         {
            tulio->moveUp();
-           //view->centerOn(tulio);
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveDown();
            moverMapa();
 
@@ -101,7 +99,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_S)
         {
            tulio->moveDown();
-           //view->centerOn(tulio);
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveUp();
            moverMapa();
 
@@ -718,8 +716,9 @@ void MainWindow::on_REGISTER_clicked()
             ui->L_usuario->hide();
             setUser(User);
             ui->graphicsView->show();
-            //ui->BarraVida->setValue(tulio->getVida());
-            //ui->BarraVida->show();
+            ui->graphicsView->centerOn(tulio);
+            ui->multi->hide();
+
 
     }
 
@@ -806,6 +805,8 @@ void MainWindow::on_Start_clicked()
         ui->graphicsView->show();
         ui->graphicsView->setScene(mapaEscena);
         mapaEscena->setSceneRect(0,0,960,960);
+        ui->graphicsView->centerOn(tulio);
+        ui->multi->hide();
     }
 }
 
