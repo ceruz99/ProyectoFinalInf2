@@ -6,7 +6,7 @@ enemigo3::enemigo3(int x, int y, int r)
     posy=y;
     radio=r;
     velocidad=2;
-    vida=20;
+    vida=50;
     setPos(posx,posy);
 }
 

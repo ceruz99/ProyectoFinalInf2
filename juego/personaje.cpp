@@ -12,7 +12,7 @@ personaje::personaje(int x, int y, int r)
     this->radio=r;
     this->velocidad=3;
     setPos(posx,posy);
-    this->vida=100;
+    this->vida=1000;
     this->municion=15;
 }
 

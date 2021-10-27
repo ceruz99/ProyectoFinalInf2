@@ -421,6 +421,36 @@ void MainWindow::nivel1()
             escudo * punteroOrbes=*itOrbes;
             punteroOrbes->setCentro(jefe->posx,jefe->posy);
             punteroOrbes->move();
+            if(tulio->collidesWithItem(*itOrbes))
+                tulio->vida-=40;
+            //colision balas con orbes
+            for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
+                proyectil *punteroBalas=*it;
+                if(punteroBalas->collidesWithItem(punteroOrbes)){
+                    try {
+                        mapaEscena->removeItem(*it);
+                        balasPersonaje.erase(it);
+                    }  catch (char c) {
+
+                    }
+                    mapaEscena->removeItem(*itOrbes);
+                    orbes.erase(itOrbes);
+                }
+                else if(punteroBalas->collidesWithItem(jefe)){
+                    try {
+                        mapaEscena->removeItem(*it);
+                        balasPersonaje.erase(it);
+                    }  catch (char c) {
+                    }
+                    jefe->vida-=10;
+                }
+            }
+        }
+        if(jefe->collidesWithItem(tulio)){
+            QApplication::quit();
+        }
+        if(jefe->vida<=0){
+            QApplication::quit();
         }
     }
 
@@ -472,16 +502,19 @@ void MainWindow::nivel1()
         }
         //-----------------------------------------------------------------------------------------
     }
-
+    /*
     //Colisiones balas de personaje con los muros--------------------------------------------------
     for(it=balasPersonaje.begin();it!=balasPersonaje.end();it++){
         if(EvaluarColision(*it)==true){
-            mapaEscena->removeItem(*it);
-            balasPersonaje.erase(it);
+            try {
+                mapaEscena->removeItem(*it);
+                balasPersonaje.erase(it);
+            }  catch (char c) {
+            }
         }
     }
     //---------------------------------------------------------------------------------------------
-
+    */
     //Recoger municion-----------------------------------------------------------------
     list<municion *>:: iterator itMunicion;
     for(itMunicion=recarga.begin();itMunicion!=recarga.end();itMunicion++){
@@ -499,18 +532,6 @@ void MainWindow::nivel1()
     int enemigo2Parar=0;
     for(itEnemigos2=zombies.begin();itEnemigos2!=zombies.end();itEnemigos2++){
         enemigo2 * punteroEnemigo2=*itEnemigos2;
-        /*for(itMuros=paredes.begin();itMuros!=paredes.end();itMuros++){
-           if((*itEnemigos2)->collidesWithItem(*itMuros)){
-               muros * apuntadorM=*itMuros;
-               if(apuntadorM->w>apuntadorM->h){
-                   enemigo2Parar=1;
-               }
-               else
-                   enemigo2Parar=2;
-           }
-           else
-            enemigo2Parar=2;
-        }*/
         if(EvaluarColision(*itEnemigos2))
             enemigo2Parar=1;
         else
