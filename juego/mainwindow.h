@@ -44,7 +44,7 @@ private slots:
 
     void on_Start_clicked();
 
-    void on_BarraVida_valueChanged(int value);
+    //void on_BarraVida_valueChanged(int value);
 
     void on_multi_clicked();
 
@@ -112,6 +112,9 @@ private:
     void crearEnemigos1(string ruta);
     void crearEnemigoOrbital();
     void autoguardado();
+    void cargarNivel1();
+    void cargarNivel2();
+    void cargarNivel3();
 
     float dt;
     void moverMapa();

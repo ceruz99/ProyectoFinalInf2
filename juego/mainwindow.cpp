@@ -22,32 +22,19 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Start->hide();
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
-    ui->BarraVida->hide();
+    //ui->BarraVida->hide();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
 
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
 
-    trampa1= new pendulo(200,100,5);
-    mapaEscena->addItem(trampa1);
-    zombies.push_back(new enemigo2(180,80,8));
-    mapaEscena->addItem(zombies.back());
-    crear_muros();
     crearEnemigos1(rutaEnemigos1_1);
+    crear_muros();
     crearMuniciones();
-
 
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
-
-
-    //jefe=new enemigo3(120,180,8);
-    //mapaEscena->addItem(jefe);
-
-    //enemigo orbital
-    //crearEnemigoOrbital();
-
 
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
@@ -55,12 +42,10 @@ MainWindow::MainWindow(QWidget *parent)
     pasar.append(new teletransportacion(10,16,550,445));
     mapaEscena->addItem(pasar.back());
 
-    trampa1= new pendulo(200,100,5);
-    mapaEscena->addItem(trampa1);
+    cargarNivel1();
 
     timer1=new QTimer(this);
     connect(timer1,SIGNAL(timeout()),this,SLOT(nivel1()));
-    //connect(timer1,SIGNAL(timeout()),this,SLOT(on_BarraVida_valueChanged()));
     timer1->start(100);
       
     timer2=new QTimer(this);
@@ -394,71 +379,88 @@ void MainWindow::autoguardado()
     rename("../textos/Temp.txt","../textos/usuarios.txt");
 }
 
+void MainWindow::cargarNivel1()
+{
+    nivelActual=1;
+    trampa1= new pendulo(200,100,5);
+    mapaEscena->addItem(trampa1);
+}
+
+void MainWindow::cargarNivel2()
+{
+    nivelActual=2;
+    trampa1->timer->stop();
+    for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+        mapaEscena->removeItem(*itEnemigos1);
+        hechiceros.erase(itEnemigos1);
+    }
+    timerProyectilEnemigo=0;
+    //Creacion movimiento parabolico
+    crearEnemigos1(rutaEnemigos1_2);
+    cannon1=new cannon(650,350,10,6);
+    mapaEscena->addItem(cannon1);
+    bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
+    mapaEscena->addItem(bolasCannon.back());
+    zombies.push_back(new enemigo2(670,40,8));
+    mapaEscena->addItem(zombies.back());
+    zombies.push_back(new enemigo2(670,140,8));
+    mapaEscena->addItem(zombies.back());
+}
+
+void MainWindow::cargarNivel3()
+{
+    nivelActual=3;
+    for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
+        mapaEscena->removeItem(*itEnemigos1);
+        hechiceros.erase(itEnemigos1);
+    }
+    timerProyectilEnemigo=0;
+    //Creacion movimiento gravitacional
+    orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
+    mapaEscena->addItem(orbital.back());
+    orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
+    mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
+    orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
+    mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
+    orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
+    mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
+    orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
+    mapaEscena->addItem(orbital.back());
+    orbital.back()->setPintura(1);
+    dt=10;
+    timer2->start(100);
+    //Creacion Jefe
+    jefe=new enemigo3(120,180,10);
+    mapaEscena->addItem(jefe);
+    //Creacion Escudo jefe
+    for(int i=0;i<12;i++) {
+        orbes.push_back(new escudo(50,i*30,10));
+        escudo * punteroOrbes=orbes.back();
+        punteroOrbes->setCentro(jefe->posx,jefe->posy);
+        mapaEscena->addItem(orbes.back());
+    }
+}
+
 void MainWindow::moverMapa()
 {
            if(pasar[0]->collidesWithItem(tulio)){
                tulio->setPos(900,70);
                tulio->posx=900;
                tulio->posy=70;
-               nivelActual+=1;
                tulio->setMapa(1);
                autoguardado();
-               trampa1->timer->stop();
-               for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
-                   mapaEscena->removeItem(*itEnemigos1);
-                   hechiceros.erase(itEnemigos1);
-               }
-               timerProyectilEnemigo=0;
-               //Creacion movimiento parabolico
-               cannon1=new cannon(650,350,10,6);
-               mapaEscena->addItem(cannon1);
-               bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
-               mapaEscena->addItem(bolasCannon.back());
-               crearEnemigos1(rutaEnemigos1_2);
-               zombies.push_back(new enemigo2(670,40,8));
-               mapaEscena->addItem(zombies.back());
-               zombies.push_back(new enemigo2(670,140,8));
-               mapaEscena->addItem(zombies.back());
+               cargarNivel2();
            }
            if(pasar[1]->collidesWithItem(tulio)){
                tulio->setPos(20,620);
                tulio->posx=20;
                tulio->posy=620;
-               nivelActual+=1;
                tulio->setMapa(2);
                autoguardado();
-               for(itEnemigos1=hechiceros.begin();itEnemigos1!=hechiceros.end();itEnemigos1++){
-                   mapaEscena->removeItem(*itEnemigos1);
-                   hechiceros.erase(itEnemigos1);
-               }
-               timerProyectilEnemigo=0;
-               //Creacion movimiento gravitacional
-               orbital.append(new enemigogiratorio(9500,15500,0,0,70000,200));
-               mapaEscena->addItem(orbital.back());
-               orbital.append(new enemigogiratorio(4500,15500,0,-1,70,160));
-               mapaEscena->addItem(orbital.back());
-               orbital.back()->setPintura(1);
-               orbital.append(new enemigogiratorio(14500,15500,0,1,700,170));
-               mapaEscena->addItem(orbital.back());
-               orbital.back()->setPintura(1);
-               orbital.append(new enemigogiratorio(9500,20500,-1,0,70,180));
-               mapaEscena->addItem(orbital.back());
-               orbital.back()->setPintura(1);
-               orbital.append(new enemigogiratorio(9500,10500,1,0,70,190));
-               mapaEscena->addItem(orbital.back());
-               orbital.back()->setPintura(1);
-               dt=10;
-               timer2->start(100);
-               //Creacion Jefe
-               jefe=new enemigo3(120,180,10);
-               mapaEscena->addItem(jefe);
-               //Creacion Escudo jefe
-               for(int i=0;i<12;i++) {
-                   orbes.push_back(new escudo(50,i*30,10));
-                   escudo * punteroOrbes=orbes.back();
-                   punteroOrbes->setCentro(jefe->posx,jefe->posy);
-                   mapaEscena->addItem(orbes.back());
-               }
+               cargarNivel3();
            }
 }
 
@@ -704,15 +706,9 @@ void MainWindow::on_REGISTER_clicked()
             ui->REGISTER->hide();
             ui->L_usuario->hide();
             setUser(User);
-            ui->graphicsView->setScene(mapaEscena);
-            mapaEscena->setSceneRect(0,0,960,960);
-            tulio=new personaje(340,390,8);
-            mapaEscena->addItem(tulio);
             ui->graphicsView->show();
-            ui->BarraVida->setValue(tulio->getVida());
-            ui->BarraVida->show();
-
-
+            //ui->BarraVida->setValue(tulio->getVida());
+            //ui->BarraVida->show();
 
     }
 
@@ -756,7 +752,6 @@ void MainWindow::on_Start_clicked()
             int tramo=0;
             tramo=linea.find(',');
             if(User==linea.substr(0,tramo).c_str() ){
-
                 for(int i=0;i<4;i++){
                     if(i<3){
                         tramo=linea.find(',');
@@ -770,19 +765,22 @@ void MainWindow::on_Start_clicked()
                 tulio->setVida(valores[1]);
                 tulio->setMunicion(valores[2]);
                 tulio->setMapa(valores[3]);
-                ui->BarraVida->setValue(tulio->getVida());
+                //ui->BarraVida->setValue(tulio->getVida());
                 cout<<tulio->mapa;
                 if(tulio->mapa==1){
                     tulio->setPos(900,70);
                     tulio->posx=900;
-                    tulio->posy=70;
+                    tulio->posy=70; //450,17  550,445
+                    cargarNivel2();
+                    crearEnemigos1(rutaEnemigos1_2);
                 }
                 if(tulio->mapa==2){
                     tulio->setPos(20,660);
                     tulio->posx=20;
                     tulio->posy=660;
+                    cargarNivel3();
+                    trampa1->timer->stop();
                 }
-
             }
         }
         setUser(User);
@@ -796,12 +794,7 @@ void MainWindow::on_Start_clicked()
         ui->graphicsView->show();
         ui->graphicsView->setScene(mapaEscena);
         mapaEscena->setSceneRect(0,0,960,960);
-
-
-
-
     }
-
 }
 
 
@@ -810,10 +803,10 @@ void MainWindow::on_Salir_clicked()
     QApplication::quit();
 }
 
-void MainWindow::on_BarraVida_valueChanged(int value)
+/*void MainWindow::on_BarraVida_valueChanged(int value)
 {
-    ui->BarraVida->setValue(tulio->vida);
-}
+    //ui->BarraVida->setValue(tulio->vida);
+}*/
 
 void MainWindow::on_multi_clicked()
 {
