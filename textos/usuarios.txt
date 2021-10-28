@@ -8,3 +8,4 @@ poasi,100,29,2
 assss,100,15,0
 camiloM,80,23,2
 pasosos,100,20,2
+luz,60,29,2
