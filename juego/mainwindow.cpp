@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Start->hide();
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
+    ui->vidaT->hide();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -642,10 +643,11 @@ void MainWindow::on_Nueva_clicked()
     ui->Nueva->hide();
     ui->REGISTER->show();
     ui->Salir->hide();
-    ui->multi->hide();
+    ui->multi->hide();  
 }
 void MainWindow::on_REGISTER_clicked()
 {
+    ui->vidaT->show();
     ui->USER->show();
     User=ui->USER->text();
     setUser(User);
@@ -767,6 +769,7 @@ void MainWindow::on_Start_clicked()
         mapaEscena->setSceneRect(0,0,960,960);
         ui->graphicsView->centerOn(tulio);
         ui->multi->hide();
+        ui->vidaT->show();
     }
 }
 
