@@ -695,6 +695,7 @@ void MainWindow::on_Cargar_clicked()
     ui->Nueva->hide();
     ui->Salir->hide();
     ui->Start->show();
+    ui->multi->hide();
 }
 void MainWindow::on_Start_clicked()
 {
