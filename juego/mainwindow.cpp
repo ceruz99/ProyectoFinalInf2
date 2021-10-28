@@ -11,9 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     mapaEscena=new QGraphicsScene();
 
     //manipulacion de Menu
-    menu=new QGraphicsScene();
-    menu->setSceneRect(0,0,500,500);
-    ui->graphicsView->setScene(menu);
+
     ui->graphicsView->hide();
     ui->USER->hide();
     ui->L_usuario->hide();
@@ -24,6 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
     ui->vidaT->hide();
+
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -40,6 +39,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     //mapa
     mapaEscena->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/mapa.png")));
+
+
 
     //tps
     pasar.append(new teletransportacion(16,10,450,17));
@@ -647,7 +648,6 @@ void MainWindow::on_Nueva_clicked()
 }
 void MainWindow::on_REGISTER_clicked()
 {
-    ui->vidaT->show();
     ui->USER->show();
     User=ui->USER->text();
     setUser(User);
@@ -680,6 +680,7 @@ void MainWindow::on_REGISTER_clicked()
             ui->graphicsView->show();
             ui->graphicsView->centerOn(tulio);
             ui->multi->hide();
+            ui->vidaT->show();
 
 
     }

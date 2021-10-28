@@ -6,12 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
-    <height>960</height>
+    <width>600</width>
+    <height>900</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="whatsThis">
+   <string/>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-image: url(:/mapa/imagenes/fondo.png);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGraphicsView" name="graphicsView">
@@ -27,11 +33,14 @@
    <widget class="QPushButton" name="Nueva">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>200</y>
-      <width>80</width>
-      <height>21</height>
+      <x>220</x>
+      <y>180</y>
+      <width>76</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Nueva Partida</string>
@@ -40,11 +49,14 @@
    <widget class="QPushButton" name="Cargar">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>240</y>
-      <width>80</width>
-      <height>21</height>
+      <x>220</x>
+      <y>220</y>
+      <width>78</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Cargar Partida</string>
@@ -53,11 +65,14 @@
    <widget class="QPushButton" name="Salir">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>310</y>
-      <width>80</width>
-      <height>21</height>
+      <x>220</x>
+      <y>290</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Salir</string>
@@ -66,14 +81,15 @@
    <widget class="QLabel" name="L_usuario">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>220</y>
-      <width>81</width>
-      <height>16</height>
+      <x>220</x>
+      <y>200</y>
+      <width>80</width>
+      <height>19</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 12pt &quot;Unispace&quot;;</string>
+     <string notr="true">font: 75 12pt &quot;Unispace&quot;;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Usuario:</string>
@@ -82,21 +98,27 @@
    <widget class="QLineEdit" name="USER">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>220</y>
-      <width>131</width>
-      <height>21</height>
+      <x>300</x>
+      <y>200</y>
+      <width>108</width>
+      <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
    </widget>
    <widget class="QPushButton" name="REGISTER">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>240</y>
-      <width>80</width>
-      <height>21</height>
+      <x>320</x>
+      <y>220</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Registrar</string>
@@ -105,10 +127,10 @@
    <widget class="QLabel" name="ocupado">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>220</y>
-      <width>161</width>
-      <height>16</height>
+      <x>430</x>
+      <y>200</y>
+      <width>105</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -122,14 +144,15 @@ color: rgb(170, 0, 0);</string>
    <widget class="QLabel" name="reintentar">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>200</y>
-      <width>151</width>
-      <height>16</height>
+      <x>300</x>
+      <y>180</y>
+      <width>147</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 9pt &quot;Unispace&quot;;</string>
+     <string notr="true">font: 75 9pt &quot;Unispace&quot;;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Ingrese nuevo usuario</string>
@@ -138,11 +161,14 @@ color: rgb(170, 0, 0);</string>
    <widget class="QPushButton" name="Start">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>240</y>
-      <width>80</width>
-      <height>21</height>
+      <x>320</x>
+      <y>220</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Iniciar</string>
@@ -151,10 +177,10 @@ color: rgb(170, 0, 0);</string>
    <widget class="QLabel" name="ocupado_2">
     <property name="geometry">
      <rect>
-      <x>620</x>
-      <y>220</y>
-      <width>161</width>
-      <height>16</height>
+      <x>430</x>
+      <y>200</y>
+      <width>119</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -168,14 +194,15 @@ color: rgb(170, 0, 0);</string>
    <widget class="QLabel" name="reintentar_2">
     <property name="geometry">
      <rect>
-      <x>490</x>
-      <y>200</y>
-      <width>171</width>
-      <height>16</height>
+      <x>300</x>
+      <y>180</y>
+      <width>168</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 75 9pt &quot;Unispace&quot;;</string>
+     <string notr="true">font: 75 9pt &quot;Unispace&quot;;
+color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Intente con otro usuario</string>
@@ -184,11 +211,14 @@ color: rgb(170, 0, 0);</string>
    <widget class="QPushButton" name="multi">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>270</y>
-      <width>81</width>
-      <height>21</height>
+      <x>220</x>
+      <y>250</y>
+      <width>75</width>
+      <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Multijugador</string>
@@ -211,22 +241,25 @@ color: rgb(170, 0, 0);</string>
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
      <string/>
     </property>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusbar"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>960</width>
-     <height>21</height>
+     <width>600</width>
+     <height>20</height>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>
