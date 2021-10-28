@@ -1,22 +1,16 @@
-#ifndef MUROS_H
-#define MUROS_H
+#ifndef TELETRANSPORTACION_H
+#define TELETRANSPORTACION_H
 #include <QGraphicsItem>
 #include <QPainter>
-#include <iostream>
-#include <fstream>
 #include <QList>
 
-using namespace std;
-
-class muros : public QGraphicsItem
-{   
+class teletransportacion: public QGraphicsItem
+{
 public:
     int posx,posy,w,h;
-    muros();
-    muros(int w , int h, int x,int y);
+    teletransportacion(int w , int h, int x,int y);
     QRectF boundingRect() const;
     void paint(QPainter *painter,const QStyleOptionGraphicsItem *option, QWidget *widget=nullptr);
-
-
 };
-#endif // MUROS_H
+
+#endif // TELETRANSPORTACION_H

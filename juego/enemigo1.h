@@ -4,19 +4,22 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <personaje.h>
+#include <QPixmap>
 class enemigo1 : public personaje
 {
 private:
     int radio;
-    int velocidad;
 public:
-    int posx, posy;
-    enemigo1(int x, int y, int r);
+    QPixmap pixmap;
+    int direccionMov;
+    int direccionDisp;
+    double posx, posy;
+    int velocidad;
+    enemigo1(int x, int y, int r, int _direccionMov,int _direccionDisp);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                   QWidget *widget = nullptr);
-    void moveRight();
-    void moveLeft();
+    void move();
 };
 
 #endif // ENEMIGO1_H

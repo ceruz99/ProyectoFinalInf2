@@ -1,33 +1,35 @@
 #include "enemigo1.h"
 
-enemigo1::enemigo1(int x, int y, int r)
+enemigo1::enemigo1(int x, int y, int r,int _direccionMov, int _direccionDisp)
 {
     posx=x;
     posy=y;
     radio=r;
-    velocidad=2;
+    velocidad=1;
     vida=30;
+    direccionMov=_direccionMov;
+    direccionDisp=_direccionDisp;
 }
 
 QRectF enemigo1::boundingRect() const
 {
-    return QRectF(posx,posy,radio*2,radio*2);
+    return QRectF(-radio,-radio,radio*2,radio*2);
 }
 
 void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/hechicero.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
-void enemigo1::moveRight()
+void enemigo1::move()
 {
-    posx+=velocidad;
-    setPos(posx,posy);
-}
-
-void enemigo1::moveLeft()
-{
-    posx-=velocidad;
-    setPos(posx,posy);
+    if(direccionMov==1){
+        posx+=velocidad;
+        setPos(posx,posy);
+    }
+    else if(direccionMov==2){
+        posy+=velocidad;
+        setPos(posx,posy);
+    }
 }

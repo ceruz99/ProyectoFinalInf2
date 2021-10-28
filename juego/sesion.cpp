@@ -1,12 +1,14 @@
 #include "sesion.h"
 
-sesion::sesion(QString _nombre, QString _contrasena)
+sesion::sesion(QString _nombre,QString _vida,QString _mun,QString _map)
 {
     this->usuario=_nombre;
-    this->contrasena=_contrasena;
+    this->vida=_vida;
+    this->municion=_mun;
+    this->mapa=_map;
 }
 
-bool sesion::busquedaUsuario()
+bool sesion::busquedaUsuario( )
 {
     leer.open("../textos/usuarios.txt");
     try {
@@ -20,7 +22,7 @@ bool sesion::busquedaUsuario()
     int separador;
     while(getline(leer,linea)){
         separador=linea.find(',');
-        if(usuario==linea.substr(0,separador).c_str() and contrasena==linea.substr(separador+1).c_str()){
+        if(usuario==linea.substr(0,separador).c_str()){
             leer.close();
             return true;
         }
@@ -29,16 +31,8 @@ bool sesion::busquedaUsuario()
     return false;
 }
 
-void sesion::nuevoUsuario()
+
+void sesion::setVida(const QString &newVida)
 {
-    guardar.open("../textos/usuarios.txt",ios::app);
-    try {
-        if(!guardar.is_open())
-            throw '1';
-    }  catch (char c) {
-        if(c=='1')
-            cout<<"No ha leido el archivo"<<endl;
-    }
-    guardar<<endl<<this->usuario.toStdString()<<","<<this->contrasena.toStdString();
-    guardar.close();
+    vida = newVida;
 }

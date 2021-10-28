@@ -9,14 +9,14 @@ using namespace std;
 class sesion
 {
 private:
-    QString usuario;
-    QString contrasena;
+
+public:
+    sesion(QString _nombre,QString _vida,QString _mun,QString _map);
+    bool busquedaUsuario();
+    QString usuario,vida,municion,mapa;
     ifstream leer;
     ofstream guardar;
-public:
-    sesion(QString _nombre,QString _contrasena);
-    bool busquedaUsuario();
-    void nuevoUsuario();
+    void setVida(const QString &newVida);
 };
 
 #endif // SESION_H

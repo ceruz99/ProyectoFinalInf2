@@ -1,5 +1,10 @@
 #include "muros.h"
 
+muros::muros()
+{
+
+}
+
 muros::muros(int w, int h, int x , int y)
 {
     this->posx=x;
@@ -13,5 +18,5 @@ QRectF muros::boundingRect() const{
 }
 void muros::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(),Qt::transparent);
+    painter->fillRect(boundingRect(),Qt::transparent  );
 }
