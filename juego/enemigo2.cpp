@@ -41,6 +41,6 @@ QRectF enemigo2::boundingRect() const
 
 void enemigo2::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::green);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/zombie.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }

@@ -18,8 +18,8 @@ QRectF enemigo1::boundingRect() const
 
 void enemigo1::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/hechicero.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
 void enemigo1::move()

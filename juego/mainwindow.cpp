@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     multiplayer=new QGraphicsScene();
     mapaEscena=new QGraphicsScene();
-    //view=new QGraphicsView(this);
+
     //manipulacion de Menu
     menu=new QGraphicsScene();
     menu->setSceneRect(0,0,500,500);
@@ -405,7 +405,7 @@ void MainWindow::cargarNivel2()
     timerProyectilEnemigo=0;
     //Creacion movimiento parabolico
     crearEnemigos1(rutaEnemigos1_2);
-    cannon1=new cannon(650,350,10,6);
+    cannon1=new cannon(635,350,20,20);
     mapaEscena->addItem(cannon1);
     bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
     mapaEscena->addItem(bolasCannon.back());

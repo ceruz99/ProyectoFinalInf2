@@ -46,22 +46,36 @@ personaje::personaje(int x, int y, int r)
     this->vida=100;
     this->municion=15;
     this->mapa=0;
+    timer=new QTimer();
+
+    filas=0;
+    columnas=0;
+    pixmap=new QPixmap(":/mapa/imagenes/personaje3.png");
+    //dimensiones de cada imagen
+    ancho = 10;
+    alto = 20;
+
+    timer->start(100);
+    connect(timer,&QTimer::timeout,this,&personaje::reload);
 }
 
 QRectF personaje::boundingRect() const
 {
-    return QRectF(-radio,-radio,radio*2,radio*2);
+    return QRectF(-ancho/2,-alto/2,ancho,alto);
 }
 
 void personaje::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::yellow);
-    painter->drawEllipse(boundingRect());
+    painter->drawPixmap(-ancho/2,-alto/2,*pixmap,columnas,filas,ancho,alto);
+
 }
 
 void personaje::moveRight()
 {
     this->posx+=velocidad;
+    filas=20;
+    columnas+=10;
+    if(columnas>=30) columnas=0;
     setPos(posx,posy);
 }
 
@@ -69,16 +83,34 @@ void personaje::moveLeft()
 {
     this->posx-=velocidad;
     setPos(posx,posy);
+    filas=60;
+    columnas+=10;
+    if(columnas>=30) columnas=0;
 }
 
 void personaje::moveUp()
 {
     this->posy-=velocidad;
     setPos(posx,posy);
+    filas=40;
+    columnas+=10;
+    if(columnas>=30) columnas=0;
 }
 
 void personaje::moveDown()
 {
     this->posy+=velocidad;
+    columnas+=10;
+    filas=0;
+    if(columnas>=30) columnas=0;
     setPos(posx,posy);
+}
+void personaje::reload()
+{
+    columnas += 10;
+
+    if(columnas >= 30){
+        columnas =0;
+    }
+    this->update(-ancho/2,-alto/2,ancho,alto);
 }

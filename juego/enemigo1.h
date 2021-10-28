@@ -4,11 +4,13 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <personaje.h>
+#include <QPixmap>
 class enemigo1 : public personaje
 {
 private:
     int radio;
 public:
+    QPixmap pixmap;
     int direccionMov;
     int direccionDisp;
     double posx, posy;

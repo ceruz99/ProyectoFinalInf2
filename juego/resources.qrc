@@ -5,5 +5,14 @@
         <file>imagenes/pendulo.png</file>
         <file>imagenes/bullet.png</file>
         <file>imagenes/cajaammno.png</file>
+        <file>imagenes/balacanon.png</file>
+        <file>imagenes/canon.png</file>
+        <file>imagenes/hechicero.png</file>
+        <file>imagenes/jefe.png</file>
+        <file>imagenes/bolasdejefe.png</file>
+        <file>imagenes/zombie.png</file>
+        <file>imagenes/personaje.png</file>
+        <file>imagenes/personaje2.png</file>
+        <file>imagenes/personaje3.png</file>
     </qresource>
 </RCC>

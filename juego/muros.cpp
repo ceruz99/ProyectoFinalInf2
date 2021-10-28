@@ -18,5 +18,5 @@ QRectF muros::boundingRect() const{
 }
 void muros::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(),Qt::green  );
+    painter->fillRect(boundingRect(),Qt::transparent  );
 }
