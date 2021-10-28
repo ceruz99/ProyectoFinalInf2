@@ -829,6 +829,7 @@ void MainWindow::on_multi_clicked()
     ui->multi->hide();
     ui->graphicsView->setScene(multiplayer);
     multiplayer->setSceneRect(0,0,500,500);
+    multiplayer->setBackgroundBrush(QBrush(QImage(":/mapa/imagenes/arena.png")));
     ui->graphicsView->show();
     iniciaMulti=true;
     timer1->stop();

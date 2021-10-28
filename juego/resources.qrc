@@ -14,5 +14,6 @@
         <file>imagenes/personaje.png</file>
         <file>imagenes/personaje2.png</file>
         <file>imagenes/personaje3.png</file>
+        <file>imagenes/arena.png</file>
     </qresource>
 </RCC>

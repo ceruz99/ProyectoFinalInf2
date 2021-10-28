@@ -168,7 +168,8 @@ release/qrc_resources.cpp: ../juego/resources.qrc \
 		../juego/imagenes/pendulo.png \
 		../juego/imagenes/mapa.png \
 		../juego/imagenes/orbitales.png \
-		../juego/imagenes/bullet.png
+		../juego/imagenes/bullet.png \
+		../juego/imagenes/arena.png
 	C:\QTcreator\6.0.3\mingw81_64\bin\rcc.exe -name resources ..\juego\resources.qrc -o release\qrc_resources.cpp
 
 compiler_moc_predefs_make_all: release/moc_predefs.h
