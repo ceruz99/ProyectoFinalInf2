@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     multiplayer=new QGraphicsScene();
     mapaEscena=new QGraphicsScene();
+
     //manipulacion de Menu
     menu=new QGraphicsScene();
     menu->setSceneRect(0,0,500,500);
@@ -22,12 +23,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->Start->hide();
     ui->reintentar_2->hide();
     ui->ocupado_2->hide();
-    //ui->BarraVida->hide();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
 
+
+
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
+
+    ui->graphicsView->scale(2.5,2.5);
 
     crearEnemigos1(rutaEnemigos1_1);
     crear_muros();
@@ -72,12 +76,14 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         if(evento->key()==Qt::Key_D)
         {
             tulio->moveRight();
+            ui->graphicsView->centerOn(tulio);
             if(EvaluarColision(tulio))tulio->moveLeft();
             moverMapa();
         }
         else if(evento->key()==Qt::Key_A)
         {
            tulio->moveLeft();
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveRight();
            moverMapa();
 
@@ -85,6 +91,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_W)
         {
            tulio->moveUp();
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveDown();
            moverMapa();
 
@@ -92,6 +99,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
         else if(evento->key()==Qt::Key_S)
         {
            tulio->moveDown();
+           ui->graphicsView->centerOn(tulio);
            if(EvaluarColision(tulio))tulio->moveUp();
            moverMapa();
 
@@ -397,7 +405,7 @@ void MainWindow::cargarNivel2()
     timerProyectilEnemigo=0;
     //Creacion movimiento parabolico
     crearEnemigos1(rutaEnemigos1_2);
-    cannon1=new cannon(650,350,10,6);
+    cannon1=new cannon(635,350,20,20);
     mapaEscena->addItem(cannon1);
     bolasCannon.push_back(new bolaCannon(650,350,30,(45*3.141598)/180));
     mapaEscena->addItem(bolasCannon.back());
@@ -433,7 +441,7 @@ void MainWindow::cargarNivel3()
     dt=10;
     timer2->start(100);
     //Creacion Jefe
-    jefe=new enemigo3(120,180,10);
+    jefe=new enemigo3(475,775,10);
     mapaEscena->addItem(jefe);
     //Creacion Escudo jefe
     for(int i=0;i<12;i++) {
@@ -442,6 +450,7 @@ void MainWindow::cargarNivel3()
         punteroOrbes->setCentro(jefe->posx,jefe->posy);
         mapaEscena->addItem(orbes.back());
     }
+    crearEnemigos1(rutaEnemigos1_3);
 }
 
 void MainWindow::moverMapa()
@@ -707,8 +716,9 @@ void MainWindow::on_REGISTER_clicked()
             ui->L_usuario->hide();
             setUser(User);
             ui->graphicsView->show();
-            //ui->BarraVida->setValue(tulio->getVida());
-            //ui->BarraVida->show();
+            ui->graphicsView->centerOn(tulio);
+            ui->multi->hide();
+
 
     }
 
@@ -780,6 +790,7 @@ void MainWindow::on_Start_clicked()
                     tulio->posy=660;
                     cargarNivel3();
                     trampa1->timer->stop();
+                    crearEnemigos1(rutaEnemigos1_3);
                 }
             }
         }
@@ -794,6 +805,8 @@ void MainWindow::on_Start_clicked()
         ui->graphicsView->show();
         ui->graphicsView->setScene(mapaEscena);
         mapaEscena->setSceneRect(0,0,960,960);
+        ui->graphicsView->centerOn(tulio);
+        ui->multi->hide();
     }
 }
 

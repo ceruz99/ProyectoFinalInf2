@@ -3,6 +3,7 @@
 #include <QGraphicsItem>
 #include <QPainter>
 #include <math.h>
+#include <QPixmap>
 
 #define DT 0.04
 #define g 9.8
@@ -13,6 +14,7 @@ class bolaCannon: public QGraphicsItem
     int r;
     double vel_x,vel,angi;
 public:
+    QPixmap pixmap;
     double posx,posy,vel_y,ang;
     bolaCannon(double x, double y, double v, double ang);
     QRectF boundingRect() const;

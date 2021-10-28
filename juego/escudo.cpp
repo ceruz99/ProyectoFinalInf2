@@ -17,8 +17,8 @@ QRectF escudo::boundingRect() const
 
 void escudo::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::blue);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/bolasdejefe.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
 void escudo::move()

@@ -1,14 +1,20 @@
 #ifndef PERSONAJE_H
 #define PERSONAJE_H
 
+#include <QObject>
 #include <QGraphicsItem>
 #include <QPainter>
+#include <QTimer>
+#include <QPixmap>
 
-class personaje : public QGraphicsItem
+class personaje : public QGraphicsItem, public QObject
 {
 public:
     int radio,velocidad,vida,municion,mapa,posx,posy;
     personaje();
+    QPixmap *pixmap;
+    QTimer *timer;
+    float filas, columnas,ancho, alto;
     personaje(int x, int y, int r);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -23,6 +29,8 @@ public:
     void setMunicion(int newMunicion);
     int getMapa() const;
     void setMapa(int newMapa);
+public slots:
+    void reload();
 };
 
 #endif // PERSONAJE_H

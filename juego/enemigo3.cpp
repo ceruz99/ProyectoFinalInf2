@@ -32,6 +32,6 @@ QRectF enemigo3::boundingRect() const
 
 void enemigo3::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::black);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/jefe.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }

@@ -15,5 +15,7 @@ QRectF cannon::boundingRect() const
 
 void cannon::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->fillRect(boundingRect(),Qt::red);
+    pixmap.load(":/mapa/imagenes/canon.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
+
 }

@@ -5,6 +5,7 @@
 #include <QPainter>
 #include <QTimer>
 #include <math.h>
+#include <QPixmap>
 
 #define pi 3.14159265
 #define dteta 0.1
@@ -19,6 +20,7 @@ private:
     int distancia;
     int centrox, centroy;
 public:
+    QPixmap pixmap;
     escudo(int _distancia, double _angulo, int _radio);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,

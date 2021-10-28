@@ -22,6 +22,7 @@
 
 #define rutaEnemigos1_1 "../textos/enemigos1.txt"
 #define rutaEnemigos1_2 "../textos/enemigos1_2.txt"
+#define rutaEnemigos1_3 "../textos/enemigos1_3.txt"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -127,6 +128,7 @@ private:
     list<proyectil *> balasJugador2;
     list<proyectil *> :: iterator itbalasJugador2;
     QTimer *timerMultiPlayer;
+
 
 };
 #endif // MAINWINDOW_H

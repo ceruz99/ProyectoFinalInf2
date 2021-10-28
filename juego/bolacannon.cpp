@@ -1,4 +1,4 @@
-#include "bolacannon.h"
+    #include "bolacannon.h"
 
 bolaCannon::bolaCannon(double x, double y, double v, double ang)
 {
@@ -17,8 +17,8 @@ QRectF bolaCannon::boundingRect() const
 
 void bolaCannon::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::red);
-    painter->drawEllipse(boundingRect());
+    pixmap.load(":/mapa/imagenes/balacanon.png");
+    painter->drawPixmap(boundingRect(),pixmap,pixmap.rect());
 }
 
 void bolaCannon::Mover()
