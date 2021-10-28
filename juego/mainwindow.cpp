@@ -25,8 +25,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->ocupado_2->hide();
     ui->graphicsView->setScene(mapaEscena);
     mapaEscena->setSceneRect(0,0,960,960);
-
-
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     tulio=new personaje(340,390,8);
     mapaEscena->addItem(tulio);
@@ -315,47 +315,6 @@ void MainWindow::crearEnemigos1(string ruta)
     leer.close();
 }
 
-void MainWindow::crearEnemigoOrbital()
-{
-    leer.open("../textos/orbitas.txt");
-    try {
-        if(!leer.is_open())
-            throw '1';
-    }  catch (char c) {
-        if(c=='1')
-            cout<<"No lo lee"<<endl;
-    }
-    string linea;
-    while(getline(leer, linea)){
-        string pedazoLinea;
-        short int valores[6];
-        int tramo=0;
-
-        for(int i=0;i<6;i++){
-            if(i<5){
-                tramo=linea.find(',');
-                pedazoLinea=linea.substr(0,tramo);
-                valores[i]=atoi(pedazoLinea.c_str());
-                linea=linea.substr(tramo+1);
-            }
-            else
-                valores[i]=atoi(linea.c_str());
-
-        }
-        orbital.push_back(new enemigogiratorio(valores[0],valores[1],valores[2],valores[3],valores[4],valores[5]));
-//        if(valores[0]){
-//            orbital.back()->setPintura(0);
-//        }
-//        else{
-//            orbital.back()->setPintura(1);
-//        }
-        orbital.back()->setPintura(1);
-        mapaEscena->addItem(orbital.back());
-
-    }
-    leer.close();
-}
-
 void MainWindow::autoguardado()
 {
     leer.open("../textos/usuarios.txt");
@@ -475,6 +434,7 @@ void MainWindow::moverMapa()
 
 void MainWindow::nivel1()
 {
+    ui->vidaT->setText(QString::number(tulio->vida));
     if(nivelActual==1){
         if((trampa1)->collidesWithItem(tulio)){
             QApplication::quit();
@@ -816,11 +776,6 @@ void MainWindow::on_Salir_clicked()
     QApplication::quit();
 }
 
-/*void MainWindow::on_BarraVida_valueChanged(int value)
-{
-    //ui->BarraVida->setValue(tulio->vida);
-}*/
-
 void MainWindow::on_multi_clicked()
 {
     ui->Cargar->hide();
@@ -836,7 +791,7 @@ void MainWindow::on_multi_clicked()
     jugador1=new personaje(40,20,30);
     jugador1->velocidad+=15;
     multiplayer->addItem(jugador1);
-    jugador2=new personaje(460,20,30);
+    jugador2=new personaje(50,20,30);
     jugador2->velocidad+=15;
     multiplayer->addItem(jugador2);
     timerMultiPlayer->start(100);

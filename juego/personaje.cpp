@@ -55,8 +55,6 @@ personaje::personaje(int x, int y, int r)
     ancho = 10;
     alto = 20;
 
-    timer->start(100);
-    connect(timer,&QTimer::timeout,this,&personaje::reload);
 }
 
 QRectF personaje::boundingRect() const
@@ -104,13 +102,4 @@ void personaje::moveDown()
     filas=0;
     if(columnas>=30) columnas=0;
     setPos(posx,posy);
-}
-void personaje::reload()
-{
-    columnas += 10;
-
-    if(columnas >= 30){
-        columnas =0;
-    }
-    this->update(-ancho/2,-alto/2,ancho,alto);
 }

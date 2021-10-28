@@ -29,8 +29,6 @@ public:
     void setMunicion(int newMunicion);
     int getMapa() const;
     void setMapa(int newMapa);
-public slots:
-    void reload();
 };
 
 #endif // PERSONAJE_H

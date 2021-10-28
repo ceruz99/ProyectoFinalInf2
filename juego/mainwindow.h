@@ -111,7 +111,6 @@ private:
     template <typename tipo>
     bool EvaluarColision(tipo *objeto);
     void crearEnemigos1(string ruta);
-    void crearEnemigoOrbital();
     void autoguardado();
     void cargarNivel1();
     void cargarNivel2();

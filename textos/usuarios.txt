@@ -22,3 +22,8 @@ intento,100,15,0
 jiso,100,15,0
 noob,100,15,0
 jose1,80,19,1
+JuanCamilo,20,17,2
+cm,100,15,0
+jcm,100,15,0
+jcmc,100,15,0
+adsgafa,40,25,1

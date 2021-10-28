@@ -39,6 +39,7 @@ public:
     QLabel *ocupado_2;
     QLabel *reintentar_2;
     QPushButton *multi;
+    QLabel *vidaT;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -95,6 +96,14 @@ public:
         multi = new QPushButton(centralwidget);
         multi->setObjectName(QString::fromUtf8("multi"));
         multi->setGeometry(QRect(410, 270, 81, 21));
+        vidaT = new QLabel(centralwidget);
+        vidaT->setObjectName(QString::fromUtf8("vidaT"));
+        vidaT->setGeometry(QRect(30, 30, 91, 31));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Yu Gothic UI Semibold"));
+        font.setPointSize(28);
+        font.setBold(true);
+        vidaT->setFont(font);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -123,6 +132,7 @@ public:
         ocupado_2->setText(QCoreApplication::translate("MainWindow", "Usuario no existe", nullptr));
         reintentar_2->setText(QCoreApplication::translate("MainWindow", "Intente con otro usuario", nullptr));
         multi->setText(QCoreApplication::translate("MainWindow", "Multijugador", nullptr));
+        vidaT->setText(QString());
     } // retranslateUi
 
 };
